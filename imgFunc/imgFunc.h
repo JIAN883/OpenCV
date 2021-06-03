@@ -8,3 +8,4 @@
 #endif
 IMGFUNC_API void showImage(char *filename, void *imgPtr);
 IMGFUNC_API void test(void *image);
+//
