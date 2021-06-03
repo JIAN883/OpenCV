@@ -5,13 +5,12 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 // This is an example of an exported function.
-IMGFUNC_API void showImage(char *filename, void *imgPtr)
+IMGFUNC_API void showImage(char *filename, void *imgPtr, int flags = IMREAD_COLOR,char* label_name = (char*)"image")
 {
 	Mat src;
-	src = imread(filename, IMREAD_REDUCED_COLOR_2);
+	src = imread(filename, flags);
 	if (src.data) {
-		//imshow("Image", src);
-
+		imshow(label_name, src);
 		imgPtr = src.data;
 	}
 }

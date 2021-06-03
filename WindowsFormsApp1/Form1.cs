@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
+
 namespace WindowsFormsApp1
 {
+
 	public partial class Form1 : Form
 	{
 		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		static extern IntPtr showImage(string filename, out IntPtr img);
+		static extern IntPtr showImage(string filename, out IntPtr img, int flags, string label_name);
 		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		static extern void test(IntPtr image);
 
@@ -29,8 +31,12 @@ namespace WindowsFormsApp1
 			if(ofDialog.ShowDialog() == DialogResult.OK)
 			{
 				IntPtr a;
-				showImage(ofDialog.FileName, out a);
-				test(a);
+				showImage(ofDialog.FileName, out a, 0,"a");
+				showImage(ofDialog.FileName, out a, 1,"b");
+				showImage(ofDialog.FileName, out a, 16,"c");
+				showImage(ofDialog.FileName, out a, 17,"d");
+
+				//test(a);
 			}
 		}
 

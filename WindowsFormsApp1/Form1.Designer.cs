@@ -33,9 +33,9 @@ namespace WindowsFormsApp1
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.編輯ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.編輯ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPicturePanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -76,11 +76,10 @@ namespace WindowsFormsApp1
             this.openToolStripMenuItem.Text = "開啟";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // 編輯ToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.編輯ToolStripMenuItem.Name = "編輯ToolStripMenuItem";
-            this.編輯ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.編輯ToolStripMenuItem.Text = "編輯";
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // 結束ToolStripMenuItem
             // 
@@ -90,10 +89,11 @@ namespace WindowsFormsApp1
             this.結束ToolStripMenuItem.Text = "結束";
             this.結束ToolStripMenuItem.Click += new System.EventHandler(this.CloseAppToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // 編輯ToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.編輯ToolStripMenuItem.Name = "編輯ToolStripMenuItem";
+            this.編輯ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.編輯ToolStripMenuItem.Text = "編輯";
             // 
             // showPicturePanel
             // 
