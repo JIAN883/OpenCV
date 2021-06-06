@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
+using OpenCvSharp;
 
 namespace WindowsFormsApp1
 {
-
 	public partial class Form1 : Form
 	{
 		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		static extern IntPtr showImage(string filename, out IntPtr img, int flags, string label_name);
+		static extern IntPtr showImage(out IntPtr img, string filename);
 		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
 		static extern void test(IntPtr image);
 
@@ -28,19 +27,16 @@ namespace WindowsFormsApp1
 		private void btnBrowse_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog ofDialog = new OpenFileDialog();
-			if(ofDialog.ShowDialog() == DialogResult.OK)
-			{
-				IntPtr a;
-				showImage(ofDialog.FileName, out a, 0,"a");
-				showImage(ofDialog.FileName, out a, 1,"b");
-				showImage(ofDialog.FileName, out a, 16,"c");
-				showImage(ofDialog.FileName, out a, 17,"d");
+			ofDialog.Filter = "JPG影象(*.jpg)|*.jpg|BMP影象(*.bmp)|*.bmp|所有檔案(*.*)|*.*";
 
-				//test(a);
-			}
+			if (ofDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			Bitmap image = new Bitmap(ofDialog.FileName);
+			pictureBox1.Image = image;
 		}
 
-        private void CloseAppToolStripMenuItem_Click(object sender, EventArgs e)
+		private void CloseAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			System.Environment.Exit(0);
         }

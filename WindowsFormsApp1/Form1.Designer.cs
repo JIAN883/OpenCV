@@ -36,10 +36,8 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.編輯ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showPicturePanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            this.showPicturePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +53,7 @@ namespace WindowsFormsApp1
             this.編輯ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1236, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1101, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,66 +64,61 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem1,
             this.結束ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.fileToolStripMenuItem.Text = "檔案";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.openToolStripMenuItem.Text = "開啟";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 6);
             // 
             // 結束ToolStripMenuItem
             // 
             this.結束ToolStripMenuItem.Name = "結束ToolStripMenuItem";
             this.結束ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.結束ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.結束ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.結束ToolStripMenuItem.Text = "結束";
             this.結束ToolStripMenuItem.Click += new System.EventHandler(this.CloseAppToolStripMenuItem_Click);
             // 
             // 編輯ToolStripMenuItem
             // 
             this.編輯ToolStripMenuItem.Name = "編輯ToolStripMenuItem";
-            this.編輯ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.編輯ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.編輯ToolStripMenuItem.Text = "編輯";
-            // 
-            // showPicturePanel
-            // 
-            this.showPicturePanel.Controls.Add(this.pictureBox1);
-            this.showPicturePanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.showPicturePanel.Location = new System.Drawing.Point(0, 24);
-            this.showPicturePanel.Name = "showPicturePanel";
-            this.showPicturePanel.Size = new System.Drawing.Size(942, 698);
-            this.showPicturePanel.TabIndex = 1;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(49, 20);
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 30);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(653, 612);
+            this.pictureBox1.Size = new System.Drawing.Size(1101, 642);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1236, 722);
-            this.Controls.Add(this.showPicturePanel);
+            this.ClientSize = new System.Drawing.Size(1101, 672);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "ImageProcessing";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.showPicturePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,7 +133,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem 編輯ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 結束ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.Panel showPicturePanel;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
