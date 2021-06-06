@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using OpenCvSharp;
+using OpenCvSharp.Extensions;
 
 namespace WindowsFormsApp1
 {
 	public partial class Form1 : Form
 	{
 		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		static extern IntPtr showImage(out IntPtr img, string filename);
-		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		static extern void test(IntPtr image);
+		static extern IntPtr Blur(IntPtr src, int width, int height);
 
 		public Form1()
 		{
@@ -39,6 +38,16 @@ namespace WindowsFormsApp1
 		private void CloseAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			System.Environment.Exit(0);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			//測試用按鈕
+			if (pictureBox1.Image == null)
+				return;
+			Mat src = BitmapConverter.ToMat((Bitmap)pictureBox1.Image);
+			Blur(src.Data, src.Width, src.Height);
+			pictureBox1.Image = BitmapConverter.ToBitmap(src);
         }
     }
 }

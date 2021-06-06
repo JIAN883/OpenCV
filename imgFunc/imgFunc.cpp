@@ -6,23 +6,8 @@
 using namespace cv;
 
 // This is an example of an exported function.
-IMGFUNC_API void showImage(int& ptr, char *filename)
+IMGFUNC_API void Blur(unsigned char* imageBuffer, int width, int height)
 {
-	Mat img = imread(filename);
-	ptr = (int)img.data;
-
-	//Mat src;
-	//src = imread(filename, flags);
-	//if (src.data) {
-	//	imshow(label_name, src);
-	//	imgPtr = src.data;
-	//}
-}
-
-
-
-IMGFUNC_API void test(void *image)
-{
-	Mat *temp = (Mat *)image;
-	imshow("Image1", *temp);
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	blur(src, src, Size(3, 3));
 }
