@@ -6,6 +6,6 @@
 #else
 #define IMGFUNC_API extern "C" __declspec(dllimport)
 #endif
-IMGFUNC_API void showImage(char* filename, void* imgPtr, int flags,char* label_name );
+IMGFUNC_API void showImage(int& ptr, char* filename);
 IMGFUNC_API void test(void *image);
 //

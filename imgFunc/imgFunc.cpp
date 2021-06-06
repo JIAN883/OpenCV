@@ -4,16 +4,22 @@
 #include "imgFunc.h"
 #include <opencv2/opencv.hpp>
 using namespace cv;
+
 // This is an example of an exported function.
-IMGFUNC_API void showImage(char *filename, void *imgPtr, int flags = IMREAD_COLOR,char* label_name = (char*)"image")
+IMGFUNC_API void showImage(int& ptr, char *filename)
 {
-	Mat src;
-	src = imread(filename, flags);
-	if (src.data) {
-		imshow(label_name, src);
-		imgPtr = src.data;
-	}
+	Mat img = imread(filename);
+	ptr = (int)img.data;
+
+	//Mat src;
+	//src = imread(filename, flags);
+	//if (src.data) {
+	//	imshow(label_name, src);
+	//	imgPtr = src.data;
+	//}
 }
+
+
 
 IMGFUNC_API void test(void *image)
 {
