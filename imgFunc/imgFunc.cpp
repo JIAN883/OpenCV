@@ -10,4 +10,5 @@ IMGFUNC_API void Blur(unsigned char* imageBuffer, int width, int height)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	blur(src, src, Size(3, 3));
+	//
 }
