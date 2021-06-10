@@ -99,6 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustedForm\AdjustedFormManager.cs" />
     <Compile Include="AdjustedForm\BlurForm.cs">
       <SubType>Form</SubType>
     </Compile>

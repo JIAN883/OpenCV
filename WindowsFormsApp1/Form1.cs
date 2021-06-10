@@ -16,6 +16,10 @@ namespace WindowsFormsApp1
 		public Form1()
 		{
 			InitializeComponent();
+
+			//綁定listbox的陣列資料
+			listBox1.DataSource = AdjustedFormManager.GetFormList();
+			listBox1.DisplayMember = "Name";
 		}
 
 		private void OpenImage(object sender, EventArgs e)
@@ -42,17 +46,13 @@ namespace WindowsFormsApp1
 
 			ListBox listBox = sender as ListBox;
 			listBox.SelectedIndex = listBox1.IndexFromPoint(e.X, e.Y);
-			
-			if(listBox.SelectedIndex == 0)
-            {
-				//開啟Blur視窗
-				OpenAdjustedForm(typeof(BlurForm));
-			}
+
+			//利用listbox掛載物件打開
+			OpenAdjustedForm((listBox.SelectedItem as AdjustedFormManager).FormType);
 		}
 
-		private void OpenAdjustedForm(Type t)
-        {
-			//利用type產生物件
+		private void OpenAdjustedForm(Type t)//利用type產生物件
+		{
 			Form newForm = (Form)Activator.CreateInstance(t, this);
 
 			//調整子窗口
@@ -65,6 +65,5 @@ namespace WindowsFormsApp1
 
 			newForm.Show();
 		}
-
     }
 }

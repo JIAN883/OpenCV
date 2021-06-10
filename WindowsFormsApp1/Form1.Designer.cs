@@ -35,13 +35,14 @@ namespace WindowsFormsApp1
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.編輯ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.模糊ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.調整亮度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -64,7 +65,8 @@ namespace WindowsFormsApp1
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.編輯ToolStripMenuItem});
+            this.模糊ToolStripMenuItem,
+            this.調整亮度ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1472, 27);
@@ -78,7 +80,7 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem1,
             this.結束ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.fileToolStripMenuItem.Text = "檔案";
             // 
             // openToolStripMenuItem
@@ -100,12 +102,6 @@ namespace WindowsFormsApp1
             this.結束ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.結束ToolStripMenuItem.Text = "結束";
             this.結束ToolStripMenuItem.Click += new System.EventHandler(this.CloseApp);
-            // 
-            // 編輯ToolStripMenuItem
-            // 
-            this.編輯ToolStripMenuItem.Name = "編輯ToolStripMenuItem";
-            this.編輯ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
-            this.編輯ToolStripMenuItem.Text = "編輯";
             // 
             // pictureBox
             // 
@@ -156,6 +152,20 @@ namespace WindowsFormsApp1
             this.splitContainer2.SplitterDistance = 975;
             this.splitContainer2.TabIndex = 0;
             // 
+            // listBox1
+            // 
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Items.AddRange(new object[] {
+            "模糊",
+            "調整亮度"});
+            this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(491, 632);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -173,19 +183,17 @@ namespace WindowsFormsApp1
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(158, 19);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // listBox1
+            // 模糊ToolStripMenuItem
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Items.AddRange(new object[] {
-            "模糊",
-            "調整亮度"});
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(491, 632);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.模糊ToolStripMenuItem.Name = "模糊ToolStripMenuItem";
+            this.模糊ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.模糊ToolStripMenuItem.Text = "模糊";
+            // 
+            // 調整亮度ToolStripMenuItem
+            // 
+            this.調整亮度ToolStripMenuItem.Name = "調整亮度ToolStripMenuItem";
+            this.調整亮度ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.調整亮度ToolStripMenuItem.Text = "調整亮度";
             // 
             // Form1
             // 
@@ -222,7 +230,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 編輯ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 結束ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -231,6 +238,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ListBox listBox1;
         public System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ToolStripMenuItem 模糊ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 調整亮度ToolStripMenuItem;
     }
 }
 
