@@ -8,6 +8,12 @@ namespace WindowsFormsApp1.AdjustedForm
 {
     public class AdjustedFormManager
     {
+        static AdjustedFormManager[][] formArray =
+            {
+                new AdjustedFormManager[]{ new AdjustedFormManager("卷積模糊", typeof(BlurForm)),  new AdjustedFormManager("高斯模糊", typeof(BlurForm))},
+                new AdjustedFormManager[]{ new AdjustedFormManager("亮度", typeof(BlurForm)) } 
+            };
+
         public string Name { get; set; }
         public Type FormType { get; set; }
 
@@ -17,11 +23,14 @@ namespace WindowsFormsApp1.AdjustedForm
             this.FormType = FormType;
         }
 
-        public static List<AdjustedFormManager> GetFormList()
+        public static List<AdjustedFormManager> GetFormList(int index)
         {
-            AdjustedFormManager[] formArray = { new AdjustedFormManager("模糊", typeof(BlurForm)) };
-            List<AdjustedFormManager> formList = formArray.OfType<AdjustedFormManager>().ToList();
-            return formList;
+            if (index + 1 > formArray.Length)
+                return null;
+
+            AdjustedFormManager[] formArraySub = formArray[index];
+            List<AdjustedFormManager> formListSub = formArraySub.OfType<AdjustedFormManager>().ToList();
+            return formListSub;
         }
     }
 }

@@ -36,10 +36,10 @@ namespace WindowsFormsApp1.AdjustedForm
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.trackBar1.Location = new System.Drawing.Point(0, 468);
+            this.trackBar1.Location = new System.Drawing.Point(0, 482);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(913, 70);
+            this.trackBar1.Size = new System.Drawing.Size(913, 56);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 

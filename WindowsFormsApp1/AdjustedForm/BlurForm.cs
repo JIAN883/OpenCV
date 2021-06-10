@@ -26,9 +26,8 @@ namespace WindowsFormsApp1.AdjustedForm
             InitializeComponent(); 
         }
 
-        public BlurForm(Form1 topForm)
+        public BlurForm(Form1 topForm) : this()
         {
-            InitializeComponent();
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
