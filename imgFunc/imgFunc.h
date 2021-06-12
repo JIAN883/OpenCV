@@ -18,3 +18,10 @@ IMGFUNC_API void thresholdProcessing(unsigned char* imageBuffer, int width, int 
 IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height);
 IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int height, float c);
 IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, int height, float c, float gamma);
+IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int height, int bit);
+IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer, unsigned char* imageBufferB, unsigned char* imageBufferG, unsigned char* imageBufferR, int width, int height, int bit);
+IMGFUNC_API void equalizeHist(unsigned char* imageBuffer, int width, int height, int mode);
+IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int height, double xtimes, double ytimes, bool isfullsize);
+IMGFUNC_API void Rotate(unsigned char* imageBuffer, int width, int height, double angle);
+IMGFUNC_API void Shear(unsigned char* imageBuffer, int width, int height, double xshear, double yshear);
+IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool isReflectAboutXaxis, bool isReflectAboutYaxis);
