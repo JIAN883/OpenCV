@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
 			//綁定menustrip的tag
 			menuStrip1.Items[1].Tag = AdjustedFormManager.GetFormList(0);
 			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);
+			menuStrip1.Items[3].Tag = AdjustedFormManager.GetFormList(2);
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
@@ -112,12 +113,14 @@ namespace WindowsFormsApp1
 			if (pictureBox.Image == null)
 				return;
 
-			if(!isBegin)
+			//滑鼠離開peek
+			if (!isBegin)
             {
 				pictureBox.Image = peekImage;
 				return;
             }
 
+			//滑鼠進入peek
 			peekImage = pictureBox.Image as Bitmap;
 			pictureBox.Image = sourceImage;
 		}

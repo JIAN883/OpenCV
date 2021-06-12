@@ -30,7 +30,7 @@ IMGFUNC_API void GeneratePepperSalt(unsigned char* imageBuffer, int width, int h
 }
 
 //CH3_中位數濾波器 KernelSize 濾波器kernel = KernelSize * KernelSize
-IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height, float KernelSize)
+IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height, int KernelSize)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {

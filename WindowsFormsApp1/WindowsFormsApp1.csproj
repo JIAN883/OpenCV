@@ -106,6 +106,18 @@
     <Compile Include="AdjustedForm\BlurForm.Designer.cs">
       <DependentUpon>BlurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\GeneratePepperSaltForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
+      <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MedianFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MedianFilterForm.Designer.cs">
+      <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +128,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdjustedForm\BlurForm.resx">
       <DependentUpon>BlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
+      <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MedianFilterForm.resx">
+      <DependentUpon>MedianFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
