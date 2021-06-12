@@ -36,7 +36,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.trackBar1.Location = new System.Drawing.Point(0, 482);
+            this.trackBar1.Location = new System.Drawing.Point(0, 236);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(913, 56);
@@ -47,7 +47,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 538);
+            this.ClientSize = new System.Drawing.Size(913, 292);
             this.Controls.Add(this.trackBar1);
             this.Name = "BlurForm";
             this.Text = "Blur";
