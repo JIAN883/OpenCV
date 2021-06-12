@@ -24,10 +24,8 @@ IMGFUNC_API void GeneratePepperSalt(unsigned char* imageBuffer, int width, int h
 		Mat pepperMask = randMtx < 2.55 * PepperPercent; //Generate the mask of pepper noice
 		Mat saltMask = randMtx > 255 - 2.55 * SaltPercent; //Generate the mask of salt noice
 		//Add the pepper and salt noise to image
-		Mat salt_mat = src.clone();
-		salt_mat.setTo(255, saltMask); //Add salt noice
-		salt_mat.setTo(0, pepperMask); //Add pepper noice
-		src = salt_mat.clone();
+		src.setTo(255, saltMask); //Add salt noice
+		src.setTo(0, pepperMask); //Add pepper noice
 	}
 }
 
@@ -186,9 +184,9 @@ IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height)
 	}
 }
 
-//CH3_亮度調整(Log)
+//CH3_亮度調整1(Log)
 	//c ：亮度倍率(>1,可預設2,float)
-IMGFUNC_API void brightProcessing(unsigned char* imageBuffer, int width, int height,float c)
+IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int height,float c)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
@@ -199,4 +197,21 @@ IMGFUNC_API void brightProcessing(unsigned char* imageBuffer, int width, int hei
 		src = log_dst.clone();
 	}
 }
+////
+//CH3_亮度調整2(Power conversion)
+	//c ：亮度倍率(>=1,可預設1,float)
+	//gamma：指數參數(=1->不變, >1->變暗, <1->變亮,可預設0.5)
+IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, int height, float c,float gamma)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat log_dst;
+		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
+		cv::pow(log_dst, gamma, log_dst);
+		log_dst = c * log_dst ;
+		src = log_dst.clone();
+	}
+}
+
+//CH3_位元平面切片(Power conversion)
 
