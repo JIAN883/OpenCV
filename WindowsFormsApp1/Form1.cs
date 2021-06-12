@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
 {
 	public partial class Form1 : Form
 	{
+		Bitmap sourceImage, peekImage;
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -20,10 +22,6 @@ namespace WindowsFormsApp1
 			//綁定menustrip的tag
 			menuStrip1.Items[1].Tag = AdjustedFormManager.GetFormList(0);
 			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);
-
-			//綁定listbox的陣列資料
-			listBox1.DataSource = AdjustedFormManager.GetFormList(0);
-			listBox1.DisplayMember = "Name";
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
@@ -36,6 +34,7 @@ namespace WindowsFormsApp1
 
 			Bitmap image = new Bitmap(ofDialog.FileName);
 			pictureBox.Image = image;
+			sourceImage = image.Clone() as Bitmap;
 		}
 
 		private void CloseApp(object sender, EventArgs e)
@@ -50,6 +49,12 @@ namespace WindowsFormsApp1
 
 			ListBox listBox = sender as ListBox;
 			listBox.SelectedIndex = listBox1.IndexFromPoint(e.X, e.Y);
+
+			if (listBox.SelectedIndex == -1)
+            {
+				splitContainer1.Panel2.Controls.Clear();
+				return;
+            }
 
 			//利用listbox掛載的物件打開
 			OpenAdjustedForm((listBox.SelectedItem as AdjustedFormManager).FormType);
@@ -73,8 +78,48 @@ namespace WindowsFormsApp1
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)//按下工具欄會重新綁定listbox的物件
         {
+			if (e.ClickedItem.Tag != null && pictureBox.Image == null) //判斷使用者是否按了修圖功能按鈕
+            {
+				MessageBox.Show("請打開一張圖片");
+				return;
+			}
+
 			listBox1.DataSource = e.ClickedItem.Tag as List<AdjustedFormManager>;
 			listBox1.DisplayMember = "Name";
+			listBox1.SelectedIndex = -1;
+		}
+
+		private void PeekStripStatusLabel_MouseHover(object sender, EventArgs e)
+		{
+			ToolStripStatusLabel peek = sender as ToolStripStatusLabel;
+			peek.BackColor = Color.Black;
+			peek.ForeColor = Color.White;
+
+			PeekImage(true);
+		}
+
+        private void PeekStripStatusLabel_MouseLeave(object sender, EventArgs e)
+        {
+			ToolStripStatusLabel peek = sender as ToolStripStatusLabel;
+			peek.BackColor = SystemColors.Control;
+			peek.ForeColor = SystemColors.ControlText;
+
+			PeekImage(false);
+		}
+
+		private void PeekImage(bool isBegin)
+        {
+			if (pictureBox.Image == null)
+				return;
+
+			if(!isBegin)
+            {
+				pictureBox.Image = peekImage;
+				return;
+            }
+
+			peekImage = pictureBox.Image as Bitmap;
+			pictureBox.Image = sourceImage;
 		}
     }
 }
