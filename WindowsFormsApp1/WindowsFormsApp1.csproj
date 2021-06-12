@@ -118,6 +118,12 @@
     <Compile Include="AdjustedForm\MedianFilterForm.Designer.cs">
       <DependentUpon>MedianFilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\MedianFilterForm.resx">
       <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
