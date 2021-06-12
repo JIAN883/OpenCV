@@ -13,20 +13,20 @@ using OpenCvSharp.Extensions;
 
 namespace WindowsFormsApp1.AdjustedForm
 {
-    public partial class GeneratePepperSaltForm : Form
+    public partial class MaxFilter : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        static extern void GeneratePepperSalt(IntPtr src, int width, int height, float PepperPercent, float SaltPercent);
+        static extern void MaxOrMinFilter(IntPtr src, int width, int height, int mode, float KernelSize);
 
         Form1 topForm;
         Mat source;
 
-        public GeneratePepperSaltForm()
+        public MaxFilter()
         {
             InitializeComponent();
         }
 
-        public GeneratePepperSaltForm(Form1 topForm) : this()
+        public MaxFilter(Form1 topForm) : this()
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
@@ -38,10 +38,8 @@ namespace WindowsFormsApp1.AdjustedForm
                 return;
 
             Mat destinationImage = source.Clone();
-            float pepperPercent = (float)PepperPercentTrackBar.Value / (float)PepperPercentTrackBar.Maximum * 50f;
-            float saltPercent = (float)SaltPercentTrackBar.Value / (float)SaltPercentTrackBar.Maximum * 50f;
 
-            GeneratePepperSalt(destinationImage.Data, destinationImage.Width, destinationImage.Height, pepperPercent, saltPercent);//無法獲得圖片
+
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
         }
     }

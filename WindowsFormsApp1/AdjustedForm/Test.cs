@@ -15,6 +15,7 @@ namespace WindowsFormsApp1.AdjustedForm
 {
     public partial class Test : Form
     {
+        //呼叫c++函式的地方
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         static extern void MedianFilter(IntPtr src, int width, int height, int KernelSize);
 
@@ -32,17 +33,33 @@ namespace WindowsFormsApp1.AdjustedForm
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (topForm == null)
+                return;
+
+            Mat destinationImage = source.Clone();
+            float value = float.Parse(textBox1.Text);
+            destinationImage = testArea(destinationImage, value);
+            topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
+        }
+
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             if (topForm == null)
                 return;
 
             Mat destinationImage = source.Clone();
-            //測試的地方
-            Console.WriteLine((float)trackBar1.Value / (float)trackBar1.Maximum);
-
-
+            float value = (float)trackBar1.Value;
+            destinationImage = testArea(destinationImage, value);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
+        }
+
+        private Mat testArea(Mat src, float value)//測試的地方
+        {
+            //do somethings
+            MedianFilter(src.Data, src.Width, src.Height, (int)value);//要是大於1的奇數
+            return src;
         }
     }
 }

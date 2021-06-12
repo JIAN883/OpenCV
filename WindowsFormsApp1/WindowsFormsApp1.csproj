@@ -112,6 +112,12 @@
     <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\MaxFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MaxFilter.Designer.cs">
+      <DependentUpon>MaxFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\MedianFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
