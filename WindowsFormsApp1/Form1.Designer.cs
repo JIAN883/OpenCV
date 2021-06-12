@@ -44,6 +44,7 @@ namespace WindowsFormsApp1
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.濾鏡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -66,10 +67,11 @@ namespace WindowsFormsApp1
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.模糊ToolStripMenuItem,
-            this.調整亮度ToolStripMenuItem});
+            this.調整亮度ToolStripMenuItem,
+            this.濾鏡ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1154, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1123, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -113,17 +115,17 @@ namespace WindowsFormsApp1
             // 調整亮度ToolStripMenuItem
             // 
             this.調整亮度ToolStripMenuItem.Name = "調整亮度ToolStripMenuItem";
-            this.調整亮度ToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
-            this.調整亮度ToolStripMenuItem.Text = "調整亮度";
+            this.調整亮度ToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
+            this.調整亮度ToolStripMenuItem.Text = "濾波器";
             // 
             // pictureBox
             // 
-            this.pictureBox.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(762, 522);
+            this.pictureBox.Size = new System.Drawing.Size(598, 529);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -132,20 +134,19 @@ namespace WindowsFormsApp1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1154, 710);
-            this.splitContainer1.SplitterDistance = 524;
+            this.splitContainer1.Size = new System.Drawing.Size(1123, 719);
+            this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -157,19 +158,20 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1154, 524);
-            this.splitContainer2.SplitterDistance = 764;
+            this.splitContainer2.Size = new System.Drawing.Size(1121, 529);
+            this.splitContainer2.SplitterDistance = 598;
             this.splitContainer2.TabIndex = 0;
             // 
             // listBox1
             // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(384, 522);
+            this.listBox1.Size = new System.Drawing.Size(519, 529);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -179,9 +181,9 @@ namespace WindowsFormsApp1
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.PeekStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 737);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 747);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1154, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1123, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -202,11 +204,17 @@ namespace WindowsFormsApp1
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(1024, 19);
             this.toolStripStatusLabel1.Spring = true;
             // 
+            // 濾鏡ToolStripMenuItem
+            // 
+            this.濾鏡ToolStripMenuItem.Name = "濾鏡ToolStripMenuItem";
+            this.濾鏡ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.濾鏡ToolStripMenuItem.Text = "濾鏡";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 762);
+            this.ClientSize = new System.Drawing.Size(1123, 772);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -247,6 +255,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem 調整亮度ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel PeekStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem 濾鏡ToolStripMenuItem;
     }
 }
 
