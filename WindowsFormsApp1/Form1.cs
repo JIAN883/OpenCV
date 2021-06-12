@@ -23,6 +23,7 @@ namespace WindowsFormsApp1
 			menuStrip1.Items[1].Tag = AdjustedFormManager.GetFormList(0);
 			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);
 			menuStrip1.Items[3].Tag = AdjustedFormManager.GetFormList(2);
+			menuStrip1.Items[4].Tag = AdjustedFormManager.GetFormList(3);
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
