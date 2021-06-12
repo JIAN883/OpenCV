@@ -41,11 +41,8 @@ namespace WindowsFormsApp1.AdjustedForm
             float pepperPercent = (float)PepperPercentTrackBar.Value / (float)PepperPercentTrackBar.Maximum * 50f;
             float saltPercent = (float)SaltPercentTrackBar.Value / (float)SaltPercentTrackBar.Maximum * 50f;
 
-            //GeneratePepperSalt(destinationImage.Data, destinationImage.Width, destinationImage.Height, pepperPercent, saltPercent);//無法獲得圖片
-            //topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
-
-            Mat temp = new Mat(GeneratePepperSalt(destinationImage.Data, destinationImage.Width, destinationImage.Height, pepperPercent, saltPercent));
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(temp);
+            GeneratePepperSalt(destinationImage.Data, destinationImage.Width, destinationImage.Height, pepperPercent, saltPercent);//無法獲得圖片
+            topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
         }
     }
 }
