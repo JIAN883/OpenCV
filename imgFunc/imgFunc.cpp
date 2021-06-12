@@ -145,4 +145,58 @@ IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int heig
 	}
 }
 
+//CH3_取得水平或垂直強度影像(display horizontal intensity images)
+	//目前mask矩陣大小固定
+	//isHorizontal：true->水平,false->垂直
+	//isAddOriImage：true->有再加原圖,false->沒有加原圖(純水平或垂直強度資訊)
+IMGFUNC_API void horizontalIntensityFilter(unsigned char* imageBuffer, int width, int height,bool isHorizontal,bool isAddOriImage)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat mask,dst;
+		//Prepare and apply the Laplacian filter
+		if (isHorizontal) 
+			mask = (Mat_<double>(3, 3) << -1,-2,-1,0,0,0,1,2,1);
+		else
+			mask = (Mat_<double>(3, 3) << -1,0,1,-2,0,2,-1,0,1);
+		if (isAddOriImage)
+			mask.at<double>(1, 1) = 1;
+		filter2D(src, dst, src.depth(), mask);
+		src = dst.clone();
+	}
+}
+
+//CH3_閥值處理(thresholding for Image)
+	//thresh：閥值條件 (0~254,可預設127)
+	//maxval：觸發閥值後設定的值 (0~254 可預設255)
+IMGFUNC_API void thresholdProcessing(unsigned char* imageBuffer, int width, int height, double thresh, double maxval)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		threshold(src, src, thresh, maxval,THRESH_BINARY);
+	}
+}
+
+//CH3_負片(negative)
+IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		src = 255 - src;
+	}
+}
+
+//CH3_亮度調整(Log)
+	//c ：亮度倍率(>1,可預設2,float)
+IMGFUNC_API void brightProcessing(unsigned char* imageBuffer, int width, int height,float c)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat log_dst;
+		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
+		cv::log(log_dst + 1, log_dst);
+		log_dst = c * log_dst / log(2.0);
+		src = log_dst.clone();
+	}
+}
 
