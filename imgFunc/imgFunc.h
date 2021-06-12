@@ -8,7 +8,7 @@
 #endif
 IMGFUNC_API void Blur(unsigned char* imageBuffer, int width, int height, float value);
 IMGFUNC_API void GeneratePepperSalt(unsigned char* imageBuffer, int width, int height, float PepperPercent, float SaltPercent);
-IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height, float KernelSize);
+IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height, int KernelSize);
 IMGFUNC_API void MaxOrMinFilter(unsigned char* imageBuffer, int width, int height, int mode, float KernelSize);
 IMGFUNC_API void LaplicianFilter(unsigned char* imageBuffer, int width, int height, bool isAddOriImage);
 IMGFUNC_API void getUnsharpInformation(unsigned char* imageBuffer, int width, int height);
