@@ -16,4 +16,5 @@ IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int heig
 IMGFUNC_API void horizontalIntensityFilter(unsigned char* imageBuffer, int width, int height, bool isHorizontal, bool isAddOriImage);
 IMGFUNC_API void thresholdProcessing(unsigned char* imageBuffer, int width, int height, double thresh, double maxval);
 IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height);
-IMGFUNC_API void brightProcessing(unsigned char* imageBuffer, int width, int height, float c);
+IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int height, float c);
+IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, int height, float c, float gamma);

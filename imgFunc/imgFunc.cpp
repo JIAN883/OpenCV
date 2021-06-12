@@ -5,6 +5,21 @@
 #include <opencv2/opencv.hpp>
 using namespace cv;
 Mat global_temp_mat;//用來當函式呼叫之間的媒介，每次用完記得release
+void copyContent(Mat src, Mat dst) {
+	int channelNum = src.channels();
+	for (int ch = 0; ch < channelNum; ch++) {
+		for (int row = 0; row < src.rows; row++) {
+			for (int column = 0; column < src.cols; column++) {
+				if (channelNum == 1) {
+					dst.at<uchar>(row, column) = src.at<uchar>(row, column);
+				}
+				else if (channelNum == 3) {
+					dst.at<Vec3b>(row, column)[ch] = src.at<Vec3b>(row, column)[ch];
+				}
+			}
+		}
+	}
+}
 // This is an example of an exported function.
 IMGFUNC_API void Blur(unsigned char* imageBuffer, int width, int height, float value)
 {
@@ -93,7 +108,7 @@ IMGFUNC_API void MaxOrMinFilter(unsigned char* imageBuffer, int width, int heigh
 				}
 			}
 		}
-		src = dst.clone();
+		copyContent(dst, src);
 	}
 }
 
@@ -123,7 +138,7 @@ IMGFUNC_API void getUnsharpInformation(unsigned char* imageBuffer, int width, in
 		Mat mask = (Mat_<double>(3, 3) << 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9);
 		filter2D(src, blu, src.depth(), mask);
 		unsharp_mask = src - blu; //取出特徵(unsharp mask)
-		src = unsharp_mask.clone();
+		copyContent(unsharp_mask, src);
 	}
 }
 
@@ -139,7 +154,7 @@ IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int heig
 		filter2D(src, blu, src.depth(), mask);
 		unsharp_mask = src - blu; //取出特徵(unsharp mask)
 		sharp_mat = src + k * unsharp_mask;
-		src = sharp_mat.clone();
+		copyContent(sharp_mat, src);
 	}
 }
 
@@ -160,7 +175,7 @@ IMGFUNC_API void horizontalIntensityFilter(unsigned char* imageBuffer, int width
 		if (isAddOriImage)
 			mask.at<double>(1, 1) = 1;
 		filter2D(src, dst, src.depth(), mask);
-		src = dst.clone();
+		copyContent(dst, src);
 	}
 }
 
@@ -194,7 +209,7 @@ IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int
 		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
 		cv::log(log_dst + 1, log_dst);
 		log_dst = c * log_dst / log(2.0);
-		src = log_dst.clone();
+		copyContent(log_dst, src);
 	}
 }
 ////
@@ -209,7 +224,7 @@ IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, i
 		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
 		cv::pow(log_dst, gamma, log_dst);
 		log_dst = c * log_dst ;
-		src = log_dst.clone();
+		copyContent(log_dst, src);
 	}
 }
 
