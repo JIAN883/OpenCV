@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,15 +38,16 @@ namespace WindowsFormsApp1
             this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.模糊ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.調整亮度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.濾鏡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.測試ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.濾鏡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.測試ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -73,7 +75,7 @@ namespace WindowsFormsApp1
             this.測試ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1123, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1123, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -120,6 +122,18 @@ namespace WindowsFormsApp1
             this.調整亮度ToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
             this.調整亮度ToolStripMenuItem.Text = "濾波器";
             // 
+            // 濾鏡ToolStripMenuItem
+            // 
+            this.濾鏡ToolStripMenuItem.Name = "濾鏡ToolStripMenuItem";
+            this.濾鏡ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.濾鏡ToolStripMenuItem.Text = "濾鏡";
+            // 
+            // 測試ToolStripMenuItem
+            // 
+            this.測試ToolStripMenuItem.Name = "測試ToolStripMenuItem";
+            this.測試ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.測試ToolStripMenuItem.Text = "測試";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.White;
@@ -136,14 +150,14 @@ namespace WindowsFormsApp1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1123, 719);
+            this.splitContainer1.Size = new System.Drawing.Size(1123, 720);
             this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -190,6 +204,12 @@ namespace WindowsFormsApp1
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1066, 19);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
             // PeekStripStatusLabel
             // 
             this.PeekStripStatusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -199,24 +219,6 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.Text = "Peek";
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1024, 19);
-            this.toolStripStatusLabel1.Spring = true;
-            // 
-            // 濾鏡ToolStripMenuItem
-            // 
-            this.濾鏡ToolStripMenuItem.Name = "濾鏡ToolStripMenuItem";
-            this.濾鏡ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.濾鏡ToolStripMenuItem.Text = "濾鏡";
-            // 
-            // 測試ToolStripMenuItem
-            // 
-            this.測試ToolStripMenuItem.Name = "測試ToolStripMenuItem";
-            this.測試ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.測試ToolStripMenuItem.Text = "測試";
             // 
             // Form1
             // 
@@ -265,6 +267,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem 濾鏡ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 測試ToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

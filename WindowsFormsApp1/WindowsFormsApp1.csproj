@@ -112,6 +112,12 @@
     <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\LaplicianFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\LaplicianFilterForm.Designer.cs">
+      <DependentUpon>LaplicianFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\MaxFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,12 @@
     </Compile>
     <Compile Include="AdjustedForm\MedianFilterForm.Designer.cs">
       <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MinFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MinFilter.Designer.cs">
+      <DependentUpon>MinFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\Test.cs">
       <SubType>Form</SubType>
@@ -144,8 +156,17 @@
     <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\LaplicianFilterForm.resx">
+      <DependentUpon>LaplicianFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MaxFilter.resx">
+      <DependentUpon>MaxFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\MedianFilterForm.resx">
       <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MinFilter.resx">
+      <DependentUpon>MinFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
@@ -161,6 +182,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -175,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\227995-106.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
