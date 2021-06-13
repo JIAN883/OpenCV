@@ -13,7 +13,7 @@ using OpenCvSharp.Extensions;
 
 namespace WindowsFormsApp1.AdjustedForm
 {
-    public partial class MaxFilter : Form
+    public partial class MinFilter : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         static extern void MaxOrMinFilter(IntPtr src, int width, int height, int mode, float KernelSize);
@@ -21,12 +21,12 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
 
-        public MaxFilter()
+        public MinFilter()
         {
             InitializeComponent();
         }
 
-        public MaxFilter(Form1 topForm) : this()
+        public MinFilter(Form1 topForm) : this()
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 return;
 
             Mat dst = source.Clone();
-            MaxOrMinFilter(dst.Data, dst.Width, dst.Height, 0, trackBar1.Value);
+            MaxOrMinFilter(dst.Data, dst.Width, dst.Height, 1, trackBar1.Value);
 
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dst);
         }

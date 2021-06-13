@@ -24,6 +24,10 @@ namespace WindowsFormsApp1
 			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);
 			menuStrip1.Items[3].Tag = AdjustedFormManager.GetFormList(2);
 			menuStrip1.Items[4].Tag = AdjustedFormManager.GetFormList(3);
+
+			//debug模式專用
+			pictureBox.Image = WindowsFormsApp1.Properties.Resources._227995_106;
+			sourceImage = pictureBox.Image as Bitmap;
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
@@ -71,8 +75,8 @@ namespace WindowsFormsApp1
 
 			newForm.TopLevel = false;
 			newForm.FormBorderStyle = FormBorderStyle.None;
-			newForm.Dock = DockStyle.Fill;
 			newForm.Parent = splitContainer1.Panel2;
+			newForm.Dock = DockStyle.Fill;
 
 			splitContainer1.Panel2.Controls.Add(newForm);
 			newForm.Show();
@@ -97,7 +101,11 @@ namespace WindowsFormsApp1
 			peek.BackColor = Color.Black;
 			peek.ForeColor = Color.White;
 
-			PeekImage(true);
+			if (pictureBox.Image != null)
+			{
+				peekImage = pictureBox.Image as Bitmap;
+				pictureBox.Image = sourceImage;
+			}
 		}
 
         private void PeekStripStatusLabel_MouseLeave(object sender, EventArgs e)
@@ -106,24 +114,10 @@ namespace WindowsFormsApp1
 			peek.BackColor = SystemColors.Control;
 			peek.ForeColor = SystemColors.ControlText;
 
-			PeekImage(false);
-		}
-
-		private void PeekImage(bool isBegin)
-        {
-			if (pictureBox.Image == null)
-				return;
-
-			//滑鼠離開peek
-			if (!isBegin)
-            {
+			if (peekImage != null)
+			{
 				pictureBox.Image = peekImage;
-				return;
-            }
-
-			//滑鼠進入peek
-			peekImage = pictureBox.Image as Bitmap;
-			pictureBox.Image = sourceImage;
+			}
 		}
     }
 }
