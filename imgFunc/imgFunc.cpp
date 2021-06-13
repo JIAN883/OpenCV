@@ -735,3 +735,138 @@ IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width,
 		dstBuffer = global_temp_mat[0].data;
 	}
 }
+
+//CH5_幾何平均濾波器 KernelSize 濾波器kernel = KernelSize * KernelSize (可接受偶數*偶數 不可0*0) 
+IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		double tempTotal = 1;
+		double tempTotalNum = 0;
+		int channelNum = src.channels();
+		Mat dst = src.clone();
+		for (int ch = 0; ch < channelNum; ch++) {
+			for (int row = 0; row < src.rows; row++) {
+				for (int column = 0; column < src.cols; column++) {
+					//跑kernel 判斷Channel是多少 也判斷maxValue或minValue
+					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
+						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
+							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
+							if (channelNum == 1) {
+								tempTotal *= src.at<uchar>(tempR, tempC);
+								tempTotalNum++;
+							}
+							else if (channelNum == 3) {
+								tempTotal *= src.at<Vec3b>(tempR, tempC)[ch];
+								tempTotalNum++;
+							}
+						}
+					}
+					if (tempTotalNum <= 0)tempTotalNum = 1;
+					if (channelNum == 1) {
+						dst.at<uchar>(row, column) = pow(tempTotal, 1 / tempTotalNum);
+					}
+					else if (channelNum == 3) {
+						dst.at<Vec3b>(row, column)[ch] = pow(tempTotal, 1 / tempTotalNum);
+					}
+					tempTotal = 1;
+					tempTotalNum = 0;
+				}
+			}
+		}
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+		//copyContent(dst, src);
+	}
+}
+
+//CH5_調和平均濾波器 KernelSize 濾波器kernel = KernelSize * KernelSize (可接受偶數*偶數 不可0*0) 
+IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		double tempTotal = 0;
+		double tempTotalNum = 0;
+		int channelNum = src.channels();
+		Mat dst = src.clone();
+		for (int ch = 0; ch < channelNum; ch++) {
+			for (int row = 0; row < src.rows; row++) {
+				for (int column = 0; column < src.cols; column++) {
+					//跑kernel 判斷Channel是多少 也判斷maxValue或minValue
+					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
+						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
+							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
+							if (channelNum == 1) {
+								if (src.at<uchar>(tempR, tempC) <= 0)src.at<uchar>(tempR, tempC) = 1;
+								tempTotal +=1/(double)src.at<uchar>(tempR, tempC);
+								tempTotalNum++;
+							}
+							else if (channelNum == 3) {
+								if (src.at<Vec3b>(tempR, tempC)[ch] <= 0)src.at<Vec3b>(tempR, tempC)[ch] = 1;
+								tempTotal += 1 / (double)src.at<Vec3b>(tempR, tempC)[ch];
+								tempTotalNum++;
+							}
+						}
+					}
+					if (tempTotal <= 0)tempTotal = 1;
+					if (channelNum == 1) {
+						dst.at<uchar>(row, column) = tempTotalNum/ tempTotal;
+					}
+					else if (channelNum == 3) {
+						dst.at<Vec3b>(row, column)[ch] = tempTotalNum / tempTotal;
+					}
+					tempTotal = 0;
+					tempTotalNum = 0;
+				}
+			}
+		}
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+		//copyContent(dst, src);
+	}
+}
+
+//CH5_反調和平均濾波器 KernelSize 濾波器kernel = KernelSize * KernelSize (可接受偶數*偶數 不可0*0) 
+	//Q：影響程度(Q>1：解決黑雜點，Q<-1：解決白雜點,可float)
+IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize,float Q, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		double tempTotal_Denominator = 0; //分母總和
+		double tempTotal_Molecular = 0; //分子總和
+		int channelNum = src.channels();
+		Mat dst = src.clone();
+		for (int ch = 0; ch < channelNum; ch++) {
+			for (int row = 0; row < src.rows; row++) {
+				for (int column = 0; column < src.cols; column++) {
+					//跑kernel 判斷Channel是多少 也判斷maxValue或minValue
+					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
+						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
+							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
+							if (channelNum == 1) {
+								tempTotal_Molecular += pow((double)src.at<uchar>(tempR, tempC), (double)Q + 1);
+								tempTotal_Denominator += pow((double)src.at<uchar>(tempR, tempC), (double)Q);
+							}
+							else if (channelNum == 3) {
+								tempTotal_Molecular += pow((double)src.at<Vec3b>(tempR, tempC)[ch], (double)Q + 1);
+								tempTotal_Denominator += pow((double)src.at<Vec3b>(tempR, tempC)[ch], (double)Q);
+							}
+						}
+					}
+					if (tempTotal_Denominator <= 0)tempTotal_Denominator = 1;
+					if (channelNum == 1) {
+						dst.at<uchar>(row, column) = tempTotal_Molecular / tempTotal_Denominator;
+					}
+					else if (channelNum == 3) {
+						dst.at<Vec3b>(row, column)[ch] = tempTotal_Molecular / tempTotal_Denominator;
+					}
+					tempTotal_Denominator = 0;
+					tempTotal_Molecular = 0;
+				}
+			}
+		}
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+		//copyContent(dst, src);
+	}
+}

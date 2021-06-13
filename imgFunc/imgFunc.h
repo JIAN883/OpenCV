@@ -29,3 +29,6 @@ IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int w
 IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width, int height, bool isIdeal, bool isHighPass, int d0, bool isAddOri, void*& dstBuffer);
 IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, int height, bool isHighPass, int d0, float n, bool isAddOri, void*& dstBuffer);
 IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width, int height, int s_max, void*& dstBuffer);
+IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer);
+IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer);
+IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, float Q, void*& dstBuffer);
