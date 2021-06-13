@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 			menuStrip1.Items[1].Tag = AdjustedFormManager.GetFormList(0);
 			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);
 			menuStrip1.Items[3].Tag = AdjustedFormManager.GetFormList(2);
-			menuStrip1.Items[4].Tag = AdjustedFormManager.GetFormList(3);
+			//menuStrip1.Items[4].Tag = AdjustedFormManager.GetFormList(3);
 
 			//debug模式專用
 			pictureBox.Image = WindowsFormsApp1.Properties.Resources._227995_106;
