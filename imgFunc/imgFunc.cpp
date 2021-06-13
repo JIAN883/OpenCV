@@ -260,7 +260,6 @@ IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int heig
 }
 
 //CH3_直方圖(Histogram Processing)
-	//
 IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int height, int bit, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -652,6 +651,86 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 		dst = myIDFT_BGR(DFT_planes);
 		if (isAddOri)dst = dst + src;
 		//return to c#
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
+}
+//CH5_----適應性中間值濾波器的功能函式----
+void maxFilter(Mat& src, Mat& dst, int size) {
+	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size)); //先做filter
+	dilate(src, dst, element); //膨脹的作用
+}
+//CH5_----適應性中間值濾波器的功能函式----
+void minFilter(Mat& src, Mat& dst, int size)
+{
+	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size));
+	erode(src, dst, element); //侵蝕
+}
+//CH5_adaptiveMedianFilte 單面_適應性中間值濾波器(adaptiveMedianFilter) ----功能函式----
+Mat adaptiveMedianFilter(Mat& Zxy, int s_max)
+{
+	//allocate memory for storing min, median, and max filters
+	int numSize = (s_max - 3) / 2 + 1; //3是自己定 從3開始 3*3 5*5 7*7
+	Mat* Zmin = new Mat[numSize];
+	Mat* Zmed = new Mat[numSize];
+	Mat* Zmax = new Mat[numSize];
+	//get results of min, median, and max filters
+	int boxSize = 3;
+	int pos;
+	for (pos = 0; pos < numSize; pos++, boxSize += 2) { //跑3*3 5*5 7*7個各種結果
+		minFilter(Zxy, Zmin[pos], boxSize);
+		medianBlur(Zxy, Zmed[pos], boxSize);
+		maxFilter(Zxy, Zmax[pos], boxSize);
+	}
+	//Adaptive median filter
+	Mat rlt = Mat(Zxy.size(), CV_8UC1);
+	for (int r = 0; r < Zxy.rows; r++) { // for every row
+		for (int c = 0; c < Zxy.cols; c++) { // for every column //刷每個點
+		// Level A
+			boxSize = 3; //一開始：3*3
+			while (boxSize <= s_max) {
+				pos = (boxSize - 3) / 2;
+				int A1 = Zmed[pos].at<uchar>(r, c) - Zmin[pos].at<uchar>(r, c);
+				int A2 = Zmed[pos].at<uchar>(r, c) - Zmax[pos].at<uchar>(r, c);
+				if ((A1 > 0) && (A2 < 0)) break;
+				else boxSize += 2;
+			}
+			if (boxSize > s_max) {  //表示找不到
+				rlt.at<uchar>(r, c) = Zxy.at<uchar>(r, c);  //rlt：要回傳的結果
+			}
+			else {
+				// Level B
+				int B1 = Zxy.at<uchar>(r, c) - Zmin[pos].at<uchar>(r, c);
+				int B2 = Zxy.at<uchar>(r, c) - Zmax[pos].at<uchar>(r, c);
+				if ((B1 > 0) && (B2 < 0)) {
+					rlt.at<uchar>(r, c) = Zxy.at<uchar>(r, c);
+				}
+				else {
+					rlt.at<uchar>(r, c) = Zmed[pos].at<uchar>(r, c);
+				}
+			}
+		}
+	}
+	//release memory and return result
+	delete[] Zmin;
+	delete[] Zmed;
+	delete[] Zmax;
+	return rlt;
+}
+
+//CH5_adaptiveMedianFilter_BGR適應性中間值濾波器(adaptiveMedianFilter)
+	//s_max：Filter kernel大小 (要奇數,int)
+IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width, int height,int s_max, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat planes[3];
+		Mat dst;
+		split(src, planes);
+		planes[0] = adaptiveMedianFilter(planes[0], s_max);
+		planes[1] = adaptiveMedianFilter(planes[1], s_max);
+		planes[2] = adaptiveMedianFilter(planes[2], s_max);
+		merge(planes, 3, dst);
 		global_temp_mat[0] = dst.clone();
 		dstBuffer = global_temp_mat[0].data;
 	}

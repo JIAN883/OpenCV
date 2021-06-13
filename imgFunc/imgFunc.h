@@ -28,3 +28,4 @@ IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool
 IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR);
 IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width, int height, bool isIdeal, bool isHighPass, int d0, bool isAddOri, void*& dstBuffer);
 IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, int height, bool isHighPass, int d0, float n, bool isAddOri, void*& dstBuffer);
+IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width, int height, int s_max, void*& dstBuffer);
