@@ -11,7 +11,8 @@ namespace WindowsFormsApp1.AdjustedForm
         static AdjustedFormManager[][] formArray =
             {
                 new AdjustedFormManager[]{ new AdjustedFormManager("卷積模糊", typeof(BlurForm)),  new AdjustedFormManager("高斯模糊", typeof(BlurForm))},
-                new AdjustedFormManager[]{ new AdjustedFormManager("中位數濾波器", typeof(MedianFilterForm)), new AdjustedFormManager("最小值濾波器", typeof(BlurForm)), new AdjustedFormManager("最大值濾波器", typeof(MaxFilter)) } ,
+                new AdjustedFormManager[]{ new AdjustedFormManager("中位數濾波器", typeof(MedianFilterForm)), new AdjustedFormManager("最小值濾波器", typeof(MinFilter)),
+                    new AdjustedFormManager("最大值濾波器", typeof(MaxFilter)), new AdjustedFormManager("銳化濾波器", typeof(LaplicianFilterForm)) } ,
                 new AdjustedFormManager[]{new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm))},
                 new AdjustedFormManager[]{new AdjustedFormManager("測試", typeof(Test))}
             };
