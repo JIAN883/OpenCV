@@ -13,20 +13,20 @@ using OpenCvSharp.Extensions;
 
 namespace WindowsFormsApp1.AdjustedForm
 {
-    public partial class MinFilter : Form
+    public partial class HighboostFilterForm : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        static extern void MaxOrMinFilter(IntPtr src, int width, int height, int mode, int KernelSize, out IntPtr dst);
+        static extern void HighboostFilter(IntPtr src, int width, int height, float k, out IntPtr dst);
 
         Form1 topForm;
         Mat source;
 
-        public MinFilter()
+        public HighboostFilterForm()
         {
             InitializeComponent();
         }
 
-        public MinFilter(Form1 topForm) : this()
+        public HighboostFilterForm(Form1 topForm) : this()
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
@@ -34,11 +34,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
-            if (topForm == null)
-                return;
-
+            float value = (float)trackBar1.Value / (float)trackBar1.Maximum * 50f;
             Mat src = source.Clone();
-            MaxOrMinFilter(src.Data, src.Width, src.Height, 1, trackBar1.Value, out IntPtr dst);
+            HighboostFilter(src.Data, src.Width, src.Height, value, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }

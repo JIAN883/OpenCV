@@ -73,7 +73,7 @@ namespace WindowsFormsApp1
             this.測試ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1123, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1123, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -133,7 +133,7 @@ namespace WindowsFormsApp1
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(598, 528);
+            this.pictureBox.Size = new System.Drawing.Size(598, 529);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -142,15 +142,15 @@ namespace WindowsFormsApp1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1123, 719);
-            this.splitContainer1.SplitterDistance = 530;
+            this.splitContainer1.Size = new System.Drawing.Size(1123, 720);
+            this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -166,7 +166,7 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1121, 528);
+            this.splitContainer2.Size = new System.Drawing.Size(1121, 529);
             this.splitContainer2.SplitterDistance = 598;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -179,7 +179,7 @@ namespace WindowsFormsApp1
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(519, 528);
+            this.listBox1.Size = new System.Drawing.Size(519, 529);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 

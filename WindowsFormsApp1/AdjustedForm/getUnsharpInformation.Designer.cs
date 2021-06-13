@@ -49,8 +49,8 @@ namespace WindowsFormsApp1.AdjustedForm
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Size = new System.Drawing.Size(869, 494);
-            this.splitContainer1.SplitterDistance = 423;
+            this.splitContainer1.Size = new System.Drawing.Size(885, 511);
+            this.splitContainer1.SplitterDistance = 430;
             this.splitContainer1.TabIndex = 0;
             // 
             // button1
@@ -58,7 +58,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(442, 494);
+            this.button1.Size = new System.Drawing.Size(451, 511);
             this.button1.TabIndex = 0;
             this.button1.Text = "查看原圖";
             this.button1.UseVisualStyleBackColor = true;
@@ -68,7 +68,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 494);
+            this.ClientSize = new System.Drawing.Size(885, 511);
             this.Controls.Add(this.splitContainer1);
             this.Name = "getUnsharpInformationForm";
             this.Text = "getUnsharpInformation";

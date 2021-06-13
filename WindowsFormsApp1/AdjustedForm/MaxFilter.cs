@@ -16,7 +16,7 @@ namespace WindowsFormsApp1.AdjustedForm
     public partial class MaxFilter : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        static extern void MaxOrMinFilter(IntPtr src, int width, int height, int mode, float KernelSize);
+        static extern void MaxOrMinFilter(IntPtr src, int width, int height, int mode, int KernelSize, out IntPtr dst);
 
         Form1 topForm;
         Mat source;
@@ -37,10 +37,10 @@ namespace WindowsFormsApp1.AdjustedForm
             if (topForm == null)
                 return;
 
-            Mat dst = source.Clone();
-            MaxOrMinFilter(dst.Data, dst.Width, dst.Height, 0, trackBar1.Value);
-
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dst);
+            Mat src = source.Clone();
+            MaxOrMinFilter(src.Data, src.Width, src.Height, 0, trackBar1.Value, out IntPtr dst);
+            Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }
     }
 }
