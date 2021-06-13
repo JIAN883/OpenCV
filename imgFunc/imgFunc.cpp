@@ -416,7 +416,8 @@ IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool
 		dstBuffer = global_temp_mat[0].data;
 	}
 }
-//頻率域
+
+//CH4_頻率域圖形調整(使越中間越低頻) ----功能函式----
 void swapFreq(Mat& F)
 {
 	int cx = F.cols / 2;
@@ -434,7 +435,8 @@ void swapFreq(Mat& F)
 	q2.copyTo(q1);
 	tmp.copyTo(q2);
 }
-// DFT transform
+
+//CH4_DFT transform ----功能函式----
 Mat myDFT(Mat& f)
 {
 	Mat F; //frequency data
@@ -442,8 +444,7 @@ Mat myDFT(Mat& f)
 	//Pad image to optimal DFT size with 0s
 	int m = getOptimalDFTSize(f.rows);
 	int n = getOptimalDFTSize(f.cols);
-	copyMakeBorder(f, padded, 0, m - f.rows, 0, n - f.cols,
-		BORDER_CONSTANT, Scalar::all(0));
+	copyMakeBorder(f, padded, 0, m - f.rows, 0, n - f.cols, BORDER_CONSTANT, Scalar::all(0));
 	// allocate memory for storing frequency data and doing DFT
 	Mat planes[] = { Mat_<float>(padded),
 	Mat(padded.size(), CV_32F, 0.0f) };
@@ -451,4 +452,207 @@ Mat myDFT(Mat& f)
 	dft(F, F);
 	swapFreq(F);
 	return F;
+}
+
+//CH4_DFT_BGR transform ----功能函式----
+Mat* myDFT_BGR(Mat& f)
+{
+	Mat BGR_planes[3];
+	Mat DFT_planes[3];
+	split(f, BGR_planes);
+	DFT_planes[0] = myDFT(BGR_planes[0]);
+	DFT_planes[1] = myDFT(BGR_planes[1]);
+	DFT_planes[2] = myDFT(BGR_planes[2]);
+	return DFT_planes;
+}
+
+//IDFT transform ----功能函式----
+Mat myIDFT(Mat& F)
+{
+	Mat planes[2];
+	swapFreq(F);
+	idft(F, F, DFT_SCALE);
+	split(F, planes);
+	return planes[0].clone();
+}
+
+//IDFT_BGR transform ----功能函式----
+Mat myIDFT_BGR(Mat* F)
+{
+	Mat dst_planes[3];
+	Mat dst;
+	dst_planes[0] = myIDFT(F[0]);
+	dst_planes[1] = myIDFT(F[1]);
+	dst_planes[2] = myIDFT(F[2]);
+	merge(dst_planes, 3, dst);
+	return dst;
+}
+
+//CH4_取得頻率資訊圖 ----功能函式----
+	//原圖當input，回傳可直接秀圖的Mat
+Mat getFrequencyDomainInformation_internalFunc(Mat& src) {
+	if (!src.empty()) {
+		src.convertTo(src, CV_32F, 1.f / 255);
+		Mat F = myDFT(src); //F：頻率域的圖
+		//Compute manitude of frequencies
+		Mat planes[2], Fmag;
+		split(F, planes); // planes[0] = Re(DFT(I), planes[1] = Im(DFT(I))
+		magnitude(planes[0], planes[1], Fmag); // Fmag = magnitude
+		//log enhancement
+		Fmag += 1;
+		log(Fmag, Fmag);
+		//show result
+		normalize(Fmag, Fmag, 0, 1, NORM_MINMAX);
+		return Fmag;
+	}
+}
+
+//CH4_取得頻率資訊圖(getFrequencyDomainInformation)
+IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+
+		Mat BGR_planes[3];
+		Mat dst_planes[3];
+		split(src, BGR_planes);
+		dst_planes[0] = getFrequencyDomainInformation_internalFunc(BGR_planes[0]);
+		dst_planes[1] = getFrequencyDomainInformation_internalFunc(BGR_planes[1]);
+		dst_planes[2] = getFrequencyDomainInformation_internalFunc(BGR_planes[2]);
+		//return to c#
+		global_temp_mat[0] = dst_planes[0].clone();
+		global_temp_mat[1] = dst_planes[1].clone();
+		global_temp_mat[2] = dst_planes[2].clone();
+		dstBufferB = global_temp_mat[0].data;
+		dstBufferG = global_temp_mat[1].data;
+		dstBufferR = global_temp_mat[2].data;
+	}
+}
+
+//CH4_理想低通濾波器 ----功能函式----
+void IdealLowPassFilter(Mat& F, int d0)
+{
+	Mat H(F.rows, F.cols, CV_32FC2, Scalar(0, 0));
+	circle(H, Point(H.cols / 2, H.rows / 2), d0, Scalar::all(1), -1);
+	F = F.mul(H);
+}
+
+//CH4_理想高通濾波器 ----功能函式----
+void IdealHighPassFilter(Mat& F, int d0)
+{
+	Mat H(F.rows, F.cols, CV_32FC2, Scalar(1, 1));
+	circle(H, Point(H.cols / 2, H.rows / 2), d0, Scalar::all(0), -1);
+	F = F.mul(H);
+}
+
+//CH4_高斯低通濾波器 ----功能函式----
+void GaussianLowPassFilter(Mat& F, int d0)
+{
+	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
+	int cx = F.rows / 2;
+	int cy = F.cols / 2;
+	for (int u = 0; u < F.rows; u++) {
+		for (int v = 0; v < F.cols; v++) {
+			float d = sqrt((float)((u - cx) * (u - cx) + (v - cy) * (v - cy)));
+			H(u, v)[0] = (float)exp((-d * d) / (2 * d0 * d0));
+			H(u, v)[1] = H(u, v)[0];
+		}
+	}
+	F = F.mul(H);
+}
+
+//CH4_高斯高通濾波器 ----功能函式----
+void GaussianHighPassFilter(Mat& F, int d0)
+{
+	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
+	int cx = F.rows / 2;
+	int cy = F.cols / 2;
+	for (int u = 0; u < F.rows; u++) {
+		for (int v = 0; v < F.cols; v++) {
+			float d = sqrt((float)((u - cx) * (u - cx) + (v - cy) * (v - cy)));
+			H(u, v)[0] = 1 - (float)exp((-d * d) / (2 * d0 * d0));
+			H(u, v)[1] = H(u, v)[0];
+		}
+	}
+	F = F.mul(H);
+}
+
+//CH4_Butterworth低通濾波器 ----功能函式----
+void ButterworthLowPassFilter(Mat& F, int d0, float n)
+{
+	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
+	int cx = F.rows / 2;
+	int cy = F.cols / 2;
+	for (int u = 0; u < F.rows; u++) {
+		for (int v = 0; v < F.cols; v++) {
+			float d = sqrt((float)((u - cx) * (u - cx) + (v - cy) * (v - cy)));
+			H(u, v)[0] = (float)1 / (1 + pow((d / d0), 2 * n));
+			H(u, v)[1] = H(u, v)[0];
+		}
+	}
+	F = F.mul(H);
+}
+
+//CH4_Butterworth高通濾波器 ----功能函式----
+void ButterworthHighPassFilter(Mat& F, int d0, float n)
+{
+	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
+	int cx = F.rows / 2;
+	int cy = F.cols / 2;
+	for (int u = 0; u < F.rows; u++) {
+		for (int v = 0; v < F.cols; v++) {
+			float d = sqrt((float)((u - cx) * (u - cx) + (v - cy) * (v - cy)));
+			H(u, v)[0] = (float)1 / (1 + pow((d0 / d), 2 * n));
+			H(u, v)[1] = H(u, v)[0];
+		}
+	}
+	F = F.mul(H);
+}
+
+//CH4_(理想/高斯)(高通/低通)濾波器(idealOrGaussianPassFilter)
+	//isIdeal：true->理想濾波器,false->高斯濾波器
+	//isHighPass：true->高通,false->低通
+	//d0：影響大小參數 (int 最小0)
+	//isAddOri：true->最後再加上原圖，false->純粹顯示濾波後的圖片
+IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width, int height, bool isIdeal, bool isHighPass, int d0,bool isAddOri, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat* DFT_planes;
+		Mat dst;
+		DFT_planes = myDFT_BGR(src);
+		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[0], d0) : IdealLowPassFilter(DFT_planes[0], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[0], d0) : GaussianLowPassFilter(DFT_planes[0], d0);
+		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[1], d0) : IdealLowPassFilter(DFT_planes[1], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[1], d0) : GaussianLowPassFilter(DFT_planes[1], d0);
+		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[2], d0) : IdealLowPassFilter(DFT_planes[2], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[2], d0) : GaussianLowPassFilter(DFT_planes[2], d0);
+
+		dst = myIDFT_BGR(DFT_planes);
+		if (isAddOri)dst = dst + src;
+		//return to c#
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
+}
+
+//CH4_Butterworth(高通/低通)濾波器(butterworthPassFilter)
+	//isHighPass：true->高通,false->低通
+	//d0：影響大小參數 (int,最小0)
+	//n：影響大小參數 (float,1->不變,動一些就差很多)
+	//isAddOri：true->最後再加上原圖，false->純粹顯示濾波後的圖片
+IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, int height, bool isHighPass, int d0,float n, bool isAddOri, void*& dstBuffer)
+{
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) {
+		Mat* DFT_planes;
+		Mat dst;
+		DFT_planes = myDFT_BGR(src);
+		isHighPass ? ButterworthHighPassFilter(DFT_planes[0], d0, n) : ButterworthLowPassFilter(DFT_planes[0], d0, n);
+		isHighPass ? ButterworthHighPassFilter(DFT_planes[1], d0, n) : ButterworthLowPassFilter(DFT_planes[1], d0, n);
+		isHighPass ? ButterworthHighPassFilter(DFT_planes[2], d0, n) : ButterworthLowPassFilter(DFT_planes[2], d0, n);
+		
+		dst = myIDFT_BGR(DFT_planes);
+		if (isAddOri)dst = dst + src;
+		//return to c#
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
 }
