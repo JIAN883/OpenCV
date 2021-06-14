@@ -16,7 +16,7 @@ namespace WindowsFormsApp1.AdjustedForm
     public partial class BitPlaneSlicingForm : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        static extern void getUnsharpInformation(IntPtr src, int width, int height, int bit);
+        static extern void bitPlaneSlicing(IntPtr src, int width, int height, int bit);
 
         Form1 topForm;
         Mat source;
@@ -47,9 +47,9 @@ namespace WindowsFormsApp1.AdjustedForm
                 if(checkedListBox1.GetItemChecked(i))
                     count += (int)Math.Pow(2, i);
             
-            Mat dst = source.Clone();
-            getUnsharpInformation(dst.Data, dst.Width, dst.Height, count);
-            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dst);
+            Mat src = source.Clone();
+            bitPlaneSlicing(src.Data, src.Width, src.Height, count);
+            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(src);
         }
 
     }
