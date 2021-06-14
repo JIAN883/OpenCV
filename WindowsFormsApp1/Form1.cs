@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
 			//綁定menustrip的tag
 			basicProcess_ToolStripMenuItem.Tag = AdjustedFormManager.basicProcess;
 			spatialDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.spatialDomainProcess;
+			frequencyDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.frequencyDomainPorcess;
 			elseProcess_toolStripMenuItem.Tag = AdjustedFormManager.elseProcess;
 			test_ToolStripMenuItem.Tag = AdjustedFormManager.testProcess;
 

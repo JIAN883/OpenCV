@@ -130,6 +130,12 @@
     <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.Designer.cs">
+      <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\GetUnsharpInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,12 @@
     </Compile>
     <Compile Include="AdjustedForm\HorizontalIntensityFilterForm.Designer.cs">
       <DependentUpon>HorizontalIntensityFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\IdealOrGaussianPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\IdealOrGaussianPassFilterForm.Designer.cs">
+      <DependentUpon>IdealOrGaussianPassFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\LaplicianFilterForm.cs">
       <SubType>Form</SubType>
@@ -196,6 +208,24 @@
     <Compile Include="AdjustedForm\PowerBrightProcessing.Designer.cs">
       <DependentUpon>PowerBrightProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\ReflectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ReflectForm.Designer.cs">
+      <DependentUpon>ReflectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\RotateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\RotateForm.Designer.cs">
+      <DependentUpon>RotateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ShearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ShearForm.Designer.cs">
+      <DependentUpon>ShearForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +267,9 @@
     <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetFrequencyDomainInformationForm.resx">
+      <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GetUnsharpInformation.resx">
       <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +302,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\PowerBrightProcessing.resx">
       <DependentUpon>PowerBrightProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ReflectForm.resx">
+      <DependentUpon>ReflectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\RotateForm.resx">
+      <DependentUpon>RotateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ShearForm.resx">
+      <DependentUpon>ShearForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>

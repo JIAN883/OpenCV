@@ -11,7 +11,10 @@ namespace WindowsFormsApp1.AdjustedForm
         static public AdjustedFormManager[] basicProcess = {
             new AdjustedFormManager("調整大小", typeof(ChangeImageSizeForm)),
             new AdjustedFormManager("調整亮度 Log", typeof(LogBrightProcessingForm)),
-            new AdjustedFormManager("調整亮度 Power", typeof(PowerBrightProcessing))
+            new AdjustedFormManager("調整亮度 Power", typeof(PowerBrightProcessing)),
+            new AdjustedFormManager("旋轉", typeof(RotateForm)),
+            new AdjustedFormManager("剪形", typeof(ShearForm)),
+            new AdjustedFormManager("鏡射", typeof(ReflectForm))
         };
         static public AdjustedFormManager[] spatialDomainProcess = {
             new AdjustedFormManager("中位數濾波器", typeof(MedianFilterForm)),
@@ -25,9 +28,13 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("閥值處理", typeof(ThresholdProcessingForm)),
             new AdjustedFormManager("等化直方圖處理", typeof(EqualizeHistForm))
         };
+        static public AdjustedFormManager[] frequencyDomainPorcess = {
+            new AdjustedFormManager("高斯濾波器", typeof(IdealOrGaussianPassFilterForm))
+        };
         static public AdjustedFormManager[] elseProcess = {
             new AdjustedFormManager("直方圖資訊", typeof(HistogramProcessingForm)),
             new AdjustedFormManager("鈍化圖形資訊", typeof(getUnsharpInformationForm)),
+            new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
             new AdjustedFormManager("位元平面切片", typeof(BitPlaneSlicingForm)),
             new AdjustedFormManager("負片", typeof(NegativeForm)),
             new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm))
