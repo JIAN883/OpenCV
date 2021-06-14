@@ -8,31 +8,30 @@ namespace WindowsFormsApp1.AdjustedForm
 {
     public class AdjustedFormManager
     {
-        static AdjustedFormManager[][] formArray =
-            {
-                new AdjustedFormManager[]{
-                    new AdjustedFormManager("中位數濾波器", typeof(MedianFilterForm)),
-                    new AdjustedFormManager("最小值濾波器", typeof(MinFilter)),
-                    new AdjustedFormManager("最大值濾波器", typeof(MaxFilter)),
-                    new AdjustedFormManager("銳化濾波器", typeof(LaplicianFilterForm)), 
-                    new AdjustedFormManager("模糊濾波器", typeof(BlurForm)),
-                    new AdjustedFormManager("高增幅濾波器", typeof(HighboostFilterForm)),
-                    new AdjustedFormManager("垂直濾波器", typeof(HorizontalIntensityFilterForm)),
-                    new AdjustedFormManager("水平濾波器", typeof(VerticalIntensityFilterForm)),
-                    new AdjustedFormManager("閥值處理", typeof(ThresholdProcessingForm))
-                },
-                new AdjustedFormManager[]{
-                    new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm)),
-                    new AdjustedFormManager("負片", typeof(NegativeForm)),
-                    new AdjustedFormManager("調整亮度 Log", typeof(LogBrightProcessingForm)),
-                    new AdjustedFormManager("調整亮度 Power", typeof(PowerBrightProcessing))
-                },
-                new AdjustedFormManager[]{
-                    new AdjustedFormManager("取得鈍化圖形資訊", typeof(getUnsharpInformationForm)),
-                    new AdjustedFormManager("位元平面切片", typeof(BitPlaneSlicingForm))
-                },
-                new AdjustedFormManager[]{new AdjustedFormManager("測試", typeof(Test))}
-            };
+        static public AdjustedFormManager[] basicProcess = {
+            new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm)),
+            new AdjustedFormManager("負片", typeof(NegativeForm)),
+            new AdjustedFormManager("調整亮度 Log", typeof(LogBrightProcessingForm)),
+            new AdjustedFormManager("調整亮度 Power", typeof(PowerBrightProcessing))
+        };
+        static public AdjustedFormManager[] spatialDomainProcess = {
+            new AdjustedFormManager("中位數濾波器", typeof(MedianFilterForm)),
+            new AdjustedFormManager("最小值濾波器", typeof(MinFilter)),
+            new AdjustedFormManager("最大值濾波器", typeof(MaxFilter)),
+            new AdjustedFormManager("銳化濾波器", typeof(LaplicianFilterForm)),
+            new AdjustedFormManager("模糊濾波器", typeof(BlurForm)),
+            new AdjustedFormManager("高增幅濾波器", typeof(HighboostFilterForm)),
+            new AdjustedFormManager("垂直濾波器", typeof(HorizontalIntensityFilterForm)),
+            new AdjustedFormManager("水平濾波器", typeof(VerticalIntensityFilterForm)),
+            new AdjustedFormManager("閥值處理", typeof(ThresholdProcessingForm)),
+            new AdjustedFormManager("等化直方圖處理", typeof(EqualizeHistForm))
+        };
+        static public AdjustedFormManager[] elseProcess = {
+            new AdjustedFormManager("直方圖資訊", typeof(HistogramProcessingForm)),
+            new AdjustedFormManager("鈍化圖形資訊", typeof(getUnsharpInformationForm)),
+            new AdjustedFormManager("位元平面切片", typeof(BitPlaneSlicingForm))
+        };
+        static public AdjustedFormManager[] testProcess = {new AdjustedFormManager("測試", typeof(Test))};
 
         public string Name { get; set; }
         public Type FormType { get; set; }
@@ -41,16 +40,6 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.Name = Name;
             this.FormType = FormType;
-        }
-
-        public static List<AdjustedFormManager> GetFormList(int index)
-        {
-            if (index + 1 > formArray.Length)
-                return null;
-
-            AdjustedFormManager[] formArraySub = formArray[index];
-            List<AdjustedFormManager> formListSub = formArraySub.OfType<AdjustedFormManager>().ToList();
-            return formListSub;
         }
     }
 }

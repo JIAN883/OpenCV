@@ -36,9 +36,8 @@ namespace WindowsFormsApp1
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.調整亮度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.濾鏡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.測試ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spatialDomainProcess_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.test_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -46,8 +45,9 @@ namespace WindowsFormsApp1
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.elseProcess_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.basicProcess_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,13 +69,13 @@ namespace WindowsFormsApp1
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.調整亮度ToolStripMenuItem,
-            this.濾鏡ToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.測試ToolStripMenuItem});
+            this.basicProcess_ToolStripMenuItem,
+            this.spatialDomainProcess_ToolStripMenuItem,
+            this.elseProcess_toolStripMenuItem,
+            this.test_ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1123, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1131, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -110,23 +110,17 @@ namespace WindowsFormsApp1
             this.結束ToolStripMenuItem.Text = "結束";
             this.結束ToolStripMenuItem.Click += new System.EventHandler(this.CloseApp);
             // 
-            // 調整亮度ToolStripMenuItem
+            // spatialDomainProcess_ToolStripMenuItem
             // 
-            this.調整亮度ToolStripMenuItem.Name = "調整亮度ToolStripMenuItem";
-            this.調整亮度ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.調整亮度ToolStripMenuItem.Text = "濾波器";
+            this.spatialDomainProcess_ToolStripMenuItem.Name = "spatialDomainProcess_ToolStripMenuItem";
+            this.spatialDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
+            this.spatialDomainProcess_ToolStripMenuItem.Text = "空間域濾波器";
             // 
-            // 濾鏡ToolStripMenuItem
+            // test_ToolStripMenuItem
             // 
-            this.濾鏡ToolStripMenuItem.Name = "濾鏡ToolStripMenuItem";
-            this.濾鏡ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.濾鏡ToolStripMenuItem.Text = "濾鏡";
-            // 
-            // 測試ToolStripMenuItem
-            // 
-            this.測試ToolStripMenuItem.Name = "測試ToolStripMenuItem";
-            this.測試ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.測試ToolStripMenuItem.Text = "測試";
+            this.test_ToolStripMenuItem.Name = "test_ToolStripMenuItem";
+            this.test_ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.test_ToolStripMenuItem.Text = "測試";
             // 
             // splitContainer1
             // 
@@ -139,8 +133,8 @@ namespace WindowsFormsApp1
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1123, 719);
-            this.splitContainer1.SplitterDistance = 530;
+            this.splitContainer1.Size = new System.Drawing.Size(1131, 721);
+            this.splitContainer1.SplitterDistance = 531;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -156,8 +150,8 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1121, 528);
-            this.splitContainer2.SplitterDistance = 598;
+            this.splitContainer2.Size = new System.Drawing.Size(1129, 529);
+            this.splitContainer2.SplitterDistance = 602;
             this.splitContainer2.TabIndex = 0;
             // 
             // listBox1
@@ -169,7 +163,7 @@ namespace WindowsFormsApp1
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(519, 528);
+            this.listBox1.Size = new System.Drawing.Size(523, 529);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -179,9 +173,9 @@ namespace WindowsFormsApp1
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.PeekStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 747);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 749);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1123, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1131, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -189,7 +183,7 @@ namespace WindowsFormsApp1
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1066, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1074, 19);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // PeekStripStatusLabel
@@ -202,6 +196,12 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
             // 
+            // elseProcess_toolStripMenuItem
+            // 
+            this.elseProcess_toolStripMenuItem.Name = "elseProcess_toolStripMenuItem";
+            this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.elseProcess_toolStripMenuItem.Text = "其他";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.White;
@@ -209,22 +209,22 @@ namespace WindowsFormsApp1
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(598, 528);
+            this.pictureBox.Size = new System.Drawing.Size(602, 529);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
-            // toolStripMenuItem2
+            // basicProcess_ToolStripMenuItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(53, 24);
-            this.toolStripMenuItem2.Text = "其他";
+            this.basicProcess_ToolStripMenuItem.Name = "basicProcess_ToolStripMenuItem";
+            this.basicProcess_ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.basicProcess_ToolStripMenuItem.Text = "基本處理";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 772);
+            this.ClientSize = new System.Drawing.Size(1131, 774);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -261,13 +261,13 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ListBox listBox1;
         public System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.ToolStripMenuItem 調整亮度ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spatialDomainProcess_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel PeekStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem 濾鏡ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 測試ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem test_ToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem elseProcess_toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem basicProcess_ToolStripMenuItem;
     }
 }
 
