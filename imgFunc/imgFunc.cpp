@@ -248,14 +248,19 @@ IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, i
 IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int height, int bit)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat dst=src.clone();
 	if (!src.empty()) {
 		for (int ch = 0; ch < src.channels(); ch++) {
 			for (int row = 0; row < src.rows; row++) {
 				for (int column = 0; column < src.cols; column++) {
-					src.at<Vec3b>(row, column)[ch] = ((src.at<Vec3b>(row, column)[ch] >> bit) & 1) << 7;
+					dst.at<Vec3b>(row, column)[ch] = 0;
+					for (int tempBit = 0; tempBit < 8; tempBit++) {
+						dst.at<Vec3b>(row, column)[ch] += (((src.at<Vec3b>(row, column)[ch] >> tempBit) & 0x01 ) << tempBit) & bit;
+					}
 				}
 			}
 		}
+		copyContent(dst, src);
 	}
 }
 
