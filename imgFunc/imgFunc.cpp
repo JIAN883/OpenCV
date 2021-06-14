@@ -265,7 +265,7 @@ IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int heig
 }
 
 //CH3_ª½¤è¹Ï(Histogram Processing)
-IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int height, int bit, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
+IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {

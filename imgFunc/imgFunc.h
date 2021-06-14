@@ -19,7 +19,7 @@ IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height);
 IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int height, float c, void*& dstBuffer);
 IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, int height, float c, float gamma, void*& dstBuffer);
 IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int height, int bit);
-IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer, int width, int height, int bit, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR);
+IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer, int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR);
 IMGFUNC_API void equalizeHist(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer);
 IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int height, double xtimes, double ytimes, bool isfullsize, int*& dst_width, int*& dst_height, void*& dstBuffer);
 IMGFUNC_API void Rotate(unsigned char* imageBuffer, int width, int height, double angle, void*& dstBuffer);
