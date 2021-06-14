@@ -6,6 +6,19 @@
 using namespace cv;
 #define PI 3.14159
 #define global_size 5
+#define ILL_A 109.850, 100.0, 35.585
+#define ILL_D50 96.422, 100.0, 82.521
+#define ILL_D55 95.682, 100.0, 92.149
+#define ILL_D65 95.047, 100.0, 108.883
+#define ILL_D75 94.972, 100.0, 122.638
+/*
+#define B 0
+#define G 1
+#define R 2
+#define C 3
+#define M 4
+#define Y 5
+*/
 Mat global_temp_mat[global_size];//用來當函式呼叫之間的媒介，每次用完記得release
 
 void copyContent(Mat src, Mat dst) {
@@ -217,6 +230,8 @@ IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 		Mat log_dst;
+		Mat plane[3];
+		//split(src)
 		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
 		cv::log(log_dst + 1, log_dst);
 		log_dst = c * log_dst / log(2.0);
@@ -874,4 +889,189 @@ IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width
 		dstBuffer = global_temp_mat[0].data;
 		//copyContent(dst, src);
 	}
+}
+
+//CH6_改變光源 (changeIlluminant)  ----功能函式----
+Mat changeIlluminant(Mat& src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
+	Mat xyz, dst;
+	//Generate transform matrix
+	Scalar_<float> ratio(dstIll[0] / srcIll[0],
+		dstIll[1] / srcIll[1],
+		dstIll[2] / srcIll[2]);
+	Mat ratioMat(src.size(), CV_32FC3, ratio);
+	//Convert colorspace
+	src.convertTo(dst, CV_32FC3, 1.f / 255);
+	cvtColor(dst, xyz, COLOR_BGR2XYZ);
+	xyz = xyz.mul(ratioMat);
+	cvtColor(xyz, dst, COLOR_XYZ2BGR);
+	return dst;
+}
+
+//CH6_計算光源 ----功能函式----
+Scalar_<float> calLightSource(Mat& src) {
+	Scalar_<float> ill(0.0f, 0.0f, 0.0f);
+	Mat xyz;
+	cvtColor(src, xyz, COLOR_BGR2XYZ);
+	//split(dst, planes);
+	ill = mean(xyz);
+	ill[0] = ill[0] / ill[1] * 100;
+	ill[2] = ill[2] / ill[1] * 100;
+	ill[1] = 100;
+	return ill;
+}
+
+//CH6_改變光源(從固定幾個光源挑) changeIlluminantFromModel
+	//mode：模式 (0->ILL_A，1->ILL_D50，2->ILL_D55，3->ILL_D65，其他->ILL_D75)
+IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width, int height,int mode, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Scalar_<float> oriILL = calLightSource(src);
+	Scalar_<float> dstIll;
+	switch (mode) {
+		case 0: //ILL_A
+			dstIll=Scalar_<float>(ILL_A);
+			break;
+		case 1: //ILL_D50
+			dstIll = Scalar_<float>(ILL_D50);
+			break;
+		case 2: //ILL_D55
+			dstIll = Scalar_<float>(ILL_D55);
+			break;
+		case 3: //ILL_D65
+			dstIll = Scalar_<float>(ILL_D65);
+			break;
+		default: //ILL_D75
+			dstIll = Scalar_<float>(ILL_D75);
+			break;
+	}
+	Mat dst= changeIlluminant(src, oriILL, dstIll);
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+
+//CH6_改變光源(自己選X,Z值) changeIlluminantFromCustomizeXZ
+	//x：x刺激值
+	//z：z刺激值
+IMGFUNC_API void changeIlluminantFromCustomizeXZ(unsigned char* imageBuffer, int width, int height, int x, int z, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Scalar_<float> oriILL = calLightSource(src);
+	Scalar_<float> dstIll((float)x,100.0,(float)z);
+	Mat dst = changeIlluminant(src, oriILL, dstIll);
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+
+//CH6_調整飽和度
+	//rate：飽和度倍數 (double)
+IMGFUNC_API void changeSaturation(unsigned char* imageBuffer, int width, int height, double rate, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat dst;
+	Mat hsv, hsvPlanes[3];
+	//Get HSV planes
+	cvtColor(src, hsv, COLOR_BGR2HSV);
+	split(hsv, hsvPlanes);
+	//Generate the image of saturation * rate
+	hsvPlanes[1] *= rate;
+	merge(hsvPlanes, 3, hsv);
+	cvtColor(hsv, dst, COLOR_HSV2BGR);
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+
+//CH6_取得CMY色彩平面 ----功能函式----
+Mat* getCMYPlane(Mat src) {
+	Mat bgr[3], cmy[3];
+	split(src, bgr);
+	cmy[0] =255- bgr[2];
+	cmy[1] =255- bgr[1];
+	cmy[2] =255- bgr[0];
+	return cmy;
+}
+
+//CH6_取得色彩平面(B,G,R,C,M,Y選一)(圖顯示會是灰色，表示該色彩的量)
+	//color：選擇某色彩的切片(B:0,G:1,R:2,C:3,M:4,Y:5和其他 int)
+IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat bgr[3];
+	Mat dst;
+	Mat* cmy = getCMYPlane(src);
+	split(src, bgr);
+	switch (color) {
+	case 0: //B 0
+		dst = bgr[0];
+		break;
+	case 1: //G 1
+		dst = bgr[1];
+		break;
+	case 2: //R 2
+		dst = bgr[2];
+		break;
+	case 3: //C 3
+		dst = cmy[0];
+		break;
+	case 4: //M 4
+		dst = cmy[0];
+		break;
+	case 5: //Y 5
+		dst = cmy[1];
+		break;
+	default: //Y 5
+		dst = cmy[2];
+		break;
+	}
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+//CH6_取得單一或多重色彩的圖片(B,G,R間複選，C,M,Y間單選)(可分兩種：BGR一種複選，CMY一種單選) (CMY的話只能一次選一個喔)
+	//color：2進制的選擇顯示是否含有該色的平面 4個bit，意義如下：0bit->是否R/Y，1bit->是否G/M，2bit->是否B/C，3bit->是否BGR系統(1->BGR,0->CMY) 
+IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat bgr[3];
+	Mat dst;
+	Mat* cmy = getCMYPlane(src);
+	Mat tmp[3];
+	bool isHasCMY = false;
+	split(src, bgr);
+	if ((color>>3) & 1){ //BGR
+		for (int tempBit = 0; tempBit < 3; tempBit++) {
+			((color >> tempBit) & 0x01) ? tmp[2 - tempBit] = bgr[2 - tempBit].clone() : tmp[2 - tempBit] = Mat::zeros(src.size(), CV_8U);
+		}
+	}
+	else { //CMY
+		for (int tempBit = 0; tempBit < 3; tempBit++) {
+			if ((color >> tempBit) & 0x01) {
+				switch (tempBit)
+				{
+					case 0: //Y
+						tmp[0] = Mat::zeros(src.size(), CV_8U);
+						tmp[1] = cmy[2];
+						tmp[2] = cmy[2];
+						break;
+					case 1: //M
+						tmp[0] = cmy[1];
+						tmp[1] = Mat::zeros(src.size(), CV_8U);
+						tmp[2] = cmy[1];
+						break;
+					case 2: //C
+						tmp[0] = cmy[0];
+						tmp[1] = cmy[0];
+						tmp[2] = Mat::zeros(src.size(), CV_8U);
+						break;
+					default: //C
+						tmp[0] = cmy[0];
+						tmp[1] = cmy[0];
+						tmp[2] = Mat::zeros(src.size(), CV_8U);
+						break;
+				}
+				isHasCMY = true;
+				break;
+			}
+		}
+		if (!isHasCMY) {
+			for(int i=0;i<3;i++)
+				tmp[i] = Mat::zeros(src.size(), CV_8U);
+		}
+	}
+	merge(tmp, 3, dst);
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
 }

@@ -32,3 +32,8 @@ IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width,
 IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer);
 IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer);
 IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, float Q, void*& dstBuffer);
+IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer);
+IMGFUNC_API void changeIlluminantFromCustomizeXZ(unsigned char* imageBuffer, int width, int height, int x, int z, void*& dstBuffer);
+IMGFUNC_API void changeSaturation(unsigned char* imageBuffer, int width, int height, double rate, void*& dstBuffer);
+IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer);
+IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer);
