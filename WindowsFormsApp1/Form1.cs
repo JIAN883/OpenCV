@@ -20,10 +20,10 @@ namespace WindowsFormsApp1
 			InitializeComponent();
 
 			//綁定menustrip的tag
-			menuStrip1.Items[1].Tag = AdjustedFormManager.GetFormList(0);//檔案
-			menuStrip1.Items[2].Tag = AdjustedFormManager.GetFormList(1);//濾波器
-			menuStrip1.Items[3].Tag = AdjustedFormManager.GetFormList(2);//其他
-			menuStrip1.Items[4].Tag = AdjustedFormManager.GetFormList(3);//測試
+			basicProcess_ToolStripMenuItem.Tag = AdjustedFormManager.basicProcess;
+			spatialDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.spatialDomainProcess;
+			elseProcess_toolStripMenuItem.Tag = AdjustedFormManager.elseProcess;
+			test_ToolStripMenuItem.Tag = AdjustedFormManager.testProcess;
 
 			//debug模式專用
 			pictureBox.Image = WindowsFormsApp1.Properties.Resources._227995_106;
@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
 				return;
 			}
 
-			listBox1.DataSource = e.ClickedItem.Tag as List<AdjustedFormManager>;
+			listBox1.DataSource = e.ClickedItem.Tag as AdjustedFormManager[];
 			listBox1.DisplayMember = "Name";
 			listBox1.SelectedIndex = -1;
 		}

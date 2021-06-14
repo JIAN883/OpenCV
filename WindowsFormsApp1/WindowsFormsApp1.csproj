@@ -112,6 +112,18 @@
     <Compile Include="AdjustedForm\BlurForm.Designer.cs">
       <DependentUpon>BlurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\ChangeImageSizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeImageSizeForm.Designer.cs">
+      <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\EqualizeHistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\EqualizeHistForm.Designer.cs">
+      <DependentUpon>EqualizeHistForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\GeneratePepperSaltForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +141,12 @@
     </Compile>
     <Compile Include="AdjustedForm\HighboostFilterForm.Designer.cs">
       <DependentUpon>HighboostFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HistogramProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HistogramProcessingForm.Designer.cs">
+      <DependentUpon>HistogramProcessingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\HorizontalIntensityFilterForm.cs">
       <SubType>Form</SubType>
@@ -210,6 +228,12 @@
     <EmbeddedResource Include="AdjustedForm\BlurForm.resx">
       <DependentUpon>BlurForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeImageSizeForm.resx">
+      <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\EqualizeHistForm.resx">
+      <DependentUpon>EqualizeHistForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\HighboostFilterForm.resx">
       <DependentUpon>HighboostFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HistogramProcessingForm.resx">
+      <DependentUpon>HistogramProcessingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\HorizontalIntensityFilterForm.resx">
       <DependentUpon>HorizontalIntensityFilterForm.cs</DependentUpon>
