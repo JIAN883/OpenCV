@@ -100,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdjustedForm\AdjustedFormManager.cs" />
+    <Compile Include="AdjustedForm\BitPlaneSlicingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\BitPlaneSlicingForm.Designer.cs">
+      <DependentUpon>BitPlaneSlicingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\BlurForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdjustedForm\BitPlaneSlicingForm.resx">
+      <DependentUpon>BitPlaneSlicingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\BlurForm.resx">
       <DependentUpon>BlurForm.cs</DependentUpon>
     </EmbeddedResource>

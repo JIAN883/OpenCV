@@ -37,19 +37,30 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void PowerBrightProcessing_Load(object sender, EventArgs e)
         {
-            //cTrackBar.Value = (cDefault-cMin)* ((float)cTrackBar.Maximum - (float)cTrackBar.Minimum)/ (cMax - cMin)
-            //gammaTrackBar.Value = (int)(gammaDefault / gammaMax * (float)gammaTrackBar.Maximum);
+            cTrackBar.Value = SetTrackBarValue(cTrackBar.Maximum, cMax, cMin, cDefault);
+            gammaTrackBar.Value = SetTrackBarValue(gammaTrackBar.Maximum, gammaMax, gammaMin, gammaDefault);
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e)
         {
-            //float cValue = (cMax - cMin) / ((float)cTrackBar.Maximum - (float)cTrackBar.Minimum) * ((float)cTrackBar.Value-(float)cTrackBar.Minimum) + cMin;
-            //float gammaValue = (gammaMax - gammaMin) / ((float)gammaTrackBar.Maximum - (float)gammaTrackBar.Minimum) * (float)gammaTrackBar.Value + gammaMin;
-            //
-            //Mat src = source.Clone();
-            ////brightProcessing_power(src.Data, src.Width, src.Height, false, true, out IntPtr dst);
-            //Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            //topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
+            float cValue = GetTrackValue(cTrackBar.Maximum, cTrackBar.Value, cMax, cMin);
+            float gammaValue = GetTrackValue(gammaTrackBar.Maximum, gammaTrackBar.Value, gammaMax, gammaMin);
+            
+            Mat src = source.Clone();
+            brightProcessing_power(src.Data, src.Width, src.Height, cValue, gammaValue, out IntPtr dst);
+            Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }
+
+        int SetTrackBarValue(int trackBarMaximum, float max, float min, float defaultValue)
+        {
+            return (int)((float)trackBarMaximum / (max - min) * (defaultValue - min));
+        }
+
+        float GetTrackValue(int trackBarMaximum, int trackBarValue, float max, float min)
+        {
+            return (max - min) / (float)trackBarMaximum * (float)trackBarValue + min;
+        }
+
     }
 }

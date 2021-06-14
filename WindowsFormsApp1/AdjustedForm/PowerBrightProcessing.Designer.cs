@@ -40,17 +40,17 @@ namespace WindowsFormsApp1.AdjustedForm
             this.gammaTrackBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gammaTrackBar.Location = new System.Drawing.Point(0, 577);
             this.gammaTrackBar.Maximum = 100;
-            this.gammaTrackBar.Minimum = 1;
             this.gammaTrackBar.Name = "gammaTrackBar";
             this.gammaTrackBar.Size = new System.Drawing.Size(960, 56);
             this.gammaTrackBar.TabIndex = 0;
             this.gammaTrackBar.Value = 1;
+            this.gammaTrackBar.Scroll += new System.EventHandler(this.TrackBar_Scroll);
             // 
             // cTrackBar
             // 
             this.cTrackBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cTrackBar.Location = new System.Drawing.Point(0, 521);
-            this.cTrackBar.Minimum = -10;
+            this.cTrackBar.Maximum = 100;
             this.cTrackBar.Name = "cTrackBar";
             this.cTrackBar.Size = new System.Drawing.Size(960, 56);
             this.cTrackBar.TabIndex = 1;
