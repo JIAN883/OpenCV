@@ -523,14 +523,10 @@ Mat myIDFT(Mat& F)
 }
 
 //IDFT_BGR transform ----功能函式----
-Mat myIDFT_BGR(Mat* F)
+Mat myIDFT_BGR(Mat& F)
 {
 	Mat dst_planes[3];
 	Mat dst;
-	dst_planes[0] = myIDFT(F[0]);
-	dst_planes[1] = myIDFT(F[1]);
-	dst_planes[2] = myIDFT(F[2]);
-	merge(dst_planes, 3, dst);
 	return dst;
 }
 
@@ -664,14 +660,25 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
-		Mat* DFT_planes;
 		Mat dst;
-		DFT_planes = myDFT_BGR(src);
+		Mat BGR_planes[3];
+		Mat DFT_planes[3];
+		split(src, BGR_planes);
+		DFT_planes[0] = myDFT(BGR_planes[0]);
+		DFT_planes[1] = myDFT(BGR_planes[1]);
+		DFT_planes[2] = myDFT(BGR_planes[2]);
+
+
 		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[0], d0) : IdealLowPassFilter(DFT_planes[0], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[0], d0) : GaussianLowPassFilter(DFT_planes[0], d0);
 		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[1], d0) : IdealLowPassFilter(DFT_planes[1], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[1], d0) : GaussianLowPassFilter(DFT_planes[1], d0);
 		isIdeal ? isHighPass ? IdealHighPassFilter(DFT_planes[2], d0) : IdealLowPassFilter(DFT_planes[2], d0) : isHighPass ? GaussianHighPassFilter(DFT_planes[2], d0) : GaussianLowPassFilter(DFT_planes[2], d0);
 
-		dst = myIDFT_BGR(DFT_planes);
+		BGR_planes[0] = myIDFT(DFT_planes[0]);
+		BGR_planes[1] = myIDFT(DFT_planes[1]);
+		BGR_planes[2] = myIDFT(DFT_planes[2]);
+		merge(BGR_planes, 3, dst);
+		//bgr[i].convertTo(bgr[i], CV_32FC3, 1.f / 255);
+		src.convertTo(src, CV_32FC3, 1.f / 255);
 		if (isAddOri)dst = dst + src;
 		//return to c#
 		global_temp_mat[0] = dst.clone();
@@ -688,14 +695,25 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
-		Mat* DFT_planes;
+		Mat DFT_planes[3];
+		Mat BGR_planes[3];
 		Mat dst;
-		DFT_planes = myDFT_BGR(src);
+
+		split(src, BGR_planes);
+		DFT_planes[0] = myDFT(BGR_planes[0]);
+		DFT_planes[1] = myDFT(BGR_planes[1]);
+		DFT_planes[2] = myDFT(BGR_planes[2]);
+
 		isHighPass ? ButterworthHighPassFilter(DFT_planes[0], d0, n) : ButterworthLowPassFilter(DFT_planes[0], d0, n);
 		isHighPass ? ButterworthHighPassFilter(DFT_planes[1], d0, n) : ButterworthLowPassFilter(DFT_planes[1], d0, n);
 		isHighPass ? ButterworthHighPassFilter(DFT_planes[2], d0, n) : ButterworthLowPassFilter(DFT_planes[2], d0, n);
 		
-		dst = myIDFT_BGR(DFT_planes);
+		BGR_planes[0] = myIDFT(DFT_planes[0]);
+		BGR_planes[1] = myIDFT(DFT_planes[1]);
+		BGR_planes[2] = myIDFT(DFT_planes[2]);
+		merge(BGR_planes, 3, dst);
+		//0615修正
+		src.convertTo(src, CV_32FC3, 1.f / 255);
 		if (isAddOri)dst = dst + src;
 		//return to c#
 		global_temp_mat[0] = dst.clone();
@@ -919,12 +937,12 @@ IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width
 }
 
 //CH6_改變光源 (changeIlluminant)  ----功能函式----
-Mat changeIlluminant(Mat& src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
+Mat changeIlluminant(Mat &src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
 	Mat xyz, dst;
 	//Generate transform matrix
 	Scalar_<float> ratio(dstIll[0] / srcIll[0],
-		dstIll[1] / srcIll[1],
-		dstIll[2] / srcIll[2]);
+						dstIll[1] / srcIll[1],
+						dstIll[2] / srcIll[2]);
 	Mat ratioMat(src.size(), CV_32FC3, ratio);
 	//Convert colorspace
 	src.convertTo(dst, CV_32FC3, 1.f / 255);
@@ -935,15 +953,15 @@ Mat changeIlluminant(Mat& src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
 }
 
 //CH6_計算光源 ----功能函式----
-Scalar_<float> calLightSource(Mat& src) {
+Scalar_<float> calLightSource(Mat src) {
 	Scalar_<float> ill(0.0f, 0.0f, 0.0f);
 	Mat xyz;
 	cvtColor(src, xyz, COLOR_BGR2XYZ);
 	//split(dst, planes);
 	ill = mean(xyz);
-	ill[0] = ill[0] / ill[1] * 100;
-	ill[2] = ill[2] / ill[1] * 100;
-	ill[1] = 100;
+	ill[0] = (ill[0] / ill[1]) * 100.0;
+	ill[2] = (ill[2] / ill[1]) * 100.0;
+	ill[1] = 100.0;
 	return ill;
 }
 
@@ -952,25 +970,27 @@ Scalar_<float> calLightSource(Mat& src) {
 IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width, int height,int mode, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Scalar_<float> oriILL = calLightSource(src);
-	Scalar_<float> dstIll;
+	Scalar dstIll;
 	switch (mode) {
 		case 0: //ILL_A
-			dstIll=Scalar_<float>(ILL_A);
+			dstIll=Scalar(ILL_A);
 			break;
 		case 1: //ILL_D50
-			dstIll = Scalar_<float>(ILL_D50);
+			dstIll = Scalar(ILL_D50);
 			break;
 		case 2: //ILL_D55
-			dstIll = Scalar_<float>(ILL_D55);
+			dstIll = Scalar(ILL_D55);
 			break;
 		case 3: //ILL_D65
-			dstIll = Scalar_<float>(ILL_D65);
+			dstIll = Scalar(ILL_D65);
 			break;
 		default: //ILL_D75
-			dstIll = Scalar_<float>(ILL_D75);
+			dstIll = Scalar(ILL_D75);
 			break;
 	}
+
 	Mat dst= changeIlluminant(src, oriILL, dstIll);
+	dst.convertTo(dst, CV_8UC3,  255);
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
 }
