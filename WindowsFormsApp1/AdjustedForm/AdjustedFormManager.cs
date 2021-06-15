@@ -38,7 +38,8 @@ namespace WindowsFormsApp1.AdjustedForm
         };
         static public AdjustedFormManager[] frequencyDomainPorcess = {
             new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
-            new AdjustedFormManager("(理想/高斯)濾波器", typeof(IdealOrGaussianPassFilterForm)),
+            new AdjustedFormManager("高斯濾波器", typeof(GaussianPassFilterForm)),
+            new AdjustedFormManager("理想濾波器", typeof(IdeaPassFilterForm)),
             new AdjustedFormManager("Butterworth濾波器", typeof(ButterworthPassFilterForm)),
             new AdjustedFormManager("調整飽和度", typeof(ChangeSaturationForm)),
         };
