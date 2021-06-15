@@ -282,6 +282,9 @@
     <EmbeddedResource Include="AdjustedForm\HorizontalIntensityFilterForm.resx">
       <DependentUpon>HorizontalIntensityFilterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\IdealOrGaussianPassFilterForm.resx">
+      <DependentUpon>IdealOrGaussianPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\LaplicianFilterForm.resx">
       <DependentUpon>LaplicianFilterForm.cs</DependentUpon>
     </EmbeddedResource>

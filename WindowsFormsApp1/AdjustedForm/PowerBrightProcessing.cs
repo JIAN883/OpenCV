@@ -37,29 +37,19 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void PowerBrightProcessing_Load(object sender, EventArgs e)
         {
-            cTrackBar.Value = SetTrackBarValue(cTrackBar.Maximum, cMax, cMin, cDefault);
-            gammaTrackBar.Value = SetTrackBarValue(gammaTrackBar.Maximum, gammaMax, gammaMin, gammaDefault);
+            cTrackBar.Value = AdjustedFormManager.SetTrackBarValue(cTrackBar.Maximum, cMax, cMin, cDefault);
+            gammaTrackBar.Value = AdjustedFormManager.SetTrackBarValue(gammaTrackBar.Maximum, gammaMax, gammaMin, gammaDefault);
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e)
         {
-            float cValue = GetTrackValue(cTrackBar.Maximum, cTrackBar.Value, cMax, cMin);
-            float gammaValue = GetTrackValue(gammaTrackBar.Maximum, gammaTrackBar.Value, gammaMax, gammaMin);
+            float cValue = AdjustedFormManager.GetTrackValue(cTrackBar.Maximum, cTrackBar.Value, cMax, cMin);
+            float gammaValue = AdjustedFormManager.GetTrackValue(gammaTrackBar.Maximum, gammaTrackBar.Value, gammaMax, gammaMin);
             
             Mat src = source.Clone();
             brightProcessing_power(src.Data, src.Width, src.Height, cValue, gammaValue, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
-        }
-
-        int SetTrackBarValue(int trackBarMaximum, float max, float min, float defaultValue)
-        {
-            return (int)((float)trackBarMaximum / (max - min) * (defaultValue - min));
-        }
-
-        float GetTrackValue(int trackBarMaximum, int trackBarValue, float max, float min)
-        {
-            return (max - min) / (float)trackBarMaximum * (float)trackBarValue + min;
         }
 
     }
