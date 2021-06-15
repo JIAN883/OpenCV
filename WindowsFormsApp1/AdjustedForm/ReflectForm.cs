@@ -37,9 +37,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void horizontalButton_Click(object sender, EventArgs e)
         {
-            isReflectAboutXaxis = !isReflectAboutXaxis;
+            isReflectAboutYaxis = !isReflectAboutYaxis;
 
-            if (isReflectAboutXaxis)
+            if (isReflectAboutYaxis)
             {
                 (sender as Button).BackColor = Color.Black;
                 (sender as Button).ForeColor = Color.White;
@@ -55,9 +55,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void verticalButton_Click(object sender, EventArgs e)
         {
-            isReflectAboutYaxis = !isReflectAboutYaxis;
+            isReflectAboutXaxis = !isReflectAboutXaxis;
 
-            if (isReflectAboutYaxis)
+            if (isReflectAboutXaxis)
             {
                 (sender as Button).BackColor = Color.Black;
                 (sender as Button).ForeColor = Color.White;

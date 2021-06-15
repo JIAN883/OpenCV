@@ -43,7 +43,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             float value = (float)trackBar1.Value / (float)trackBar1.Maximum * max;
             Mat src = source.Clone();
-            brightProcessing_log(src.Data, src.Width, src.Height, 1.1f, out IntPtr dst);
+            brightProcessing_log(src.Data, src.Width, src.Height, value, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }

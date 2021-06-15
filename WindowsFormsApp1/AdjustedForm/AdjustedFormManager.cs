@@ -30,18 +30,24 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("等化直方圖處理", typeof(EqualizeHistForm)),
             new AdjustedFormManager("適應性中間值濾波器", typeof(AdaptiveMedianFilter_BGRForm)),
             new AdjustedFormManager("幾何平均濾波器", typeof(GeometricMeanFilterForm)),
-            new AdjustedFormManager("調和平均濾波器", typeof(HarmonicMeanFilterForm))
+            new AdjustedFormManager("調和平均濾波器", typeof(HarmonicMeanFilterForm)),
+            new AdjustedFormManager("反調和平均濾波器", typeof(CounterHarmonicMeanFilterForm)),
+            new AdjustedFormManager("改變光源", typeof(ChangeIlluminantFromModelForm)),
+            new AdjustedFormManager("改變光源(自己選X,Z值)", typeof(ChangeIlluminantFromCustomizeXZForm)),
         };
         static public AdjustedFormManager[] frequencyDomainPorcess = {
             new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
-            new AdjustedFormManager("（理想/高斯）濾波器", typeof(IdealOrGaussianPassFilterForm)),
-            new AdjustedFormManager("Butterworth濾波器", typeof(ButterworthPassFilterForm))
+            new AdjustedFormManager("(理想/高斯)濾波器", typeof(IdealOrGaussianPassFilterForm)),
+            new AdjustedFormManager("Butterworth濾波器", typeof(ButterworthPassFilterForm)),
+            new AdjustedFormManager("調整飽和度", typeof(ChangeSaturationForm)),
         };
         static public AdjustedFormManager[] elseProcess = {
             new AdjustedFormManager("鈍化圖形資訊", typeof(getUnsharpInformationForm)),
             new AdjustedFormManager("位元平面切片", typeof(BitPlaneSlicingForm)),
             new AdjustedFormManager("負片", typeof(NegativeForm)),
-            new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm))
+            new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm)),
+            new AdjustedFormManager("取得色彩平面", typeof(GetColorPlaneForm)),
+            new AdjustedFormManager("取得單一或多重色彩的圖片", typeof(GetSingleOrMultiColorImageForm)),
         };
         static public AdjustedFormManager[] testProcess = {new AdjustedFormManager("測試", typeof(Test))};
 
