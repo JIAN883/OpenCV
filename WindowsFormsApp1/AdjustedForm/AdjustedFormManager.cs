@@ -27,11 +27,15 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("垂直濾波器", typeof(HorizontalIntensityFilterForm)),
             new AdjustedFormManager("水平濾波器", typeof(VerticalIntensityFilterForm)),
             new AdjustedFormManager("閥值處理", typeof(ThresholdProcessingForm)),
-            new AdjustedFormManager("等化直方圖處理", typeof(EqualizeHistForm))
+            new AdjustedFormManager("等化直方圖處理", typeof(EqualizeHistForm)),
+            new AdjustedFormManager("適應性中間值濾波器", typeof(AdaptiveMedianFilter_BGRForm)),
+            new AdjustedFormManager("幾何平均濾波器", typeof(GeometricMeanFilterForm)),
+            new AdjustedFormManager("調和平均濾波器", typeof(HarmonicMeanFilterForm))
         };
         static public AdjustedFormManager[] frequencyDomainPorcess = {
             new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
-            new AdjustedFormManager("高斯濾波器", typeof(IdealOrGaussianPassFilterForm))
+            new AdjustedFormManager("（理想/高斯）濾波器", typeof(IdealOrGaussianPassFilterForm)),
+            new AdjustedFormManager("Butterworth濾波器", typeof(ButterworthPassFilterForm))
         };
         static public AdjustedFormManager[] elseProcess = {
             new AdjustedFormManager("鈍化圖形資訊", typeof(getUnsharpInformationForm)),

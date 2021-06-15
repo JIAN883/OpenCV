@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.Designer.cs">
+      <DependentUpon>AdaptiveMedianFilter_BGRForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\AdjustedFormManager.cs" />
     <Compile Include="AdjustedForm\BitPlaneSlicingForm.cs">
       <SubType>Form</SubType>
@@ -111,6 +117,12 @@
     </Compile>
     <Compile Include="AdjustedForm\BlurForm.Designer.cs">
       <DependentUpon>BlurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ButterworthPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ButterworthPassFilterForm.Designer.cs">
+      <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\ChangeImageSizeForm.cs">
       <SubType>Form</SubType>
@@ -130,6 +142,12 @@
     <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\GeometricMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GeometricMeanFilterForm.Designer.cs">
+      <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +159,12 @@
     </Compile>
     <Compile Include="AdjustedForm\GetUnsharpInformation.Designer.cs">
       <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HarmonicMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HarmonicMeanFilterForm.Designer.cs">
+      <DependentUpon>HarmonicMeanFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\HighboostFilterForm.cs">
       <SubType>Form</SubType>
@@ -252,11 +276,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.resx">
+      <DependentUpon>AdaptiveMedianFilter_BGRForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\BitPlaneSlicingForm.resx">
       <DependentUpon>BitPlaneSlicingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\BlurForm.resx">
       <DependentUpon>BlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ButterworthPassFilterForm.resx">
+      <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ChangeImageSizeForm.resx">
       <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
@@ -267,11 +297,17 @@
     <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
       <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GeometricMeanFilterForm.resx">
+      <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GetFrequencyDomainInformationForm.resx">
       <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GetUnsharpInformation.resx">
       <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HarmonicMeanFilterForm.resx">
+      <DependentUpon>HarmonicMeanFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\HighboostFilterForm.resx">
       <DependentUpon>HighboostFilterForm.cs</DependentUpon>
