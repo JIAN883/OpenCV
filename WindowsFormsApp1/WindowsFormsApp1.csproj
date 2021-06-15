@@ -148,6 +148,12 @@
     <Compile Include="AdjustedForm\ChangeSaturationForm.Designer.cs">
       <DependentUpon>ChangeSaturationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\ColorTransformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ColorTransformationForm.Designer.cs">
+      <DependentUpon>ColorTransformationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\CounterHarmonicMeanFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>

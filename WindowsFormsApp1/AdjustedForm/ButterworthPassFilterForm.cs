@@ -24,7 +24,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float d0max = 10f, d0min = 0f, nmax = 5f, nmin = 1f;
+        float d0max = 10f, d0min = 1f, nmax = 5f, nmin = 1f;
         string confirm = "添加到原圖", cancel = "還原";
 
         public ButterworthPassFilterForm()

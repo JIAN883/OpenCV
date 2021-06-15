@@ -20,7 +20,6 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        bool isProcess = true;
         string confirm = "負片", cancel = "取消負片";
 
         public NegativeForm()
@@ -32,25 +31,28 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+            button1.Text = confirm;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (isProcess)//準備銳化圖片
+            if (button1.Text.Equals(confirm))//準備銳化圖片
             {
                 Mat src = source.Clone();
                 negative(src.Data, src.Width, src.Height);
                 topForm.pictureBox.Image = BitmapConverter.ToBitmap(src);
 
-                isProcess = false;
                 button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
             }
             else
             {
                 topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
 
-                isProcess = true;
                 button1.Text = confirm;
+                button1.BackColor = SystemColors.Control;
+                button1.ForeColor = SystemColors.ControlText;
             }
         }
     }

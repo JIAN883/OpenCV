@@ -24,7 +24,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float max = 10f, min = 0f;
+        float max = 10f, min = 1f;
         string confirm = "添加到原圖", cancel = "還原";
 
         public IdealOrGaussianPassFilterForm()
