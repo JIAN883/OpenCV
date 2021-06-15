@@ -658,7 +658,7 @@ void ButterworthHighPassFilter(Mat& F, int d0, float n)
 //CH4_(理想/高斯)(高通/低通)濾波器(idealOrGaussianPassFilter)
 	//isIdeal：true->理想濾波器,false->高斯濾波器
 	//isHighPass：true->高通,false->低通
-	//d0：影響大小參數 (int 最小0)
+	//d0：影響大小參數 (int 最小1)
 	//isAddOri：true->最後再加上原圖，false->純粹顯示濾波後的圖片
 IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width, int height, bool isIdeal, bool isHighPass, int d0,bool isAddOri, void*& dstBuffer)
 {
@@ -681,7 +681,7 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 
 //CH4_Butterworth(高通/低通)濾波器(butterworthPassFilter)
 	//isHighPass：true->高通,false->低通
-	//d0：影響大小參數 (int,最小0)
+	//d0：影響大小參數 (int,最小1)
 	//n：影響大小參數 (float,1->不變,動一些就差很多)
 	//isAddOri：true->最後再加上原圖，false->純粹顯示濾波後的圖片
 IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, int height, bool isHighPass, int d0,float n, bool isAddOri, void*& dstBuffer)
