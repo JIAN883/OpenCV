@@ -124,11 +124,35 @@
     <Compile Include="AdjustedForm\ButterworthPassFilterForm.Designer.cs">
       <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.Designer.cs">
+      <DependentUpon>ChangeIlluminantFromCustomizeXZForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromModelForm.Designer.cs">
+      <DependentUpon>ChangeIlluminantFromModelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\ChangeImageSizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdjustedForm\ChangeImageSizeForm.Designer.cs">
       <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeSaturationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeSaturationForm.Designer.cs">
+      <DependentUpon>ChangeSaturationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\CounterHarmonicMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\CounterHarmonicMeanFilterForm.Designer.cs">
+      <DependentUpon>CounterHarmonicMeanFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\EqualizeHistForm.cs">
       <SubType>Form</SubType>
@@ -148,11 +172,23 @@
     <Compile Include="AdjustedForm\GeometricMeanFilterForm.Designer.cs">
       <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\GetColorPlaneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetColorPlaneForm.Designer.cs">
+      <DependentUpon>GetColorPlaneForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.Designer.cs">
       <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GetSingleOrMultiColorImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetSingleOrMultiColorImageForm.Designer.cs">
+      <DependentUpon>GetSingleOrMultiColorImageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdjustedForm\GetUnsharpInformation.cs">
       <SubType>Form</SubType>
@@ -288,8 +324,20 @@
     <EmbeddedResource Include="AdjustedForm\ButterworthPassFilterForm.resx">
       <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.resx">
+      <DependentUpon>ChangeIlluminantFromCustomizeXZForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeIlluminantFromModelForm.resx">
+      <DependentUpon>ChangeIlluminantFromModelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ChangeImageSizeForm.resx">
       <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeSaturationForm.resx">
+      <DependentUpon>ChangeSaturationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\CounterHarmonicMeanFilterForm.resx">
+      <DependentUpon>CounterHarmonicMeanFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\EqualizeHistForm.resx">
       <DependentUpon>EqualizeHistForm.cs</DependentUpon>
@@ -299,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GeometricMeanFilterForm.resx">
       <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetColorPlaneForm.resx">
+      <DependentUpon>GetColorPlaneForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GetFrequencyDomainInformationForm.resx">
       <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
