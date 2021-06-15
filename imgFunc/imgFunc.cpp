@@ -1193,3 +1193,77 @@ IMGFUNC_API void morphologicalOperation(unsigned char* imageBuffer, int width, i
 		dstBuffer = global_temp_mat[0].data;
 	}
 }
+//其他功能_常用濾鏡_雕刻(CommonFilters-sculpture) ----功能函式----
+Mat sculpture(Mat src) {
+	Mat dst(src.size(), CV_8UC3);
+	for (int y = 1; y < src.rows - 1; y++)
+	{
+		uchar* p0 = src.ptr<uchar>(y);
+		uchar* p1 = src.ptr<uchar>(y + 1);
+
+		uchar* q1 = dst.ptr<uchar>(y);
+		for (int x = 1; x < src.cols - 1; x++)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				int tmp1 = p0[3 * (x - 1) + i] - p1[3 * (x + 1) + i] + 128;//雕刻
+				if (tmp1 < 0)
+					q1[3 * x + i] = 0;
+				else if (tmp1 > 255)
+					q1[3 * x + i] = 255;
+				else
+					q1[3 * x + i] = tmp1;
+			}
+		}
+	}
+	return dst;
+}
+//其他功能_常用濾鏡_浮雕(CommonFilters-elief) ----功能函式----
+Mat Relief(Mat src) {
+	Mat dst(src.size(), CV_8UC3);
+	for (int y = 1; y < src.rows - 1; y++)
+	{
+		uchar* p0 = src.ptr<uchar>(y);
+		uchar* p1 = src.ptr<uchar>(y + 1);
+
+		uchar* q0 = dst.ptr<uchar>(y);
+		for (int x = 1; x < src.cols - 1; x++)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				int tmp0 = p1[3 * (x + 1) + i] - p0[3 * (x - 1) + i] + 128;//浮雕
+				if (tmp0 < 0)
+					q0[3 * x + i] = 0;
+				else if (tmp0 > 255)
+					q0[3 * x + i] = 255;
+				else
+					q0[3 * x + i] = tmp0;
+			}
+		}
+	}
+	return dst;
+}
+//其他功能_常用濾鏡選擇(cannyEdgeDetection)
+	//mode：濾鏡模式(0：雕刻，1：浮雕)
+IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) { // Read image success
+		Mat dst;
+		Mat mask;
+		switch (mode)
+		{
+		case 0:
+			dst = sculpture(src);
+			break;
+		case 1:
+			dst = Relief(src);
+			break;
+		default:
+			dst = Relief(src);
+			break;
+		}
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
+}
+
