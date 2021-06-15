@@ -354,6 +354,9 @@
     <EmbeddedResource Include="AdjustedForm\GetFrequencyDomainInformationForm.resx">
       <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetSingleOrMultiColorImageForm.resx">
+      <DependentUpon>GetSingleOrMultiColorImageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\GetUnsharpInformation.resx">
       <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
     </EmbeddedResource>
