@@ -500,7 +500,7 @@ Mat myDFT(Mat& f)
 	return F;
 }
 
-//CH4_DFT_BGR transform ----功能函式----
+//CH4_DFT_BGR transform ----功能函式----沒用到喔!! 有問題
 Mat* myDFT_BGR(Mat& f)
 {
 	Mat BGR_planes[3];
@@ -522,7 +522,7 @@ Mat myIDFT(Mat& F)
 	return planes[0].clone();
 }
 
-//IDFT_BGR transform ----功能函式----
+//IDFT_BGR transform ----功能函式----沒用到喔!! 有問題
 Mat myIDFT_BGR(Mat& F)
 {
 	Mat dst_planes[3];
@@ -1024,7 +1024,7 @@ IMGFUNC_API void changeSaturation(unsigned char* imageBuffer, int width, int hei
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_取得CMY色彩平面 ----功能函式----
+//CH6_取得CMY色彩平面 ----功能函式---- 沒用到喔!! 有問題
 Mat* getCMYPlane(Mat src) {
 	Mat bgr[3], cmy[3];
 	split(src, bgr);
@@ -1040,8 +1040,13 @@ IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
 	Mat dst;
-	Mat* cmy = getCMYPlane(src);
+	Mat cmy[3];
+
+
 	split(src, bgr);
+	cmy[0] = 255 - bgr[2];
+	cmy[1] = 255 - bgr[1];
+	cmy[2] = 255 - bgr[0];
 	switch (color) {
 	case 0: //B 0
 		dst = bgr[0];
@@ -1056,10 +1061,10 @@ IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height
 		dst = cmy[0];
 		break;
 	case 4: //M 4
-		dst = cmy[0];
+		dst = cmy[1];
 		break;
 	case 5: //Y 5
-		dst = cmy[1];
+		dst = cmy[2];
 		break;
 	default: //Y 5
 		dst = cmy[2];
@@ -1074,10 +1079,13 @@ IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int widt
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
 	Mat dst;
-	Mat* cmy = getCMYPlane(src);
+	Mat cmy[3];
 	Mat tmp[3];
 	bool isHasCMY = false;
 	split(src, bgr);
+	cmy[0] = 255 - bgr[2];
+	cmy[1] = 255 - bgr[1];
+	cmy[2] = 255 - bgr[0];
 	if ((color>>3) & 1){ //BGR
 		for (int tempBit = 0; tempBit < 3; tempBit++) {
 			((color >> tempBit) & 0x01) ? tmp[2 - tempBit] = bgr[2 - tempBit].clone() : tmp[2 - tempBit] = Mat::zeros(src.size(), CV_8U);
