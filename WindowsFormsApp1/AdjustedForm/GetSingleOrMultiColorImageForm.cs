@@ -23,7 +23,6 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
         int mode = 0;
-        string confirm = "應用到原圖", cancel = "還原";
 
         public GetSingleOrMultiColorImageForm()
         {
@@ -34,6 +33,66 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+        }
+
+        private void GetSingleOrMultiColorImageForm_Load(object sender, EventArgs e)
+        {
+            checkBox_R.Tag = 0;
+            checkBox_G.Tag = 1;
+            checkBox_B.Tag = 2;
+
+            radioButton_Y.Tag = 0;
+            radioButton_M.Tag = 1;
+            radioButton_C.Tag = 2;
+
+            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(source);
+        }
+
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            int count = (int)Math.Pow(2, 3);
+            if (checkBox_B.Checked)
+                count += (int)Math.Pow(2, (int)(checkBox_B.Tag));
+            if (checkBox_G.Checked)
+                count += (int)Math.Pow(2, (int)(checkBox_G.Tag));
+            if (checkBox_R.Checked)
+                count += (int)Math.Pow(2, (int)(checkBox_R.Tag));
+
+            ImagePorcess(count);
+        }
+
+        private void radioButton_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            if (radioButton_Y.Checked)
+                count += (int)Math.Pow(2, (int)(radioButton_Y.Tag));
+            if (radioButton_M.Checked)
+                count += (int)Math.Pow(2, (int)(radioButton_M.Tag));
+            if (radioButton_C.Checked)
+                count += (int)Math.Pow(2, (int)(radioButton_C.Tag));
+
+            ImagePorcess(count);
+        }
+
+        void ImagePorcess(int mode)
+        {
+            Mat src = source.Clone();
+            getSingleOrMultiColorImage(src.Data, src.Width, src.Height, mode, out IntPtr dst);
+            Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dstMat);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Image showImage = splitContainer1.Panel1.BackgroundImage;
+
+            Form imageForm = new Form();
+            imageForm.Width = showImage.Width;
+            imageForm.Height = showImage.Height;
+            imageForm.BackgroundImage = showImage;
+            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
+            imageForm.Show();
         }
     }
 }
