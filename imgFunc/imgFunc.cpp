@@ -1102,3 +1102,94 @@ IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int widt
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
 }
+
+//CH6_色彩轉換(colorTransformation)
+	//k：newBGR=BGR*k (k倍於原本色彩)
+IMGFUNC_API void colorTransformation(unsigned char* imageBuffer, int width, int height, float k, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat bgr[3];
+	Mat dst;
+	split(src, bgr);
+	for (int i = 0; i < 3; i++)
+	{
+		bgr[i].convertTo(bgr[i], CV_32FC3, 1.f / 255);
+		bgr[i] = bgr[i] * k;
+	}
+	merge(bgr, 3, dst);
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+
+//CH6_取得彩色切片(colorSlicing)
+	//lowerH、lowerS、lowerV：取色彩範圍的下界(低於此的HSV不會被抓取)
+	//upperH、upperS、upperV：取色彩範圍的上界(高於此的HSV不會被抓取)
+IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height, int lowerH, int lowerS, int lowerV, int upperH, int upperS, int upperV, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	Mat hsv;
+	Mat dst,catchArea;
+	Scalar lowerBound(lowerH, lowerS, lowerV);
+	Scalar upperBound(upperH, upperS, upperV);
+	cvtColor(src, hsv, COLOR_BGR2HSV);
+	inRange(hsv, lowerBound, upperBound, catchArea);
+	cvtColor(hsv, dst, COLOR_HSV2BGR);
+	bitwise_and(dst, dst, dst, catchArea);
+
+	global_temp_mat[0] = dst.clone();
+	dstBuffer = global_temp_mat[0].data;
+}
+
+//CH6_canny的邊緣偵測(cannyEdgeDetection)
+	//lowerThreshold：低於此值就不被選中
+	//upperThreshold：高於此值就不被選中
+IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int height, int lowerThreshold, int upperThreshold, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) { // Read image success
+		Mat edge, dst;
+		//Retrieve edge mask using canny method
+		Canny(src, edge, lowerThreshold, upperThreshold);
+		src.copyTo(dst, edge);
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
+	
+}
+
+//CH6_morphologyEx的影像處理(morphologicalOperation)
+	//mode：選擇morphologyEx的模式(0：Dilation, 1：Erosion, 2：gradient, 3：Open, 4：Close, 5：Top Hat, 6與其他：Black Hat)
+	//size：kernel是幾乘幾 (真實kernel大小=2*size+1)
+IMGFUNC_API void morphologicalOperation(unsigned char* imageBuffer, int width, int height, int mode,int size, void*& dstBuffer) {
+	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
+	if (!src.empty()) { // Read image success
+		Mat dst;
+		Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size));
+		switch (mode)
+		{
+		case 0:
+			dilate(src, dst, element);
+			break;
+		case 1:
+			erode(src, dst, element);
+			break;
+		case 2:
+			morphologyEx(src, dst, MORPH_GRADIENT, element);
+			break;
+		case 3:
+			morphologyEx(src, dst, MORPH_OPEN, element);
+			break;
+		case 4:
+			morphologyEx(src, dst, MORPH_CLOSE, element);
+			break;
+		case 5:
+			morphologyEx(src, dst, MORPH_TOPHAT, element);
+			break;
+		case 6:
+			morphologyEx(src, dst, MORPH_BLACKHAT, element);
+			break;
+		default:
+			morphologyEx(src, dst, MORPH_BLACKHAT, element);
+			break;
+		}
+		global_temp_mat[0] = dst.clone();
+		dstBuffer = global_temp_mat[0].data;
+	}
+}
