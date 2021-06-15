@@ -219,7 +219,11 @@ IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
-		src = 255 - src;
+		Mat plane[3];
+		split(src, plane);
+		for(int temp=0;temp<3;temp++)
+			plane[temp] = 255 - plane[temp];
+		merge(plane,3,src);
 	}
 }
 
@@ -230,11 +234,18 @@ IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 		Mat log_dst;
-		Mat plane[3];
-		//split(src)
-		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
+		Mat planes[3];
+		split(src, planes);
+		for (int i = 0; i < 3; i++) {
+			planes[i].convertTo(planes[i], CV_32F, 1.f / 255.f);
+			cv::log(planes[i] + 1, planes[i]);
+			planes[i] = c * planes[i] / log(2.0);
+			planes[i].convertTo(planes[i], CV_8U, 255.f);
+		}
+		merge(planes, 3, log_dst);
+		/*src.convertTo(log_dst, CV_32F, 1.f / 255.f);
 		cv::log(log_dst + 1, log_dst);
-		log_dst = c * log_dst / log(2.0);
+		log_dst = c * log_dst / log(2.0);*/
 		global_temp_mat[0] = log_dst.clone();
 		dstBuffer = global_temp_mat[0].data;
 		//copyContent(log_dst, src);
@@ -249,9 +260,20 @@ IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, i
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 		Mat log_dst;
-		src.convertTo(log_dst, CV_32F, 1.f / 255.f);
+
+		Mat planes[3];
+		split(src, planes);
+		for (int i = 0; i < 3; i++) {
+			planes[i].convertTo(planes[i], CV_32F, 1.f / 255.f);
+			cv::pow(planes[i], gamma, planes[i]);
+			planes[i] = c * planes[i];
+			planes[i].convertTo(planes[i], CV_8U, 255.f);
+		}
+		merge(planes, 3, log_dst);
+
+		/*src.convertTo(log_dst, CV_32F, 1.f / 255.f);
 		cv::pow(log_dst, gamma, log_dst);
-		log_dst = c * log_dst ;
+		log_dst = c * log_dst ;*/
 		global_temp_mat[0] = log_dst.clone();
 		dstBuffer = global_temp_mat[0].data;
 		copyContent(log_dst, src);
@@ -354,11 +376,11 @@ IMGFUNC_API void equalizeHist(unsigned char* imageBuffer, int width, int height,
 	//xtimes ：x軸放大倍數(double,>0.1)
 	//ytimes ：x軸放大倍數(double,>0.1)
 	//isfullsize ：記憶體大小是否隨著放大縮小而改變 (true：隨著新圖改變大小，false：不改變大小，可直接設成true)
-IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int height, double xtimes, double ytimes, bool isfullsize, int*& dst_width, int*& dst_height, void*& dstBuffer)
+IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int height, double xtimes, double ytimes, bool isfullsize, int& dst_width, int& dst_height, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
-
+		/*
 		Mat dst;
 		Mat M = (Mat_<double>(2, 3) << xtimes, 0, 0, 0, ytimes, 0); // prepare matrix 2->colunm數 3->row數，左上到左下中上到中下
 		if (isfullsize) {
@@ -368,10 +390,15 @@ IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int heig
 		}
 		else {
 			warpAffine(src, dst, M, src.size()); // call opencv's affine transform
-		}
+		}*/
+		Mat dst;
+		int newCols = (int)(((double)src.cols) * xtimes);
+		int newRows = (int)(((double)src.rows) * ytimes);
+		Size dstSize(newCols, newRows) ;
+		resize(src, dst, dstSize, 0, 0, INTER_LINEAR);
 		//return to c#
-		*dst_width = (int)width * xtimes;
-		*dst_height= (int)height * ytimes;
+		dst_width = newCols;
+		dst_height= newRows;
 		global_temp_mat[0] = dst.clone();
 		dstBuffer = global_temp_mat[0].data;
 		
@@ -425,7 +452,7 @@ IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool
 			else
 				M = (Mat_<double>(2, 3) << 1, 0, 0, 0, -1, src.rows); //上下鏡射
 		else if(isReflectAboutYaxis)
-			M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, -1, 0); //左右鏡射
+			M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, 1, 0); //左右鏡射
 		else 
 			M = (Mat_<double>(2, 3) << 1, 0, 0, 0, 1, 0); //維持不變
 		warpAffine(src, dst, M, src.size());
