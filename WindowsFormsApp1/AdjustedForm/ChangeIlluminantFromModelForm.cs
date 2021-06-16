@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
         int mode = 0;
-        string confirm = "應用到原圖", cancel = "還原";
+        string confirm = "應用", cancel = "還原";
 
         public ChangeIlluminantFromModelForm()
         {
@@ -45,11 +45,14 @@ namespace WindowsFormsApp1.AdjustedForm
             radioButton_ILL_D75.Tag = 4;
             radioButton_ILL_A.Checked = true;
             button1.Text = confirm;
+            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            splitContainer1.Panel1.BackgroundImage = ImageProssce();
         }
 
         private void radioButton_ILL_A_Click(object sender, EventArgs e)
         {
             mode = (int)(sender as RadioButton).Tag;
+            splitContainer1.Panel1.BackgroundImage = ImageProssce();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,7 +62,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = ImageProssce();
             }
             else
             {
@@ -70,12 +73,27 @@ namespace WindowsFormsApp1.AdjustedForm
             }
         }
 
-        void ImageProssce()
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (splitContainer1.Panel1.BackgroundImage == null)
+                return;
+
+            Image image = splitContainer1.Panel1.BackgroundImage;
+            Form imageForm = new Form();
+            imageForm.Width = image.Width;
+            imageForm.Height = image.Height;
+            imageForm.BackgroundImage = image;
+            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
+            imageForm.Show();
+        }
+
+        Bitmap ImageProssce()
         {
             Mat src = source.Clone();
             changeIlluminantFromModel(src.Data, src.Width, src.Height, mode, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            Bitmap dstBitmap = BitmapConverter.ToBitmap(dstMat);
+            return dstBitmap;
         }
 
     }

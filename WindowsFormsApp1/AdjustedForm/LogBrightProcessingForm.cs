@@ -21,7 +21,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float max = 20, defaultValue = 2;
+        float max = 10f, min = 1f, defaultValue = 2f;
 
         public LogBrightProcessingForm()
         {
@@ -36,12 +36,15 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void LogBrightProcessingForm_Load(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)(defaultValue / max * (float)trackBar1.Maximum);
+            trackBar1.Value = AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, defaultValue);
+            label1.Text = min.ToString();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            float value = (float)trackBar1.Value / (float)trackBar1.Maximum * max;
+            float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
+            label1.Text = value.ToString();
+
             Mat src = source.Clone();
             brightProcessing_log(src.Data, src.Width, src.Height, value, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);

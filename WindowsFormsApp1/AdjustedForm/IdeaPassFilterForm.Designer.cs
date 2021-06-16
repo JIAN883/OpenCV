@@ -83,10 +83,11 @@ namespace WindowsFormsApp1.AdjustedForm
             this.checkBoxHighPass.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxHighPass.Location = new System.Drawing.Point(3, 3);
             this.checkBoxHighPass.Name = "checkBoxHighPass";
-            this.checkBoxHighPass.Size = new System.Drawing.Size(263, 143);
+            this.checkBoxHighPass.Size = new System.Drawing.Size(263, 144);
             this.checkBoxHighPass.TabIndex = 2;
             this.checkBoxHighPass.Text = "高通";
             this.checkBoxHighPass.UseVisualStyleBackColor = true;
+            this.checkBoxHighPass.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBoxLowPass
             // 
@@ -94,37 +95,41 @@ namespace WindowsFormsApp1.AdjustedForm
             this.checkBoxLowPass.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBoxLowPass.Location = new System.Drawing.Point(272, 3);
             this.checkBoxLowPass.Name = "checkBoxLowPass";
-            this.checkBoxLowPass.Size = new System.Drawing.Size(263, 143);
+            this.checkBoxLowPass.Size = new System.Drawing.Size(263, 144);
             this.checkBoxLowPass.TabIndex = 3;
             this.checkBoxLowPass.Text = "低通";
             this.checkBoxLowPass.UseVisualStyleBackColor = true;
+            this.checkBoxLowPass.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // button1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button1, 2);
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 301);
+            this.button1.Location = new System.Drawing.Point(3, 303);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(532, 146);
+            this.button1.Size = new System.Drawing.Size(532, 144);
             this.button1.TabIndex = 5;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // trackBar1
             // 
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trackBar1.Location = new System.Drawing.Point(3, 152);
+            this.trackBar1.Location = new System.Drawing.Point(3, 153);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(263, 143);
+            this.trackBar1.Size = new System.Drawing.Size(263, 144);
             this.trackBar1.TabIndex = 6;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(272, 152);
+            this.textBox1.Location = new System.Drawing.Point(272, 153);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(263, 25);
             this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // IdeaPassFilterForm
             // 
@@ -134,6 +139,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.Controls.Add(this.splitContainer1);
             this.Name = "IdeaPassFilterForm";
             this.Text = "IdeaPassFilterForm";
+            this.Load += new System.EventHandler(this.IdeaPassFilterForm_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

@@ -34,71 +34,94 @@ namespace WindowsFormsApp1.AdjustedForm
             this.yShearTextBox = new System.Windows.Forms.TextBox();
             this.xShearTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xShearLabel
             // 
-            this.xShearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.xShearLabel.AutoSize = true;
-            this.xShearLabel.Location = new System.Drawing.Point(80, 385);
+            this.xShearLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xShearLabel.Location = new System.Drawing.Point(3, 0);
             this.xShearLabel.Name = "xShearLabel";
-            this.xShearLabel.Size = new System.Drawing.Size(67, 15);
+            this.xShearLabel.Size = new System.Drawing.Size(294, 258);
             this.xShearLabel.TabIndex = 0;
             this.xShearLabel.Text = "垂直剪形";
+            this.xShearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // yShearLabel
             // 
-            this.yShearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.yShearLabel.AutoSize = true;
-            this.yShearLabel.Location = new System.Drawing.Point(80, 447);
+            this.yShearLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.yShearLabel.Location = new System.Drawing.Point(3, 258);
             this.yShearLabel.Name = "yShearLabel";
-            this.yShearLabel.Size = new System.Drawing.Size(67, 15);
+            this.yShearLabel.Size = new System.Drawing.Size(294, 259);
             this.yShearLabel.TabIndex = 1;
             this.yShearLabel.Text = "水平剪形";
+            this.yShearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // yShearTextBox
             // 
-            this.yShearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.yShearTextBox.Location = new System.Drawing.Point(235, 385);
+            this.yShearTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.yShearTextBox.Location = new System.Drawing.Point(303, 3);
             this.yShearTextBox.Name = "yShearTextBox";
-            this.yShearTextBox.Size = new System.Drawing.Size(100, 25);
+            this.yShearTextBox.Size = new System.Drawing.Size(294, 25);
             this.yShearTextBox.TabIndex = 2;
             this.yShearTextBox.Text = "0.00";
             // 
             // xShearTextBox
             // 
-            this.xShearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.xShearTextBox.Location = new System.Drawing.Point(235, 444);
+            this.xShearTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xShearTextBox.Location = new System.Drawing.Point(303, 261);
             this.xShearTextBox.Name = "xShearTextBox";
-            this.xShearTextBox.Size = new System.Drawing.Size(100, 25);
+            this.xShearTextBox.Size = new System.Drawing.Size(294, 25);
             this.xShearTextBox.TabIndex = 3;
             this.xShearTextBox.Text = "0.00";
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(404, 418);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(603, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 32);
+            this.tableLayoutPanel1.SetRowSpan(this.button1, 2);
+            this.button1.Size = new System.Drawing.Size(296, 511);
             this.button1.TabIndex = 4;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.xShearLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.yShearLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.xShearTextBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.yShearTextBox, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(902, 517);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
             // ShearForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 495);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.xShearTextBox);
-            this.Controls.Add(this.yShearTextBox);
-            this.Controls.Add(this.yShearLabel);
-            this.Controls.Add(this.xShearLabel);
+            this.ClientSize = new System.Drawing.Size(902, 517);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ShearForm";
             this.Text = "ShearForm";
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -109,5 +132,6 @@ namespace WindowsFormsApp1.AdjustedForm
         private System.Windows.Forms.TextBox yShearTextBox;
         private System.Windows.Forms.TextBox xShearTextBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

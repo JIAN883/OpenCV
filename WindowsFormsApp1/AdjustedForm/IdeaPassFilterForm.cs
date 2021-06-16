@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.AdjustedForm
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
 
-        private void GaussianPassFilterForm_Load(object sender, EventArgs e)
+        private void IdeaPassFilterForm_Load(object sender, EventArgs e)
         {
             checkBoxHighPass.Checked = true;
             textBox1.Text = "0";

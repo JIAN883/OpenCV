@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        string confirm = "添加到原圖", cancel = "還原", openForm = "打開圖片選擇光源位置";
+        string confirm = "應用", cancel = "還原", openForm = "預覽";
 
         public ChangeIlluminantFromCustomizeXZForm()
         {
@@ -42,6 +42,7 @@ namespace WindowsFormsApp1.AdjustedForm
             button2.Text = confirm;
             textBox1.Text = "0";
             textBox2.Text = "0";
+            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 (sender as Button).Text = cancel;
                 (sender as Button).BackColor = Color.Black;
                 (sender as Button).ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = ImageProssce();
             }
             else
             {
@@ -64,35 +65,24 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Bitmap tempImage = BitmapConverter.ToBitmap(source);
+            Image tempImage = ImageProssce();
 
-            Form tempForm = new Form();
-            tempForm.Text = "請點一下滑鼠來選擇一點";
-            tempForm.Width = tempImage.Width / 2;
-            tempForm.Height = tempImage.Height / 2;
-            tempForm.FormBorderStyle = FormBorderStyle.FixedSingle;
-            tempForm.MaximizeBox = false;
-            tempForm.MinimizeBox = false;
-            tempForm.BackgroundImage = tempImage;
-            tempForm.BackgroundImageLayout = ImageLayout.Stretch;
-            tempForm.MouseClick += new MouseEventHandler(GetPoint);
-            tempForm.Show();
+            splitContainer1.Panel1.BackgroundImage = tempImage;
         }
 
-        void GetPoint(object sender, MouseEventArgs e)
+        Image ImageProssce()
         {
-            textBox1.Text = (e.X * 2).ToString();
-            textBox2.Text = (e.Y * 2).ToString();
-        }
-
-        void ImageProssce()
-        {
-            int x = int.Parse(textBox1.Text);
-            int z = int.Parse(textBox2.Text);
+            int x = 0, z = 0;
+            try
+            {
+                x = int.Parse(textBox1.Text);
+                z = int.Parse(textBox2.Text);
+            }
+            catch { }
             Mat src = source.Clone();
             changeIlluminantFromCustomizeXZ(src.Data, src.Width, src.Height, x, z, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            return BitmapConverter.ToBitmap(dstMat);
         }
     }
 }

@@ -30,12 +30,12 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+            label2.Text = trackBar1.Minimum.ToString();
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            if (topForm == null)
-                return;
+            label2.Text = trackBar1.Value.ToString();
 
             Mat destinationImage = source.Clone();
             Blur(destinationImage.Data, destinationImage.Width, destinationImage.Height, (sender as TrackBar).Value);

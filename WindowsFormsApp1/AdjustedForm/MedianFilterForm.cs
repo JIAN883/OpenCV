@@ -30,12 +30,12 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+            label2.Text = trackBar1.Minimum.ToString();
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            if (topForm == null)
-                return;
+            label2.Text = trackBar1.Value.ToString();
 
             Mat destinationImage = source.Clone();
             //ksize必须大于1且是奇数

@@ -27,8 +27,8 @@ namespace WindowsFormsApp1
 			test_ToolStripMenuItem.Tag = AdjustedFormManager.testProcess;
 
 			//debug模式專用
-			pictureBox.Image = WindowsFormsApp1.Properties.Resources._227995_106;
-			sourceImage = pictureBox.Image as Bitmap;
+			sourceImage = WindowsFormsApp1.Properties.Resources._227995_106;
+			pictureBox.Image = sourceImage.Clone() as Bitmap;
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
@@ -40,8 +40,8 @@ namespace WindowsFormsApp1
 				return;
 
 			Bitmap image = new Bitmap(ofDialog.FileName);
-			pictureBox.Image = image;
-			sourceImage = image.Clone() as Bitmap;
+			sourceImage = image;
+			pictureBox.Image = image.Clone() as Bitmap;
 		}
 
 		private void CloseApp(object sender, EventArgs e)
@@ -58,16 +58,16 @@ namespace WindowsFormsApp1
 			listBox.SelectedIndex = listBox1.IndexFromPoint(e.X, e.Y);
 
 			if (listBox.SelectedIndex == -1)
-            {
+			{
 				splitContainer1.Panel2.Controls.Clear();
 				return;
-            }
+			}
 
 			//利用listbox掛載的物件打開
 			OpenAdjustedForm((listBox.SelectedItem as AdjustedFormManager).FormType);
 		}
 
-		private void OpenAdjustedForm(Type t)//利用type產生物件
+        private void OpenAdjustedForm(Type t)//利用type產生物件
 		{
 			Form newForm = (Form)Activator.CreateInstance(t, this);
 
@@ -107,6 +107,21 @@ namespace WindowsFormsApp1
 				peekImage = pictureBox.Image as Bitmap;
 				pictureBox.Image = sourceImage;
 			}
+		}
+
+        private void PeekStripStatusLabel_Click(object sender, EventArgs e)
+        {
+			peekImage = sourceImage.Clone() as Bitmap;
+        }
+
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+			e.DrawBackground();
+			e.DrawFocusRectangle();
+			StringFormat strFmt = new System.Drawing.StringFormat();
+			strFmt.Alignment = StringAlignment.Center; //文本垂直居中
+			strFmt.LineAlignment = StringAlignment.Center; //文本水平居中
+			e.Graphics.DrawString(listBox1.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, strFmt);
 		}
 
         private void PeekStripStatusLabel_MouseLeave(object sender, EventArgs e)

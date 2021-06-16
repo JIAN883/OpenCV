@@ -134,6 +134,12 @@
     <Compile Include="AdjustedForm\ButterworthPassFilterForm.Designer.cs">
       <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\CannyEdgeDetectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\CannyEdgeDetectionForm.Designer.cs">
+      <DependentUpon>CannyEdgeDetectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,6 +296,12 @@
     <Compile Include="AdjustedForm\MinFilter.Designer.cs">
       <DependentUpon>MinFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustedForm\MorphologicalOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MorphologicalOperationForm.Designer.cs">
+      <DependentUpon>MorphologicalOperationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustedForm\NegativeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ButterworthPassFilterForm.resx">
       <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\CannyEdgeDetectionForm.resx">
+      <DependentUpon>CannyEdgeDetectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.resx">
       <DependentUpon>ChangeIlluminantFromCustomizeXZForm.cs</DependentUpon>
@@ -435,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\MinFilter.resx">
       <DependentUpon>MinFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MorphologicalOperationForm.resx">
+      <DependentUpon>MorphologicalOperationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\NegativeForm.resx">
       <DependentUpon>NegativeForm.cs</DependentUpon>

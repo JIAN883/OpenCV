@@ -30,6 +30,7 @@ namespace WindowsFormsApp1.AdjustedForm
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label_V = new System.Windows.Forms.Label();
             this.label_S = new System.Windows.Forms.Label();
             this.label_H = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,16 +80,28 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(672, 635);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(670, 633);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.button2, 2);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(337, 477);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(330, 153);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "查看原圖";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label_V
             // 
             this.label_V.AutoSize = true;
             this.label_V.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_V.Location = new System.Drawing.Point(507, 0);
+            this.label_V.Location = new System.Drawing.Point(504, 0);
             this.label_V.Name = "label_V";
-            this.label_V.Size = new System.Drawing.Size(162, 158);
+            this.label_V.Size = new System.Drawing.Size(163, 158);
             this.label_V.TabIndex = 4;
             this.label_V.Text = "V";
             this.label_V.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,9 +110,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.label_S.AutoSize = true;
             this.label_S.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_S.Location = new System.Drawing.Point(339, 0);
+            this.label_S.Location = new System.Drawing.Point(337, 0);
             this.label_S.Name = "label_S";
-            this.label_S.Size = new System.Drawing.Size(162, 158);
+            this.label_S.Size = new System.Drawing.Size(161, 158);
             this.label_S.TabIndex = 3;
             this.label_S.Text = "S";
             this.label_S.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,9 +121,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.label_H.AutoSize = true;
             this.label_H.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_H.Location = new System.Drawing.Point(171, 0);
+            this.label_H.Location = new System.Drawing.Point(170, 0);
             this.label_H.Name = "label_H";
-            this.label_H.Size = new System.Drawing.Size(162, 158);
+            this.label_H.Size = new System.Drawing.Size(161, 158);
             this.label_H.TabIndex = 2;
             this.label_H.Text = "H";
             this.label_H.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,57 +134,56 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 158);
+            this.label1.Size = new System.Drawing.Size(161, 158);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_HHigh
             // 
             this.textBox_HHigh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_HHigh.Location = new System.Drawing.Point(171, 161);
+            this.textBox_HHigh.Location = new System.Drawing.Point(170, 161);
             this.textBox_HHigh.Name = "textBox_HHigh";
-            this.textBox_HHigh.Size = new System.Drawing.Size(162, 25);
+            this.textBox_HHigh.Size = new System.Drawing.Size(161, 25);
             this.textBox_HHigh.TabIndex = 11;
             // 
             // textBox_SHigh
             // 
             this.textBox_SHigh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_SHigh.Location = new System.Drawing.Point(339, 161);
+            this.textBox_SHigh.Location = new System.Drawing.Point(337, 161);
             this.textBox_SHigh.Name = "textBox_SHigh";
-            this.textBox_SHigh.Size = new System.Drawing.Size(162, 25);
+            this.textBox_SHigh.Size = new System.Drawing.Size(161, 25);
             this.textBox_SHigh.TabIndex = 12;
             // 
             // textBox_VHigh
             // 
             this.textBox_VHigh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_VHigh.Location = new System.Drawing.Point(507, 161);
+            this.textBox_VHigh.Location = new System.Drawing.Point(504, 161);
             this.textBox_VHigh.Name = "textBox_VHigh";
-            this.textBox_VHigh.Size = new System.Drawing.Size(162, 25);
+            this.textBox_VHigh.Size = new System.Drawing.Size(163, 25);
             this.textBox_VHigh.TabIndex = 13;
             // 
             // textBox_HLow
             // 
             this.textBox_HLow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_HLow.Location = new System.Drawing.Point(171, 319);
+            this.textBox_HLow.Location = new System.Drawing.Point(170, 319);
             this.textBox_HLow.Name = "textBox_HLow";
-            this.textBox_HLow.Size = new System.Drawing.Size(162, 25);
+            this.textBox_HLow.Size = new System.Drawing.Size(161, 25);
             this.textBox_HLow.TabIndex = 14;
             // 
             // textBox_SLow
             // 
             this.textBox_SLow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_SLow.Location = new System.Drawing.Point(339, 319);
+            this.textBox_SLow.Location = new System.Drawing.Point(337, 319);
             this.textBox_SLow.Name = "textBox_SLow";
-            this.textBox_SLow.Size = new System.Drawing.Size(162, 25);
+            this.textBox_SLow.Size = new System.Drawing.Size(161, 25);
             this.textBox_SLow.TabIndex = 15;
             // 
             // textBox_VLow
             // 
             this.textBox_VLow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_VLow.Location = new System.Drawing.Point(507, 319);
+            this.textBox_VLow.Location = new System.Drawing.Point(504, 319);
             this.textBox_VLow.Name = "textBox_VLow";
-            this.textBox_VLow.Size = new System.Drawing.Size(162, 25);
+            this.textBox_VLow.Size = new System.Drawing.Size(163, 25);
             this.textBox_VLow.TabIndex = 16;
             // 
             // label5
@@ -181,7 +192,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(3, 158);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(162, 158);
+            this.label5.Size = new System.Drawing.Size(161, 158);
             this.label5.TabIndex = 17;
             this.label5.Text = "取色彩範圍的上界\r\n(高於此的HSV不會被抓取)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,7 +203,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 316);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 158);
+            this.label6.Size = new System.Drawing.Size(161, 158);
             this.label6.TabIndex = 18;
             this.label6.Text = "取色彩範圍的下界\r\n(低於此的HSV不會被抓取)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -203,7 +214,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(3, 477);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(330, 155);
+            this.button1.Size = new System.Drawing.Size(328, 153);
             this.button1.TabIndex = 19;
             this.button1.Text = "確定";
             this.button1.UseVisualStyleBackColor = true;
@@ -211,6 +222,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -221,18 +233,6 @@ namespace WindowsFormsApp1.AdjustedForm
             this.splitContainer1.Size = new System.Drawing.Size(1013, 635);
             this.splitContainer1.SplitterDistance = 337;
             this.splitContainer1.TabIndex = 20;
-            // 
-            // button2
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button2, 2);
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(339, 477);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(330, 155);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "查看原圖";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ColorSlicingForm
             // 

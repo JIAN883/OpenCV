@@ -23,13 +23,16 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float d0max = 10f, d0min = 1f, nmax = 5f, nmin = 1f;
-
-        string confirm = "確定", cancel = "還原";
 
         public ColorSlicingForm()
         {
             InitializeComponent();
+        }
+
+        public ColorSlicingForm(Form1 topForm) : this()
+        {
+            this.topForm = topForm;
+            source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -44,12 +47,6 @@ namespace WindowsFormsApp1.AdjustedForm
             imageForm.BackgroundImage = image;
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
             imageForm.Show();
-        }
-
-        public ColorSlicingForm(Form1 topForm) : this()
-        {
-            this.topForm = topForm;
-            source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
 
         private void ColorSlicingForm_Load(object sender, EventArgs e)

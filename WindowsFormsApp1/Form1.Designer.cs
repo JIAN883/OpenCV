@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
             this.test_ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1131, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1085, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -89,7 +89,7 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem1,
             this.結束ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.fileToolStripMenuItem.Text = "檔案";
             // 
             // openToolStripMenuItem
@@ -115,46 +115,46 @@ namespace WindowsFormsApp1
             // basicProcess_ToolStripMenuItem
             // 
             this.basicProcess_ToolStripMenuItem.Name = "basicProcess_ToolStripMenuItem";
-            this.basicProcess_ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.basicProcess_ToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
             this.basicProcess_ToolStripMenuItem.Text = "基本處理";
             // 
             // spatialDomainProcess_ToolStripMenuItem
             // 
             this.spatialDomainProcess_ToolStripMenuItem.Name = "spatialDomainProcess_ToolStripMenuItem";
-            this.spatialDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
+            this.spatialDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 23);
             this.spatialDomainProcess_ToolStripMenuItem.Text = "空間域濾波器";
             // 
             // frequencyDomainProcess_ToolStripMenuItem
             // 
             this.frequencyDomainProcess_ToolStripMenuItem.Name = "frequencyDomainProcess_ToolStripMenuItem";
-            this.frequencyDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
+            this.frequencyDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 23);
             this.frequencyDomainProcess_ToolStripMenuItem.Text = "頻率域濾波器";
             // 
             // elseProcess_toolStripMenuItem
             // 
             this.elseProcess_toolStripMenuItem.Name = "elseProcess_toolStripMenuItem";
-            this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.elseProcess_toolStripMenuItem.Text = "其他";
             // 
             // test_ToolStripMenuItem
             // 
             this.test_ToolStripMenuItem.Name = "test_ToolStripMenuItem";
-            this.test_ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.test_ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.test_ToolStripMenuItem.Text = "測試";
             // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1131, 721);
-            this.splitContainer1.SplitterDistance = 531;
+            this.splitContainer1.Size = new System.Drawing.Size(1085, 629);
+            this.splitContainer1.SplitterDistance = 462;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -170,8 +170,8 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1129, 529);
-            this.splitContainer2.SplitterDistance = 602;
+            this.splitContainer2.Size = new System.Drawing.Size(1083, 460);
+            this.splitContainer2.SplitterDistance = 577;
             this.splitContainer2.TabIndex = 0;
             // 
             // pictureBox
@@ -181,7 +181,7 @@ namespace WindowsFormsApp1
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(602, 529);
+            this.pictureBox.Size = new System.Drawing.Size(577, 460);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -190,12 +190,12 @@ namespace WindowsFormsApp1
             // 
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.listBox1.Font = new System.Drawing.Font("新細明體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
+            this.listBox1.ItemHeight = 23;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(523, 529);
+            this.listBox1.Size = new System.Drawing.Size(502, 460);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -205,9 +205,9 @@ namespace WindowsFormsApp1
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.PeekStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 749);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 656);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1131, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1085, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -223,8 +223,9 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.PeekStripStatusLabel.Name = "PeekStripStatusLabel";
             this.PeekStripStatusLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.PeekStripStatusLabel.Size = new System.Drawing.Size(42, 19);
-            this.PeekStripStatusLabel.Text = "Peek";
+            this.PeekStripStatusLabel.Size = new System.Drawing.Size(39, 19);
+            this.PeekStripStatusLabel.Text = "還原";
+            this.PeekStripStatusLabel.Click += new System.EventHandler(this.PeekStripStatusLabel_Click);
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
             // 
@@ -232,7 +233,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1131, 774);
+            this.ClientSize = new System.Drawing.Size(1085, 681);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);

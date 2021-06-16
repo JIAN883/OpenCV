@@ -20,7 +20,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        Bitmap dstImage;
+        string confirm = "應用", cancel = "還原";
 
         public ShearForm()
         {
@@ -31,15 +31,37 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+            button1.Text = confirm;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double xshear = double.Parse(xShearTextBox.Text), yshear = double.Parse(yShearTextBox.Text);
-            Mat src = source.Clone();
-            Shear(src.Data, src.Width, src.Height, xshear, yshear, out IntPtr dst);
-            Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
+            if (button1.Text.Equals(confirm))
+            {
+                double xshear = 0d, yshear = 0d;
+                try
+                {
+                    xshear = double.Parse(xShearTextBox.Text);
+                    yshear = double.Parse(yShearTextBox.Text);
+                }
+                catch { }
+                Mat src = source.Clone();
+                Shear(src.Data, src.Width, src.Height, xshear, yshear, out IntPtr dst);
+                Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
+
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+            }
+            else
+            {
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.Control;
+                button1.ForeColor = SystemColors.ControlText;
+            }
         }
     }
 }

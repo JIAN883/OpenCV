@@ -22,7 +22,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float cDefault = 1f, cMax = 50f, cMin = 1f, gammaDefault = 0.5f, gammaMin = -5f, gammaMax = 5f;
+        float cDefault = 1f, cMax = 10f, cMin = 1f, gammaDefault = 0.5f, gammaMin = -1f, gammaMax = 1f;
 
         public PowerBrightProcessing()
         {
@@ -39,13 +39,17 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             cTrackBar.Value = AdjustedFormManager.SetTrackBarValue(cTrackBar.Maximum, cMax, cMin, cDefault);
             gammaTrackBar.Value = AdjustedFormManager.SetTrackBarValue(gammaTrackBar.Maximum, gammaMax, gammaMin, gammaDefault);
+            label2.Text = cDefault.ToString();
+            label4.Text = gammaDefault.ToString();
         }
 
         private void TrackBar_Scroll(object sender, EventArgs e)
         {
             float cValue = AdjustedFormManager.GetTrackValue(cTrackBar.Maximum, cTrackBar.Value, cMax, cMin);
             float gammaValue = AdjustedFormManager.GetTrackValue(gammaTrackBar.Maximum, gammaTrackBar.Value, gammaMax, gammaMin);
-            
+            label2.Text = cValue.ToString();
+            label4.Text = gammaValue.ToString();
+
             Mat src = source.Clone();
             brightProcessing_power(src.Data, src.Width, src.Height, cValue, gammaValue, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);

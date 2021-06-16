@@ -46,11 +46,13 @@ namespace WindowsFormsApp1.AdjustedForm
         static public AdjustedFormManager[] elseProcess = {
             new AdjustedFormManager("鈍化圖形資訊", typeof(getUnsharpInformationForm)),
             new AdjustedFormManager("位元平面切片", typeof(BitPlaneSlicingForm)),
-            new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm)),
             new AdjustedFormManager("取得色彩平面", typeof(GetColorPlaneForm)),
             new AdjustedFormManager("取得單一或多重色彩的圖片", typeof(GetSingleOrMultiColorImageForm)),
+            new AdjustedFormManager("胡椒鹽濾鏡", typeof(GeneratePepperSaltForm)),
             new AdjustedFormManager("色彩轉換", typeof(ColorTransformationForm)),
             new AdjustedFormManager("色彩切片", typeof(ColorSlicingForm)),
+            new AdjustedFormManager("canny的邊緣偵測", typeof(CannyEdgeDetectionForm)),
+            new AdjustedFormManager("morphologyEx的影像處理", typeof(MorphologicalOperationForm)),
         };
         static public AdjustedFormManager[] testProcess = {new AdjustedFormManager("測試", typeof(Test))};
 

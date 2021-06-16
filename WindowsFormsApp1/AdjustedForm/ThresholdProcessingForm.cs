@@ -21,9 +21,9 @@ namespace WindowsFormsApp1.AdjustedForm
         static extern void thresholdProcessing(IntPtr src, int width, int height, double thresh, double maxval);
 
         Form1 topForm;
-        bool isProcess = true;
         Mat source;
-        string confirm = "銳化圖片", cancel = "取消銳化圖片";
+        float threshMin = 0f, threshMax = 254f, threshDefault = 127f, maxvalMin = 0f, maxvalMax = 254f, maxvalDefault = 254f;
+        string confirm = "應用", cancel = "還原";
 
         public ThresholdProcessingForm()
         {
@@ -38,18 +38,52 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void ThresholdProcessingForm_Load(object sender, EventArgs e)
         {
-            trackBarThresh.Value = (int)(127d / 254d * (double)trackBarThresh.Maximum);
-            trackBarMaxval.Value = trackBarMaxval.Maximum;
+            trackBarThresh.Value = AdjustedFormManager.SetTrackBarValue(trackBarThresh.Maximum, threshMax, threshMin, threshDefault);
+            trackBarMaxval.Value = AdjustedFormManager.SetTrackBarValue(trackBarMaxval.Maximum, maxvalMax, maxvalMin, maxvalDefault);
+
+            label2.Text = threshDefault.ToString();
+            label4.Text = maxvalDefault.ToString();
+
+            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.Text = confirm;
         }
 
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
-            double thresh = (double)trackBarThresh.Value / (double)trackBarThresh.Maximum * 254d;
-            double maxval = (double)trackBarMaxval.Value / (double)trackBarMaxval.Maximum * 254d;
+            splitContainer1.Panel1.BackgroundImage = ImageProcess();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text.Equals(confirm))
+            {
+                topForm.pictureBox.Image = ImageProcess();
+
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+            }
+            else
+            {
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.Control;
+                button1.ForeColor = SystemColors.ControlText;
+            }
+        }
+
+        Bitmap ImageProcess()
+        {
+            double thresh = AdjustedFormManager.GetTrackValue(trackBarThresh.Maximum, trackBarThresh.Value, threshMax, threshMin);
+            double maxval = AdjustedFormManager.GetTrackValue(trackBarMaxval.Maximum, trackBarMaxval.Value, maxvalMax, maxvalMin);
+            label2.Text = ((float)thresh).ToString();
+            label4.Text = ((float)maxval).ToString();
 
             Mat src = source.Clone();
             thresholdProcessing(src.Data, src.Width, src.Height, thresh, maxval);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(src);
+            return BitmapConverter.ToBitmap(src);
         }
+
     }
 }
