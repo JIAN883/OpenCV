@@ -37,7 +37,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void HarmonicMeanFilterForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "0";
+            textBox1.Text = "1";
             button1.Text = confirm;
         }
 

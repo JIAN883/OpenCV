@@ -50,6 +50,7 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("取得色彩平面", typeof(GetColorPlaneForm)),
             new AdjustedFormManager("取得單一或多重色彩的圖片", typeof(GetSingleOrMultiColorImageForm)),
             new AdjustedFormManager("色彩轉換", typeof(ColorTransformationForm)),
+            new AdjustedFormManager("色彩切片", typeof(ColorSlicingForm)),
         };
         static public AdjustedFormManager[] testProcess = {new AdjustedFormManager("測試", typeof(Test))};
 
