@@ -36,8 +36,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarThresh)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -48,19 +48,21 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             // trackBarMaxval
             // 
-            this.trackBarMaxval.Location = new System.Drawing.Point(3, 174);
+            this.trackBarMaxval.Dock = System.Windows.Forms.DockStyle.Top;
+            this.trackBarMaxval.Location = new System.Drawing.Point(3, 185);
             this.trackBarMaxval.Maximum = 1000;
             this.trackBarMaxval.Name = "trackBarMaxval";
-            this.trackBarMaxval.Size = new System.Drawing.Size(245, 56);
+            this.trackBarMaxval.Size = new System.Drawing.Size(236, 70);
             this.trackBarMaxval.TabIndex = 0;
             this.trackBarMaxval.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // trackBarThresh
             // 
+            this.trackBarThresh.Dock = System.Windows.Forms.DockStyle.Top;
             this.trackBarThresh.Location = new System.Drawing.Point(3, 3);
             this.trackBarThresh.Maximum = 1000;
             this.trackBarThresh.Name = "trackBarThresh";
-            this.trackBarThresh.Size = new System.Drawing.Size(245, 56);
+            this.trackBarThresh.Size = new System.Drawing.Size(236, 70);
             this.trackBarThresh.TabIndex = 1;
             this.trackBarThresh.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
@@ -84,7 +86,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(489, 534);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(502, 547);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label4
@@ -92,9 +94,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(425, 171);
+            this.label4.Location = new System.Drawing.Point(410, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 171);
+            this.label4.Size = new System.Drawing.Size(89, 182);
             this.label4.TabIndex = 5;
             this.label4.Text = "label4";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -104,9 +106,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(254, 171);
+            this.label3.Location = new System.Drawing.Point(245, 182);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 171);
+            this.label3.Size = new System.Drawing.Size(159, 182);
             this.label3.TabIndex = 4;
             this.label3.Text = "觸發閥值後設定的值";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -116,9 +118,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(425, 0);
+            this.label2.Location = new System.Drawing.Point(410, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 171);
+            this.label2.Size = new System.Drawing.Size(89, 182);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -128,12 +130,24 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(254, 0);
+            this.label1.Location = new System.Drawing.Point(245, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 171);
+            this.label1.Size = new System.Drawing.Size(159, 182);
             this.label1.TabIndex = 2;
             this.label1.Text = "閥值條件";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // button1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.button1, 3);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 367);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(496, 177);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // splitContainer1
             // 
@@ -145,27 +159,15 @@ namespace WindowsFormsApp1.AdjustedForm
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(899, 536);
-            this.splitContainer1.SplitterDistance = 404;
+            this.splitContainer1.Size = new System.Drawing.Size(922, 549);
+            this.splitContainer1.SplitterDistance = 414;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button1, 3);
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 345);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(514, 168);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ThresholdProcessingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 536);
+            this.ClientSize = new System.Drawing.Size(922, 549);
             this.Controls.Add(this.splitContainer1);
             this.Name = "ThresholdProcessingForm";
             this.Text = "ThresholdProcessingForm";

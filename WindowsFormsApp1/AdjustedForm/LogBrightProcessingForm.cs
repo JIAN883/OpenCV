@@ -37,18 +37,24 @@ namespace WindowsFormsApp1.AdjustedForm
         private void LogBrightProcessingForm_Load(object sender, EventArgs e)
         {
             trackBar1.Value = AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, defaultValue);
-            label1.Text = min.ToString();
+            label1.Text = defaultValue.ToString();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             label1.Text = value.ToString();
+        }
 
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             Mat src = source.Clone();
             brightProcessing_log(src.Data, src.Width, src.Height, value, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }
+
     }
 }

@@ -37,25 +37,22 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void AdaptiveMedianFilter_BGRForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "0";
+            label2.Text = "0";
             button1.Text = confirm;
+            pictureBox1.Image = ImageProssce(source.Clone());
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             int value = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min) * 2 + 1;
-            textBox1.Text = value.ToString();
+            label2.Text = value.ToString();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
         {
-            try
-            {
-                int value = int.Parse(textBox1.Text);
-                trackBar1.Value = (AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, value) - 1) / 2;
-            }
-            catch { }
+            pictureBox1.Image = ImageProssce(source.Clone());
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text.Equals(confirm))
@@ -63,7 +60,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
             }
             else
             {
@@ -74,13 +71,12 @@ namespace WindowsFormsApp1.AdjustedForm
             }
         }
 
-        void ImageProssce()
+        Bitmap ImageProssce(Mat src)
         {
             int s_max = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min) * 2 + 1;
-            Mat src = source.Clone();
             adaptiveMedianFilter_BGR(src.Data, src.Width, src.Height, s_max, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            return BitmapConverter.ToBitmap(dstMat);
         }
 
     }

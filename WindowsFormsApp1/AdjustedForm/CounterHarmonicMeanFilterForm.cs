@@ -22,8 +22,10 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float max = 10f, min = 1f;
+        float kMax = 10f, kMin = 1f, qMax = 5f, qMin = 1f;
+        float qNegativeControl = 1;
         string confirm = "添加到原圖", cancel = "還原";
+        string description = "影響程度切換" + Environment.NewLine + "Q > 1：解決黑雜點" + Environment.NewLine + "Q < -1：解決白雜點";
 
         public CounterHarmonicMeanFilterForm()
         {
@@ -38,25 +40,38 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void CounterHarmonicMeanFilterForm_Load(object sender, EventArgs e)
         {
-            textBox_KernelSize.Text = "0";
+            label1.Text = qMin.ToString();
+            label2.Text = kMin.ToString();
             button1.Text = confirm;
+            button2.Text = description;
+            pictureBox1.Image = ImageProssce(source.Clone());
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            int value = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
-            textBox_KernelSize.Text = value.ToString();
+            if (qNegativeControl == 1)
+                qNegativeControl = -1;
+            else
+                qNegativeControl = 1;
+
+            float qValue = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, qMax, qMin) * qNegativeControl;
+            label1.Text = qValue.ToString();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void trackBar_Scroll(object sender, EventArgs e)
         {
-            try
-            {
-                int value = int.Parse(textBox_KernelSize.Text);
-                trackBar1.Value = AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, value);
-            }
-            catch { }
+            float qValue = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, qMax, qMin) * qNegativeControl;
+            label1.Text = qValue.ToString();
+
+            int kValue = (int)AdjustedFormManager.GetTrackValue(trackBar2.Maximum, trackBar2.Value, kMax, kMin);
+            label2.Text = kValue.ToString();
         }
+
+        private void trackBar2_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = ImageProssce(source.Clone());
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text.Equals(confirm))
@@ -64,7 +79,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
             }
             else
             {
@@ -75,14 +90,13 @@ namespace WindowsFormsApp1.AdjustedForm
             }
         }
 
-        void ImageProssce()
+        Bitmap ImageProssce(Mat src)
         {
-            int kernelSize = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
-            float Q = float.Parse(textBox_Q.Text);
-            Mat src = source.Clone();
+            int kernelSize = (int)AdjustedFormManager.GetTrackValue(trackBar2.Maximum, trackBar2.Value, kMax, kMin);
+            float Q = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, qMax, qMin) * qNegativeControl;
             counterHarmonicMeanFilter(src.Data, src.Width, src.Height, kernelSize, Q, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            return BitmapConverter.ToBitmap(dstMat);
         }
     }
 }

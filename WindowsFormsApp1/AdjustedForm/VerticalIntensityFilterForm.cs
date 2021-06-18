@@ -39,7 +39,7 @@ namespace WindowsFormsApp1.AdjustedForm
             Mat src = source.Clone();
             horizontalIntensityFilter(src.Data, src.Width, src.Height, false, false, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dstImage);
+            pictureBox1.Image = BitmapConverter.ToBitmap(dstImage);
 
             button1.Text = confirm;
         }
@@ -67,10 +67,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Image dstImage = splitContainer1.Panel1.BackgroundImage;
+            Image dstImage = pictureBox1.Image;
             Form temp = new Form();
-            temp.Width = dstImage.Width;
-            temp.Height = dstImage.Height;
+            temp.WindowState = FormWindowState.Maximized;
             temp.BackgroundImage = dstImage;
             temp.BackgroundImageLayout = ImageLayout.Zoom;
             temp.Show();

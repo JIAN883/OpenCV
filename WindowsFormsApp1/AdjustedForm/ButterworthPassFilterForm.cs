@@ -41,40 +41,39 @@ namespace WindowsFormsApp1.AdjustedForm
         private void ButterworthPassFilterForm_Load(object sender, EventArgs e)
         {
             checkBoxHighPass.Checked = true;
-            textBox_d0.Text = d0min.ToString();
-            textBox_n.Text = nmin.ToString();
+            label_d0.Text = d0min.ToString();
+            label_n.Text = nmin.ToString();
             button1.Text = confirm;
-            ImagePorcess(false);
+            pictureBox1.Image = ImagePorcess(source.Clone(), false);
         }
 
         private void checkBoxHighPass_CheckedChanged(object sender, EventArgs e)
         {
             checkBoxLowPass.Checked = !checkBoxHighPass.Checked;
-            ImagePorcess(false);
+            pictureBox1.Image = ImagePorcess(source.Clone(), false);
         }
 
         private void checkBoxLowPass_CheckedChanged(object sender, EventArgs e)
         {
             checkBoxHighPass.Checked = !checkBoxLowPass.Checked;
-            ImagePorcess(false);
+            pictureBox1.Image = ImagePorcess(source.Clone(), false);
         }
 
         private void trackBar_n_Scroll(object sender, EventArgs e)
         {
             float value = AdjustedFormManager.GetTrackValue(trackBar_n.Maximum, trackBar_n.Value, nmax, nmin);
-            textBox_n.Text = value.ToString();
-            ImagePorcess(false);
+            label_n.Text = value.ToString();
         }
 
-        private void textBox1_n_TextChanged(object sender, EventArgs e)
+        private void trackBar2_d0_Scroll(object sender, EventArgs e)
         {
-            try
-            {
-                float value = float.Parse(textBox_n.Text);
-                trackBar_n.Value = AdjustedFormManager.SetTrackBarValue(trackBar_n.Maximum, nmax, nmin, value);
-            }
-            catch { }
-            ImagePorcess(false);
+            float value = AdjustedFormManager.GetTrackValue(trackBar_d0.Maximum, trackBar_d0.Value, d0max, d0min);
+            label_d0.Text = value.ToString();
+        }
+
+        private void trackBar_d0_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = ImagePorcess(source.Clone(), false);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -84,6 +83,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
+                topForm.pictureBox.Image = ImagePorcess(source.Clone(), true);
             }
             else
             {
@@ -92,44 +92,17 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.ForeColor = SystemColors.ControlText;
                 topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
             }
-            ImagePorcess(true);
         }
 
-        private void trackBar2_d0_Scroll(object sender, EventArgs e)
+        Bitmap ImagePorcess(Mat src, bool isAddOri)
         {
-            float value = AdjustedFormManager.GetTrackValue(trackBar_d0.Maximum, trackBar_d0.Value, d0max, d0min);
-            textBox_d0.Text = value.ToString();
-            ImagePorcess(false);
-        }
-
-        private void textBox2_d0_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                float value = float.Parse(textBox_d0.Text);
-                trackBar_d0.Value = AdjustedFormManager.SetTrackBarValue(trackBar_d0.Maximum, d0max, d0min, value);
-            }
-            catch { }
-            ImagePorcess(false);
-        }
-
-        void ImagePorcess(bool isAddOri)
-        {
-            bool isHighPass = false;
             int d0 = (int)AdjustedFormManager.GetTrackValue(trackBar_d0.Maximum, trackBar_d0.Value, d0max, d0min);
             float n = AdjustedFormManager.GetTrackValue(trackBar_n.Maximum, trackBar_n.Value, nmax, nmin);
-            Mat src = source.Clone();
-            if (checkBoxHighPass.Checked)
-                isHighPass = true;
+            bool isHighPass = checkBoxHighPass.Checked ? true : false;
 
             butterworthPassFilter(src.Data, src.Width, src.Height, isHighPass, d0, n, isAddOri, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            Bitmap dstImage = BitmapConverter.ToBitmap(dstMat);
-            
-            if (isAddOri)
-                topForm.pictureBox.Image = dstImage;
-            else
-                splitContainer1.Panel1.BackgroundImage = dstImage;
+            return BitmapConverter.ToBitmap(dstMat);
         }
 
     }

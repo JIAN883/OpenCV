@@ -76,6 +76,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(513, 600);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPage1
             // 
@@ -168,7 +169,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(505, 579);
+            this.tabPage2.Size = new System.Drawing.Size(505, 571);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CMY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -190,7 +191,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(499, 573);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(499, 565);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // button2
@@ -199,10 +200,11 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button2.Location = new System.Drawing.Point(252, 3);
             this.button2.Name = "button2";
             this.tableLayoutPanel2.SetRowSpan(this.button2, 3);
-            this.button2.Size = new System.Drawing.Size(244, 567);
+            this.button2.Size = new System.Drawing.Size(244, 559);
             this.button2.TabIndex = 3;
             this.button2.Text = "查看原圖";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
             // radioButton_C
             // 
@@ -210,7 +212,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.radioButton_C.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButton_C.Location = new System.Drawing.Point(3, 3);
             this.radioButton_C.Name = "radioButton_C";
-            this.radioButton_C.Size = new System.Drawing.Size(243, 185);
+            this.radioButton_C.Size = new System.Drawing.Size(243, 182);
             this.radioButton_C.TabIndex = 4;
             this.radioButton_C.TabStop = true;
             this.radioButton_C.Text = "C";
@@ -221,9 +223,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.radioButton_M.AutoSize = true;
             this.radioButton_M.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton_M.Location = new System.Drawing.Point(3, 194);
+            this.radioButton_M.Location = new System.Drawing.Point(3, 191);
             this.radioButton_M.Name = "radioButton_M";
-            this.radioButton_M.Size = new System.Drawing.Size(243, 185);
+            this.radioButton_M.Size = new System.Drawing.Size(243, 182);
             this.radioButton_M.TabIndex = 5;
             this.radioButton_M.TabStop = true;
             this.radioButton_M.Text = "M";
@@ -234,9 +236,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.radioButton_Y.AutoSize = true;
             this.radioButton_Y.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton_Y.Location = new System.Drawing.Point(3, 385);
+            this.radioButton_Y.Location = new System.Drawing.Point(3, 379);
             this.radioButton_Y.Name = "radioButton_Y";
-            this.radioButton_Y.Size = new System.Drawing.Size(243, 185);
+            this.radioButton_Y.Size = new System.Drawing.Size(243, 183);
             this.radioButton_Y.TabIndex = 6;
             this.radioButton_Y.TabStop = true;
             this.radioButton_Y.Text = "Y";

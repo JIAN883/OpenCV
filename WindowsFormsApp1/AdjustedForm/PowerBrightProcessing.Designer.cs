@@ -44,22 +44,24 @@ namespace WindowsFormsApp1.AdjustedForm
             // gammaTrackBar
             // 
             this.gammaTrackBar.Location = new System.Drawing.Point(3, 333);
-            this.gammaTrackBar.Maximum = 100;
+            this.gammaTrackBar.Maximum = 1000;
             this.gammaTrackBar.Name = "gammaTrackBar";
             this.gammaTrackBar.Size = new System.Drawing.Size(681, 56);
             this.gammaTrackBar.TabIndex = 0;
             this.gammaTrackBar.Value = 1;
             this.gammaTrackBar.Scroll += new System.EventHandler(this.TrackBar_Scroll);
+            this.gammaTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cTrackBar_MouseUp);
             // 
             // cTrackBar
             // 
             this.cTrackBar.Location = new System.Drawing.Point(3, 3);
-            this.cTrackBar.Maximum = 100;
+            this.cTrackBar.Maximum = 1000;
             this.cTrackBar.Name = "cTrackBar";
             this.cTrackBar.Size = new System.Drawing.Size(681, 56);
             this.cTrackBar.TabIndex = 1;
             this.cTrackBar.Value = 1;
             this.cTrackBar.Scroll += new System.EventHandler(this.TrackBar_Scroll);
+            this.cTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cTrackBar_MouseUp);
             // 
             // tableLayoutPanel1
             // 

@@ -112,17 +112,12 @@ namespace WindowsFormsApp1
         private void PeekStripStatusLabel_Click(object sender, EventArgs e)
         {
 			peekImage = sourceImage.Clone() as Bitmap;
+			if(splitContainer1.Panel2.Controls.Count != 0)
+            {
+				Control temp = splitContainer1.Panel2.Controls[0];
+				OpenAdjustedForm(temp.GetType());
+			}
         }
-
-        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-			e.DrawBackground();
-			e.DrawFocusRectangle();
-			StringFormat strFmt = new System.Drawing.StringFormat();
-			strFmt.Alignment = StringAlignment.Center; //文本垂直居中
-			strFmt.LineAlignment = StringAlignment.Center; //文本水平居中
-			e.Graphics.DrawString(listBox1.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, strFmt);
-		}
 
         private void PeekStripStatusLabel_MouseLeave(object sender, EventArgs e)
         {

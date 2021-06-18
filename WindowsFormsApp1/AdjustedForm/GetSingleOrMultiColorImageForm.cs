@@ -22,7 +22,6 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        int mode = 0;
 
         public GetSingleOrMultiColorImageForm()
         {
@@ -45,6 +44,7 @@ namespace WindowsFormsApp1.AdjustedForm
             radioButton_M.Tag = 1;
             radioButton_C.Tag = 2;
 
+            radioButton_C.Checked = true;
             splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
             splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(source);
         }
@@ -75,6 +75,26 @@ namespace WindowsFormsApp1.AdjustedForm
             ImagePorcess(count);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Image showImage = splitContainer1.Panel1.BackgroundImage;
+
+            Form imageForm = new Form();
+            imageForm.WindowState = FormWindowState.Maximized;
+            imageForm.BackgroundImage = showImage;
+            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
+            imageForm.Show();
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            if ((sender as TabControl).SelectedTab.Equals(tabPage1))
+                checkBox_CheckedChanged(sender, e);
+            else
+                radioButton_Click(sender, e);
+
+        }
+
         void ImagePorcess(int mode)
         {
             Mat src = source.Clone();
@@ -83,16 +103,5 @@ namespace WindowsFormsApp1.AdjustedForm
             splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dstMat);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Image showImage = splitContainer1.Panel1.BackgroundImage;
-
-            Form imageForm = new Form();
-            imageForm.Width = showImage.Width;
-            imageForm.Height = showImage.Height;
-            imageForm.BackgroundImage = showImage;
-            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
-            imageForm.Show();
-        }
     }
 }

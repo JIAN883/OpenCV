@@ -43,28 +43,32 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             // saltPercenttrackBar
             // 
-            this.saltPercenttrackBar.Location = new System.Drawing.Point(3, 283);
-            this.saltPercenttrackBar.Maximum = 100;
+            this.saltPercenttrackBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.saltPercenttrackBar.Location = new System.Drawing.Point(3, 274);
+            this.saltPercenttrackBar.Maximum = 1000;
             this.saltPercenttrackBar.Name = "saltPercenttrackBar";
-            this.saltPercenttrackBar.Size = new System.Drawing.Size(498, 56);
+            this.saltPercenttrackBar.Size = new System.Drawing.Size(545, 56);
             this.saltPercenttrackBar.TabIndex = 0;
             this.saltPercenttrackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
+            this.saltPercenttrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saltPercenttrackBar_MouseUp);
             // 
             // pepperPercentTrackBar
             // 
+            this.pepperPercentTrackBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pepperPercentTrackBar.Location = new System.Drawing.Point(3, 3);
-            this.pepperPercentTrackBar.Maximum = 100;
+            this.pepperPercentTrackBar.Maximum = 1000;
             this.pepperPercentTrackBar.Name = "pepperPercentTrackBar";
-            this.pepperPercentTrackBar.Size = new System.Drawing.Size(498, 56);
+            this.pepperPercentTrackBar.Size = new System.Drawing.Size(545, 56);
             this.pepperPercentTrackBar.TabIndex = 1;
             this.pepperPercentTrackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
+            this.pepperPercentTrackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saltPercenttrackBar_MouseUp);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.03715F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.10401F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.85884F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Controls.Add(this.pepperPercentTrackBar, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.saltPercenttrackBar, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
@@ -77,7 +81,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 560);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(919, 542);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label1
@@ -85,9 +89,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(507, 0);
+            this.label1.Location = new System.Drawing.Point(554, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(270, 280);
+            this.label1.Size = new System.Drawing.Size(223, 271);
             this.label1.TabIndex = 2;
             this.label1.Text = "PepperPercent(%)";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -99,7 +103,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label2.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.Location = new System.Drawing.Point(783, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 280);
+            this.label2.Size = new System.Drawing.Size(133, 271);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -109,9 +113,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(507, 280);
+            this.label3.Location = new System.Drawing.Point(554, 271);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(270, 280);
+            this.label3.Size = new System.Drawing.Size(223, 271);
             this.label3.TabIndex = 4;
             this.label3.Text = "SaltPercent(%)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -121,9 +125,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(783, 280);
+            this.label4.Location = new System.Drawing.Point(783, 271);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 280);
+            this.label4.Size = new System.Drawing.Size(133, 271);
             this.label4.TabIndex = 5;
             this.label4.Text = "label4";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -132,7 +136,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 560);
+            this.ClientSize = new System.Drawing.Size(919, 542);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "GeneratePepperSaltForm";
             this.Text = "GeneratePepperSaltForm";

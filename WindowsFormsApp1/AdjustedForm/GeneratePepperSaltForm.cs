@@ -21,7 +21,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float pepperMin = 0, pepperMax = 50, saltMin = 0, saltMax = 50;
+        float pepperMin = 0f, pepperMax = 50f, saltMin = 0f, saltMax = 50f;
 
         public GeneratePepperSaltForm()
         {
@@ -33,8 +33,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
 
-            label2.Text = "0";
-            label4.Text = "0";
+            label2.Text = pepperMin.ToString();
+            label4.Text = saltMin.ToString();
         }
 
         private void trackBar_ValueChanged(object sender, EventArgs e)
@@ -43,10 +43,16 @@ namespace WindowsFormsApp1.AdjustedForm
             float saltPercent = AdjustedFormManager.GetTrackValue(saltPercenttrackBar.Maximum, saltPercenttrackBar.Value, saltMax, saltMin);
             label2.Text = pepperPercent.ToString();
             label4.Text = saltPercent.ToString();
+        }
 
+        private void saltPercenttrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            float pepperPercent = AdjustedFormManager.GetTrackValue(pepperPercentTrackBar.Maximum, pepperPercentTrackBar.Value, pepperMax, pepperMin);
+            float saltPercent = AdjustedFormManager.GetTrackValue(saltPercenttrackBar.Maximum, saltPercenttrackBar.Value, saltMax, saltMin);
             Mat destinationImage = source.Clone();
             GeneratePepperSalt(destinationImage.Data, destinationImage.Width, destinationImage.Height, pepperPercent, saltPercent);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
         }
+
     }
 }

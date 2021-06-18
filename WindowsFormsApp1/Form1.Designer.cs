@@ -29,7 +29,6 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +47,6 @@ namespace WindowsFormsApp1
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -77,7 +75,7 @@ namespace WindowsFormsApp1
             this.test_ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1085, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1360, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -153,8 +151,8 @@ namespace WindowsFormsApp1
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1085, 629);
-            this.splitContainer1.SplitterDistance = 462;
+            this.splitContainer1.Size = new System.Drawing.Size(1360, 742);
+            this.splitContainer1.SplitterDistance = 544;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -170,8 +168,8 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1083, 460);
-            this.splitContainer2.SplitterDistance = 577;
+            this.splitContainer2.Size = new System.Drawing.Size(1358, 542);
+            this.splitContainer2.SplitterDistance = 723;
             this.splitContainer2.TabIndex = 0;
             // 
             // pictureBox
@@ -181,7 +179,7 @@ namespace WindowsFormsApp1
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(577, 460);
+            this.pictureBox.Size = new System.Drawing.Size(723, 542);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -195,7 +193,7 @@ namespace WindowsFormsApp1
             this.listBox1.ItemHeight = 23;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(502, 460);
+            this.listBox1.Size = new System.Drawing.Size(631, 542);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -205,9 +203,9 @@ namespace WindowsFormsApp1
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.PeekStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 656);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 769);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1085, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1360, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -215,7 +213,7 @@ namespace WindowsFormsApp1
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1074, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1031, 19);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // PeekStripStatusLabel
@@ -223,8 +221,8 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.PeekStripStatusLabel.Name = "PeekStripStatusLabel";
             this.PeekStripStatusLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.PeekStripStatusLabel.Size = new System.Drawing.Size(39, 19);
-            this.PeekStripStatusLabel.Text = "還原";
+            this.PeekStripStatusLabel.Size = new System.Drawing.Size(69, 19);
+            this.PeekStripStatusLabel.Text = "點擊還原";
             this.PeekStripStatusLabel.Click += new System.EventHandler(this.PeekStripStatusLabel_Click);
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
@@ -233,7 +231,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 681);
+            this.ClientSize = new System.Drawing.Size(1360, 794);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -274,7 +272,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripStatusLabel PeekStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem test_ToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem elseProcess_toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem basicProcess_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem frequencyDomainProcess_ToolStripMenuItem;

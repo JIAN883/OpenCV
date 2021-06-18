@@ -59,8 +59,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             Bitmap image = pictureBox1.Image as Bitmap;
             Form imageForm = new Form();
-            imageForm.Width = image.Width;
-            imageForm.Height = image.Height;
+            imageForm.WindowState = FormWindowState.Maximized;
             imageForm.BackgroundImage = image;
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
 

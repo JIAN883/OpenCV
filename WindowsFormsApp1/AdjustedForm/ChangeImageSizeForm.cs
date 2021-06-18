@@ -23,7 +23,6 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        Bitmap dstImage;
 
         public ChangeImageSizeForm()
         {
@@ -47,6 +46,7 @@ namespace WindowsFormsApp1.AdjustedForm
             resizeForm.Height = (int)((float)src.Height * float.Parse(HeightTextBox.Text));
             resizeForm.SizeChanged += new EventHandler(this.Resize_FormResize);
             resizeForm.FormClosed += new FormClosedEventHandler(this.Resize_FormClosed);
+            resizeForm.Text = "調整窗口大小來調整圖片大小";
 
             widthTextBox.Enabled = false;
             HeightTextBox.Enabled = false;

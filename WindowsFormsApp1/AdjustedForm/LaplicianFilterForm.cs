@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             Mat dst = source.Clone();
             LaplicianFilter(dst.Data, dst.Width, dst.Height, false);
-            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dst);
+            pictureBox1.Image = BitmapConverter.ToBitmap(dst);
 
             button1.Text = confirm;
         }
@@ -62,5 +62,16 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = confirm;
             }
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Image dstImage = pictureBox1.Image;
+            Form temp = new Form();
+            temp.WindowState = FormWindowState.Maximized;
+            temp.BackgroundImage = dstImage;
+            temp.BackgroundImageLayout = ImageLayout.Zoom;
+            temp.Show();
+        }
+
     }
 }

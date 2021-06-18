@@ -21,7 +21,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float min = 0f, max = 50f;
+        float min = 0f, max = 100f;
 
         public HighboostFilterForm()
         {
@@ -39,11 +39,16 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             label2.Text = value.ToString();
+        }
 
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             Mat src = source.Clone();
             HighboostFilter(src.Data, src.Width, src.Height, value, out IntPtr dst);
             Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
         }
+
     }
 }

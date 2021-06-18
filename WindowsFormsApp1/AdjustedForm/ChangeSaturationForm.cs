@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
         float max = 10f, min = 0f;
-        string confirm = "添加到原圖", cancel = "還原";
+        string confirm = "應用", cancel = "還原";
 
         public ChangeSaturationForm()
         {
@@ -38,25 +38,22 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void AdaptiveMedianFilter_BGRForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "0";
+            label2.Text = min.ToString();
             button1.Text = confirm;
+            pictureBox1.Image = ImageProssce();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
-            textBox1.Text = value.ToString();
+            label2.Text = value.ToString();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
         {
-            try
-            {
-                float value = float.Parse(textBox1.Text);
-                trackBar1.Value = AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, value);
-            }
-            catch { }
+            pictureBox1.Image = ImageProssce();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text.Equals(confirm))
@@ -64,7 +61,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = ImageProssce();
             }
             else
             {
@@ -75,13 +72,13 @@ namespace WindowsFormsApp1.AdjustedForm
             }
         }
 
-        void ImageProssce()
+        Bitmap ImageProssce()
         {
             double rate = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             Mat src = source.Clone();
             changeSaturation(src.Data, src.Width, src.Height, rate, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            return BitmapConverter.ToBitmap(dstMat);
         }
     }
 }

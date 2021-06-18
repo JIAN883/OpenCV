@@ -80,8 +80,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
             Image image = splitContainer1.Panel1.BackgroundImage;
             Form imageForm = new Form();
-            imageForm.Width = image.Width;
-            imageForm.Height = image.Height;
+            imageForm.WindowState = FormWindowState.Maximized;
             imageForm.BackgroundImage = image;
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
             imageForm.Show();

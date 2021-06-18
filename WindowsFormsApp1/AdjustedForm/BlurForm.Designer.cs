@@ -51,29 +51,31 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(913, 292);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 292F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(922, 287);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // trackBar1
             // 
+            this.trackBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
-            this.trackBar1.Maximum = 50;
+            this.trackBar1.Maximum = 200;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(465, 56);
+            this.trackBar1.Size = new System.Drawing.Size(501, 56);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(505, 0);
+            this.label1.Location = new System.Drawing.Point(510, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(268, 292);
+            this.label1.Size = new System.Drawing.Size(271, 287);
             this.label1.TabIndex = 2;
             this.label1.Text = "Kernel Size";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -83,9 +85,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("新細明體", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(779, 0);
+            this.label2.Location = new System.Drawing.Point(787, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 292);
+            this.label2.Size = new System.Drawing.Size(132, 287);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -94,7 +96,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 292);
+            this.ClientSize = new System.Drawing.Size(922, 287);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BlurForm";
             this.Text = "Blur";

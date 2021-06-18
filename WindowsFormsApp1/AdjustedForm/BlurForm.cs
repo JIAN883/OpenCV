@@ -36,9 +36,12 @@ namespace WindowsFormsApp1.AdjustedForm
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             label2.Text = trackBar1.Value.ToString();
+        }
 
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
             Mat destinationImage = source.Clone();
-            Blur(destinationImage.Data, destinationImage.Width, destinationImage.Height, (sender as TrackBar).Value);
+            Blur(destinationImage.Data, destinationImage.Width, destinationImage.Height, trackBar1.Value);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(destinationImage);
         }
     }
