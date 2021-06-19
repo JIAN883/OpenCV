@@ -53,6 +53,7 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("色彩切片", typeof(ColorSlicingForm)),
             new AdjustedFormManager("canny的邊緣偵測", typeof(CannyEdgeDetectionForm)),
             new AdjustedFormManager("morphologyEx的影像處理", typeof(MorphologicalOperationForm)),
+            new AdjustedFormManager("常用濾鏡", typeof(CommonFiltersForm)),
         };
 
         public string Name { get; set; }

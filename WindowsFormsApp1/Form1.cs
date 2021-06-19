@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
 			elseProcess_toolStripMenuItem.Tag = AdjustedFormManager.elseProcess;
 
 			//debug模式專用
-			sourceImage = WindowsFormsApp1.Properties.Resources._227995_106;
+			sourceImage = Properties.Resources._227995_106;
 			pictureBox.Image = sourceImage.Clone() as Bitmap;
 		}
 

@@ -22,6 +22,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        string confirm = "添加到原圖", cancel = "還原";
 
         public GetSingleOrMultiColorImageForm()
         {
@@ -45,8 +46,9 @@ namespace WindowsFormsApp1.AdjustedForm
             radioButton_C.Tag = 2;
 
             radioButton_C.Checked = true;
-            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
-            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(source);
+            button3.Text = confirm;
+            button4.Text = confirm;
+            pictureBox1.Image = BitmapConverter.ToBitmap(source);
         }
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
@@ -75,9 +77,28 @@ namespace WindowsFormsApp1.AdjustedForm
             ImagePorcess(count);
         }
 
+        private void button_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            if (button.Text.Equals(confirm))
+            {
+                button.Text = cancel;
+                button.BackColor = Color.Black;
+                button.ForeColor = Color.White;
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
+            }
+            else
+            {
+                button.Text = confirm;
+                button.BackColor = SystemColors.ButtonFace;
+                button.ForeColor = SystemColors.ControlText;
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Image showImage = splitContainer1.Panel1.BackgroundImage;
+            Image showImage = pictureBox1.Image;
 
             Form imageForm = new Form();
             imageForm.WindowState = FormWindowState.Maximized;
@@ -100,7 +121,7 @@ namespace WindowsFormsApp1.AdjustedForm
             Mat src = source.Clone();
             getSingleOrMultiColorImage(src.Data, src.Width, src.Height, mode, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(dstMat);
+            pictureBox1.Image = BitmapConverter.ToBitmap(dstMat);
         }
 
     }

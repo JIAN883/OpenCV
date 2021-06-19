@@ -37,13 +37,19 @@ namespace WindowsFormsApp1.AdjustedForm
             this.checkBox_R = new System.Windows.Forms.CheckBox();
             this.checkBox_G = new System.Windows.Forms.CheckBox();
             this.checkBox_B = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.radioButton_C = new System.Windows.Forms.RadioButton();
             this.radioButton_M = new System.Windows.Forms.RadioButton();
             this.radioButton_Y = new System.Windows.Forms.RadioButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -51,6 +57,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -58,6 +66,10 @@ namespace WindowsFormsApp1.AdjustedForm
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel3);
             // 
             // splitContainer1.Panel2
             // 
@@ -99,6 +111,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.Controls.Add(this.checkBox_R, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.checkBox_G, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.checkBox_B, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -114,8 +127,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(252, 3);
             this.button1.Name = "button1";
-            this.tableLayoutPanel1.SetRowSpan(this.button1, 3);
-            this.button1.Size = new System.Drawing.Size(244, 559);
+            this.button1.Size = new System.Drawing.Size(244, 182);
             this.button1.TabIndex = 3;
             this.button1.Text = "查看原圖";
             this.button1.UseVisualStyleBackColor = true;
@@ -163,6 +175,17 @@ namespace WindowsFormsApp1.AdjustedForm
             this.checkBox_B.UseVisualStyleBackColor = true;
             this.checkBox_B.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Location = new System.Drawing.Point(252, 379);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(244, 183);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel2);
@@ -184,6 +207,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel2.Controls.Add(this.radioButton_C, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radioButton_M, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.radioButton_Y, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button4, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -199,8 +223,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Location = new System.Drawing.Point(252, 3);
             this.button2.Name = "button2";
-            this.tableLayoutPanel2.SetRowSpan(this.button2, 3);
-            this.button2.Size = new System.Drawing.Size(244, 559);
+            this.button2.Size = new System.Drawing.Size(244, 182);
             this.button2.TabIndex = 3;
             this.button2.Text = "查看原圖";
             this.button2.UseVisualStyleBackColor = true;
@@ -245,6 +268,54 @@ namespace WindowsFormsApp1.AdjustedForm
             this.radioButton_Y.UseVisualStyleBackColor = true;
             this.radioButton_Y.Click += new System.EventHandler(this.radioButton_Click);
             // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Location = new System.Drawing.Point(252, 379);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(244, 183);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button_Click);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(468, 600);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(462, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "預覽";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 23);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(462, 574);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // GetSingleOrMultiColorImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -254,6 +325,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.Name = "GetSingleOrMultiColorImageForm";
             this.Text = "GetSingleOrMultiColorImageForm";
             this.Load += new System.EventHandler(this.GetSingleOrMultiColorImageForm_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -264,6 +336,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -284,5 +359,10 @@ namespace WindowsFormsApp1.AdjustedForm
         private System.Windows.Forms.CheckBox checkBox_R;
         private System.Windows.Forms.CheckBox checkBox_G;
         private System.Windows.Forms.CheckBox checkBox_B;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
