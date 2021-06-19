@@ -16,10 +16,13 @@ namespace WindowsFormsApp1.AdjustedForm
     public partial class ShearForm : Form
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        //xshear ：水平剪形程度 (double)
+        //yshear ：垂直剪形程度 (double)
         static extern void Shear(IntPtr src, int width, int height, double xshear, double yshear, out IntPtr dstBuffer);
 
         Form1 topForm;
         Mat source;
+        float xshearMin = 0f, xshearMax = 5f, yshearMin = 0f, yshearMax = 5f;
         string confirm = "應用", cancel = "還原";
 
         public ShearForm()
@@ -34,34 +37,60 @@ namespace WindowsFormsApp1.AdjustedForm
             button1.Text = confirm;
         }
 
+        private void ShearForm_Load(object sender, EventArgs e)
+        {
+            label2.Text = xshearMin.ToString();
+            label4.Text = yshearMin.ToString();
+            button1.Text = confirm;
+
+            ImageProcess();
+        }
+
+        private void trackBar_xshear_Scroll(object sender, EventArgs e)
+        {
+            float value = AdjustedFormManager.GetTrackValue(trackBar_xshear.Maximum, trackBar_xshear.Value, xshearMax, xshearMin);
+            label2.Text = value.ToString();
+        }
+
+        private void trackBar_yshear_Scroll(object sender, EventArgs e)
+        {
+            float value = AdjustedFormManager.GetTrackValue(trackBar_yshear.Maximum, trackBar_yshear.Value, yshearMax, yshearMin);
+            label4.Text = value.ToString();
+        }
+
+        private void trackBarThresh_MouseUp(object sender, MouseEventArgs e)
+        {
+            ImageProcess();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text.Equals(confirm))
             {
-                double xshear = 0d, yshear = 0d;
-                try
-                {
-                    xshear = double.Parse(xShearTextBox.Text);
-                    yshear = double.Parse(yShearTextBox.Text);
-                }
-                catch { }
-                Mat src = source.Clone();
-                Shear(src.Data, src.Width, src.Height, xshear, yshear, out IntPtr dst);
-                Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-                topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
-
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
+
+                topForm.pictureBox.Image = pictureBox1.Image;
             }
             else
             {
-                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
-
                 button1.Text = confirm;
                 button1.BackColor = SystemColors.Control;
                 button1.ForeColor = SystemColors.ControlText;
+
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
             }
+        }
+
+        void ImageProcess()
+        {
+            Mat src = source.Clone();
+            double xshear = AdjustedFormManager.GetTrackValue(trackBar_xshear.Maximum, trackBar_xshear.Value, xshearMax, xshearMin);
+            double yshear = AdjustedFormManager.GetTrackValue(trackBar_yshear.Maximum, trackBar_yshear.Value, yshearMax, yshearMin);
+            Shear(src.Data, src.Width, src.Height, xshear, yshear, out IntPtr dst);
+            Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            pictureBox1.Image = BitmapConverter.ToBitmap(dstImage);
         }
     }
 }

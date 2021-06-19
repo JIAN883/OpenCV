@@ -54,9 +54,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1095, 294);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -66,21 +66,21 @@ namespace WindowsFormsApp1.AdjustedForm
             this.HeightLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HeightLabel.Location = new System.Drawing.Point(3, 0);
             this.HeightLabel.Name = "HeightLabel";
-            this.HeightLabel.Size = new System.Drawing.Size(541, 30);
+            this.HeightLabel.Size = new System.Drawing.Size(541, 97);
             this.HeightLabel.TabIndex = 0;
             this.HeightLabel.Text = "高度比例";
-            this.HeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HeightLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // widthLabel
             // 
             this.widthLabel.AutoSize = true;
             this.widthLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.widthLabel.Location = new System.Drawing.Point(3, 30);
+            this.widthLabel.Location = new System.Drawing.Point(3, 97);
             this.widthLabel.Name = "widthLabel";
-            this.widthLabel.Size = new System.Drawing.Size(541, 30);
+            this.widthLabel.Size = new System.Drawing.Size(541, 97);
             this.widthLabel.TabIndex = 1;
             this.widthLabel.Text = "寬度比例";
-            this.widthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.widthLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // HeightTextBox
             // 
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1.AdjustedForm
             // widthTextBox
             // 
             this.widthTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.widthTextBox.Location = new System.Drawing.Point(550, 33);
+            this.widthTextBox.Location = new System.Drawing.Point(550, 100);
             this.widthTextBox.Name = "widthTextBox";
             this.widthTextBox.Size = new System.Drawing.Size(542, 25);
             this.widthTextBox.TabIndex = 3;
@@ -105,20 +105,20 @@ namespace WindowsFormsApp1.AdjustedForm
             // openResizeFormbutton
             // 
             this.openResizeFormbutton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.openResizeFormbutton.Location = new System.Drawing.Point(3, 63);
+            this.openResizeFormbutton.Location = new System.Drawing.Point(3, 197);
             this.openResizeFormbutton.Name = "openResizeFormbutton";
-            this.openResizeFormbutton.Size = new System.Drawing.Size(541, 228);
+            this.openResizeFormbutton.Size = new System.Drawing.Size(541, 94);
             this.openResizeFormbutton.TabIndex = 4;
-            this.openResizeFormbutton.Text = "查看並調整原圖";
+            this.openResizeFormbutton.Text = "調整原圖";
             this.openResizeFormbutton.UseVisualStyleBackColor = true;
             this.openResizeFormbutton.Click += new System.EventHandler(this.OpenResizeForm);
             // 
             // confirmButton
             // 
             this.confirmButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.confirmButton.Location = new System.Drawing.Point(550, 63);
+            this.confirmButton.Location = new System.Drawing.Point(550, 197);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(542, 228);
+            this.confirmButton.Size = new System.Drawing.Size(542, 94);
             this.confirmButton.TabIndex = 5;
             this.confirmButton.Text = "確認";
             this.confirmButton.UseVisualStyleBackColor = true;
@@ -132,6 +132,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ChangeImageSizeForm";
             this.Text = "ChangeImageSizeForm";
+            this.Load += new System.EventHandler(this.ChangeImageSizeForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

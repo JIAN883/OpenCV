@@ -68,7 +68,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
 
                 button1.Text = confirm;
-                button1.BackColor = SystemColors.Control;
+                button1.BackColor = SystemColors.ButtonFace;
                 button1.ForeColor = SystemColors.ControlText;
             }
         }

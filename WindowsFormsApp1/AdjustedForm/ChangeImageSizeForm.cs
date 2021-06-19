@@ -23,6 +23,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        string confirm = "應用", cancel = "還原";
 
         public ChangeImageSizeForm()
         {
@@ -33,6 +34,11 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
+        }
+
+        private void ChangeImageSizeForm_Load(object sender, EventArgs e)
+        {
+            confirmButton.Text = confirm;
         }
 
         private void OpenResizeForm(object sender, EventArgs e)
@@ -69,12 +75,26 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            double xtime = double.Parse(widthTextBox.Text), ytime = double.Parse(HeightTextBox.Text);
-            Mat src = source.Clone();
-            changeImageSize(src.Data, src.Width, src.Height, xtime, ytime, true, out int dstWidth, out int dstHeight, out IntPtr dst);
-            Mat dstImage = new Mat(dstHeight, dstWidth, MatType.CV_8UC3, dst);
+            if (confirmButton.Text.Equals(confirm))
+            {
+                confirmButton.Text = cancel;
+                confirmButton.BackColor = Color.Black;
+                confirmButton.ForeColor = Color.White;
 
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
+                double xtime = double.Parse(widthTextBox.Text), ytime = double.Parse(HeightTextBox.Text);
+                Mat src = source.Clone();
+                changeImageSize(src.Data, src.Width, src.Height, xtime, ytime, true, out int dstWidth, out int dstHeight, out IntPtr dst);
+                Mat dstImage = new Mat(dstHeight, dstWidth, MatType.CV_8UC3, dst);
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
+            }
+            else
+            {
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+
+                confirmButton.Text = confirm;
+                confirmButton.BackColor = SystemColors.ButtonFace;
+                confirmButton.ForeColor = SystemColors.ControlText;
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        float min = 0f, max = 360f;
         string confirm = "應用", cancel = "還原";
 
         public RotateForm()
@@ -34,34 +35,53 @@ namespace WindowsFormsApp1.AdjustedForm
             button1.Text = confirm;
         }
 
+        private void RotateForm_Load(object sender, EventArgs e)
+        {
+            button1.Text = confirm;
+            label2.Text = min.ToString();
+            ImageProcess();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
+            label2.Text = value.ToString();
+        }
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            ImageProcess();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
             if (button1.Text.Equals(confirm))
             {
-                double angle = 0d;
-                try
-                {
-                    angle = double.Parse(textBox1.Text);
-                }
-                catch { }
-                Mat src = source.Clone();
-                Rotate(src.Data, src.Width, src.Height, angle, out IntPtr dst);
-                Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-                topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstImage);
-
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
+
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
             }
             else
             {
-                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
-
                 button1.Text = confirm;
-                button1.BackColor = SystemColors.Control;
+                button1.BackColor = SystemColors.ButtonFace;
                 button1.ForeColor = SystemColors.ControlText;
+
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
             }
         }
+
+        void ImageProcess()
+        {
+            float angle = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
+            Mat src = source.Clone();
+            Rotate(src.Data, src.Width, src.Height, angle, out IntPtr dst);
+            Mat dstImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            pictureBox1.Image = BitmapConverter.ToBitmap(dstImage);
+        }
+
     }
 }

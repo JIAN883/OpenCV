@@ -64,7 +64,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(692, 529);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 527);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // trackBar1
@@ -72,7 +72,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(409, 56);
+            this.trackBar1.Size = new System.Drawing.Size(408, 56);
             this.trackBar1.TabIndex = 2;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
@@ -81,9 +81,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button1, 3);
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 267);
+            this.button1.Location = new System.Drawing.Point(3, 266);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(686, 259);
+            this.button1.Size = new System.Drawing.Size(684, 258);
             this.button1.TabIndex = 3;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -93,9 +93,9 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(418, 0);
+            this.label1.Location = new System.Drawing.Point(417, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 264);
+            this.label1.Size = new System.Drawing.Size(166, 263);
             this.label1.TabIndex = 4;
             this.label1.Text = "Filter kernel\r\n要奇數,整數";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -104,14 +104,15 @@ namespace WindowsFormsApp1.AdjustedForm
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(591, 0);
+            this.label2.Location = new System.Drawing.Point(589, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 264);
+            this.label2.Size = new System.Drawing.Size(98, 263);
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -140,7 +141,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(348, 529);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(346, 527);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label3
@@ -149,7 +150,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(342, 20);
+            this.label3.Size = new System.Drawing.Size(340, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "預覽";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -159,7 +160,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 23);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(342, 503);
+            this.pictureBox1.Size = new System.Drawing.Size(340, 501);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
