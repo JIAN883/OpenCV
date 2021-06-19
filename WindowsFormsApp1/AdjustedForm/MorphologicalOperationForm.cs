@@ -24,6 +24,7 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
         int mode = 0;
+        string confirm = "應用", cancel = "還原";
 
         public MorphologicalOperationForm()
         {
@@ -47,43 +48,64 @@ namespace WindowsFormsApp1.AdjustedForm
             radioButton_BlackHat.Tag = 6;
 
             radioButton_Dilation.Checked = true;
+            button1.Text = confirm;
             label3.Text = (trackBar1.Value * 2 + 1).ToString();
-            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Image = ImageProcess();
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label3.Text = (trackBar1.Value * 2 + 1).ToString();
+        }
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = ImageProcess();
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             mode = (int)(sender as RadioButton).Tag;
+            pictureBox1.Image = ImageProcess();
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text.Equals(confirm))
+            {
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
+            }
+            else
+            {
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.ButtonFace;
+                button1.ForeColor = SystemColors.ControlText;
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Image image = pictureBox1.Image;
+            Form imageForm = new Form();
+            imageForm.WindowState = FormWindowState.Maximized;
+            imageForm.BackgroundImage = image;
+            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
+            imageForm.Show();
+        }
+
+        Bitmap ImageProcess()
         {
             int size = trackBar1.Value;
             Mat src = source.Clone();
             morphologicalOperation(src.Data, src.Width, src.Height, mode, size, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            Bitmap dstImage = BitmapConverter.ToBitmap(dstMat);
-
-            splitContainer1.Panel1.BackgroundImage = dstImage;
+            return BitmapConverter.ToBitmap(dstMat);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (splitContainer1.Panel1.BackgroundImage == null)
-                return;
-
-            Image image = splitContainer1.Panel1.BackgroundImage;
-            Form imageForm = new Form();
-            imageForm.Width = image.Width;
-            imageForm.Height = image.Height;
-            imageForm.BackgroundImage = image;
-            imageForm.BackgroundImageLayout = ImageLayout.Zoom;
-            imageForm.Show();
-        }
     }
 }

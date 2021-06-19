@@ -24,7 +24,6 @@ namespace WindowsFormsApp1
 			spatialDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.spatialDomainProcess;
 			frequencyDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.frequencyDomainPorcess;
 			elseProcess_toolStripMenuItem.Tag = AdjustedFormManager.elseProcess;
-			test_ToolStripMenuItem.Tag = AdjustedFormManager.testProcess;
 
 			//debug模式專用
 			sourceImage = WindowsFormsApp1.Properties.Resources._227995_106;

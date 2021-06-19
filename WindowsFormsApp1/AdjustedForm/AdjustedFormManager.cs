@@ -54,7 +54,6 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("canny的邊緣偵測", typeof(CannyEdgeDetectionForm)),
             new AdjustedFormManager("morphologyEx的影像處理", typeof(MorphologicalOperationForm)),
         };
-        static public AdjustedFormManager[] testProcess = {new AdjustedFormManager("測試", typeof(Test))};
 
         public string Name { get; set; }
         public Type FormType { get; set; }

@@ -23,6 +23,8 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        float min = 0f, max = 255f, defaule_lower = 0f, default_upper = 255f;
+        string confirm = "應用", cancel = "還原";
 
         public ColorSlicingForm()
         {
@@ -35,67 +37,121 @@ namespace WindowsFormsApp1.AdjustedForm
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
         }
 
+        private void ColorSlicingForm_Load(object sender, EventArgs e)
+        {
+            //綁定tag
+            trackBar_HLower.Tag = trackBar_HUpper;
+            trackBar_HUpper.Tag = trackBar_HLower;
+            trackBar_SLower.Tag = trackBar_SUpper;
+            trackBar_SUpper.Tag = trackBar_SLower;
+            trackBar_VLower.Tag = trackBar_VUpper;
+            trackBar_VUpper.Tag = trackBar_VLower;
+
+            //設定trackBar初始值
+            trackBar_HLower.Value = AdjustedFormManager.SetTrackBarValue(trackBar_HLower.Maximum, max, min, defaule_lower);
+            trackBar_SLower.Value = AdjustedFormManager.SetTrackBarValue(trackBar_SLower.Maximum, max, min, defaule_lower);
+            trackBar_VLower.Value = AdjustedFormManager.SetTrackBarValue(trackBar_VLower.Maximum, max, min, defaule_lower);
+            trackBar_HUpper.Value = AdjustedFormManager.SetTrackBarValue(trackBar_HUpper.Maximum, max, min, default_upper);
+            trackBar_SUpper.Value = AdjustedFormManager.SetTrackBarValue(trackBar_SUpper.Maximum, max, min, default_upper);
+            trackBar_VUpper.Value = AdjustedFormManager.SetTrackBarValue(trackBar_VUpper.Maximum, max, min, default_upper);
+
+            pictureBox1.Image = ImageProcess();
+            button1.Text = confirm;
+            UpdataLabel();
+        }
+
+        private void trackBar_upper_Scroll(object sender, EventArgs e)
+        {
+            TrackBar trackBar_upper = sender as TrackBar;
+            TrackBar trackBar_lower = trackBar_upper.Tag as TrackBar;
+
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
+
+            if (upperValue < lowerValue)
+            {
+                trackBar_lower.Value = trackBar_upper.Value;
+                lowerValue = upperValue;
+            }
+
+            UpdataLabel();
+        }
+
+        private void trackBar_lower_Scroll(object sender, EventArgs e)//處理字串
+        {
+            TrackBar trackBar_lower = sender as TrackBar;
+            TrackBar trackBar_upper = trackBar_lower.Tag as TrackBar;
+
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
+
+            if (lowerValue > upperValue)
+            {
+                trackBar_upper.Value = trackBar_lower.Value;
+                upperValue = lowerValue;
+            }
+
+            UpdataLabel();
+        }
+
+        private void trackBar_HLower_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = ImageProcess();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text.Equals(confirm))
+            {
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
+            }
+            else
+            {
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.ButtonFace;
+                button1.ForeColor = SystemColors.ControlText;
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            if (splitContainer1.Panel1.BackgroundImage == null)
-                return;
-
-            Image image = splitContainer1.Panel1.BackgroundImage;
+            Image image = pictureBox1.Image; ;
             Form imageForm = new Form();
-            imageForm.Width = image.Width;
-            imageForm.Height = image.Height;
+            imageForm.WindowState = FormWindowState.Maximized;
             imageForm.BackgroundImage = image;
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
             imageForm.Show();
         }
 
-        private void ColorSlicingForm_Load(object sender, EventArgs e)
+        Bitmap ImageProcess()
         {
-            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int h_high = 0, h_low = 0, s_high = 0, s_low = 0, v_high = 0, v_low = 0;
-            try
-            {
-                h_high = int.Parse(textBox_HHigh.Text);
-                h_low = int.Parse(textBox_HLow.Text);
-                s_high = int.Parse(textBox_SHigh.Text);
-                s_low = int.Parse(textBox_SLow.Text);
-                v_high = int.Parse(textBox_VHigh.Text);
-                v_low = int.Parse(textBox_VLow.Text);
-            }
-            catch { }
-            if (h_high < h_low)
-                SwitchTextBoxContent(textBox_HHigh, textBox_HLow, out h_high, out h_low);
-            if (s_high < s_low)
-                SwitchTextBoxContent(textBox_SHigh, textBox_SLow, out s_high, out s_low);
-            if (v_high < v_low)
-                SwitchTextBoxContent(textBox_VHigh, textBox_VLow, out v_high, out v_low);
-
             Mat src = source.Clone();
-            colorSlicing(src.Data, src.Width, src.Height, h_low, s_low, v_low, h_high, s_high, v_high, out IntPtr dst);
+            GetData(out int upperH, out int lowerH, out int upperS, out int lowerS, out int upperV, out int lowerV);
+            colorSlicing(src.Data, src.Width, src.Height, lowerH, lowerS, lowerV, upperH, upperS, upperV, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            Bitmap dstImage = BitmapConverter.ToBitmap(dstMat);
-
-            splitContainer1.Panel1.BackgroundImage = dstImage;
+            return BitmapConverter.ToBitmap(dstMat);
         }
 
-        void SwitchTextBoxContent(TextBox a, TextBox b, out int aValue, out int bValue)
+        void GetData(out int upperH, out int lowerH, out int upperS, out int lowerS, out int upperV, out int lowerV)
         {
-            aValue = 0;
-            bValue = 0;
-            string temp = a.Text;
-            a.Text = b.Text;
-            b.Text = temp;
+            lowerH = (int)AdjustedFormManager.GetTrackValue(trackBar_HLower.Maximum, trackBar_HLower.Value, max, min);
+            lowerS = (int)AdjustedFormManager.GetTrackValue(trackBar_SLower.Maximum, trackBar_SLower.Value, max, min);
+            lowerV = (int)AdjustedFormManager.GetTrackValue(trackBar_VLower.Maximum, trackBar_VLower.Value, max, min);
+            upperH = (int)AdjustedFormManager.GetTrackValue(trackBar_HUpper.Maximum, trackBar_HUpper.Value, max, min);
+            upperS = (int)AdjustedFormManager.GetTrackValue(trackBar_SUpper.Maximum, trackBar_SUpper.Value, max, min);
+            upperV = (int)AdjustedFormManager.GetTrackValue(trackBar_VUpper.Maximum, trackBar_VUpper.Value, max, min);
+        }
 
-            try
-            {
-                aValue = int.Parse(a.Text);
-                bValue = int.Parse(b.Text);
-            }
-            catch { }
+        void UpdataLabel()
+        {
+            GetData(out int upperH, out int lowerH, out int upperS, out int lowerS, out int upperV, out int lowerV);
+            label_HRange.Text = lowerH.ToString() + " < 選取範圍 < " + upperH.ToString();
+            label_SRange.Text = lowerS.ToString() + " < 選取範圍 < " + upperS.ToString();
+            label_VRange.Text = lowerV.ToString() + " < 選取範圍 < " + upperV.ToString();
         }
 
     }

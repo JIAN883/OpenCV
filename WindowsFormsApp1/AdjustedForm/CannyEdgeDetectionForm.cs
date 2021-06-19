@@ -23,6 +23,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        float min = 0f, max = 255f, lowerDefault = 0f, upperDefault = 255f;
+        string confirm = "應用", cancel = "還原";
+        string description = " < 選取範圍 < ";
 
         public CannyEdgeDetectionForm()
         {
@@ -37,57 +40,90 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void CannyEdgeDetectionForm_Load(object sender, EventArgs e)
         {
-            splitContainer1.Panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            label_lower.Text = lowerDefault.ToString();
+            label_upper.Text = upperDefault.ToString();
+            trackBar_lower.Value = AdjustedFormManager.SetTrackBarValue(trackBar_lower.Maximum, max, min, lowerDefault);
+            trackBar_upper.Value = AdjustedFormManager.SetTrackBarValue(trackBar_upper.Maximum, max, min, upperDefault);
+            label4.Text = label_lower.Text + description + label_upper.Text;
+
+            pictureBox1.Image = ImageProcess();
+        }
+
+        private void trackBar_upper_Scroll(object sender, EventArgs e)
+        {
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
+
+            if (upperValue < lowerValue)
+            {
+                trackBar_lower.Value = trackBar_upper.Value;
+                lowerValue = upperValue;
+            }
+
+            label_upper.Text = upperValue.ToString();
+            label_lower.Text = lowerValue.ToString();
+            label4.Text = label_lower.Text + description + label_upper.Text;
+        }
+
+        private void trackBar_lower_Scroll(object sender, EventArgs e)
+        {
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
+
+            if (lowerValue > upperValue)
+            {
+                trackBar_upper.Value = trackBar_lower.Value;
+                upperValue = lowerValue;
+            }
+
+            label_lower.Text = lowerValue.ToString();
+            label_upper.Text = upperValue.ToString();
+            label4.Text = label_lower.Text + description + label_upper.Text;
+        }
+
+        private void trackBar_upper_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = ImageProcess();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int high = 0, low = 0;
-            try
+            if (button1.Text.Equals(confirm))
             {
-                high = int.Parse(textBox_High.Text);
-                low = int.Parse(textBox_Low.Text);
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
             }
-            catch { }
-            if (high < low)
-                SwitchTextBoxContent(textBox_High, textBox_Low, out high, out low);
-
-            Mat src = source.Clone();
-            cannyEdgeDetection(src.Data, src.Width, src.Height, low, high, out IntPtr dst);
-            Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            Bitmap dstImage = BitmapConverter.ToBitmap(dstMat);
-            
-            splitContainer1.Panel1.BackgroundImage = dstImage;
+            else
+            {
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.ButtonFace;
+                button1.ForeColor = SystemColors.ControlText;
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (splitContainer1.Panel1.BackgroundImage == null)
-                return;
-
-            Image image = splitContainer1.Panel1.BackgroundImage;
+            Image image = pictureBox1.Image;
             Form imageForm = new Form();
-            imageForm.Width = image.Width;
-            imageForm.Height = image.Height;
+            imageForm.WindowState = FormWindowState.Maximized;
             imageForm.BackgroundImage = image;
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
             imageForm.Show();
         }
 
-        void SwitchTextBoxContent(TextBox a, TextBox b, out int aValue, out int bValue)
+        Bitmap ImageProcess()
         {
-            aValue = 0;
-            bValue = 0;
-            string temp = a.Text;
-            a.Text = b.Text;
-            b.Text = temp;
+            Mat src = source.Clone();
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
 
-            try
-            {
-                aValue = int.Parse(a.Text);
-                bValue = int.Parse(b.Text);
-            }
-            catch { }
+            cannyEdgeDetection(src.Data, src.Width, src.Height, lowerValue, upperValue, out IntPtr dst);
+            Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+
+            return BitmapConverter.ToBitmap(dstMat);
         }
 
     }

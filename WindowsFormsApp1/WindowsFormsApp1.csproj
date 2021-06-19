@@ -332,12 +332,6 @@
     <Compile Include="AdjustedForm\ShearForm.Designer.cs">
       <DependentUpon>ShearForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdjustedForm\Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdjustedForm\Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdjustedForm\ThresholdProcessingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,9 +462,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ShearForm.resx">
       <DependentUpon>ShearForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdjustedForm\Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdjustedForm\ThresholdProcessingForm.resx">
       <DependentUpon>ThresholdProcessingForm.cs</DependentUpon>

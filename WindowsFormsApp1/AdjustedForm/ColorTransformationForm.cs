@@ -22,7 +22,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
-        float max = 10f, min = 1f;
+        float max = 10f, min = 0f;
         string confirm = "添加到原圖", cancel = "還原";
 
         public ColorTransformationForm()
@@ -38,25 +38,22 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void ColorTransformationForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "0";
             button1.Text = confirm;
+            label2.Text = min.ToString();
+            pictureBox1.Image = ImageProssce();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            int value = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
-            textBox1.Text = value.ToString();
+            float value = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
+            label2.Text = value.ToString();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
         {
-            try
-            {
-                int value = int.Parse(textBox1.Text);
-                trackBar1.Value = AdjustedFormManager.SetTrackBarValue(trackBar1.Maximum, max, min, value);
-            }
-            catch { }
+            pictureBox1.Image = ImageProssce();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text.Equals(confirm))
@@ -64,7 +61,7 @@ namespace WindowsFormsApp1.AdjustedForm
                 button1.Text = cancel;
                 button1.BackColor = Color.Black;
                 button1.ForeColor = Color.White;
-                ImageProssce();
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
             }
             else
             {
@@ -75,13 +72,13 @@ namespace WindowsFormsApp1.AdjustedForm
             }
         }
 
-        void ImageProssce()
+        Bitmap ImageProssce()
         {
-            int kernelSize = (int)AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
+            float k = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             Mat src = source.Clone();
-            changeIlluminantFromModel(src.Data, src.Width, src.Height, kernelSize, out IntPtr dst);
+            changeIlluminantFromModel(src.Data, src.Width, src.Height, k, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
-            topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
+            return BitmapConverter.ToBitmap(dstMat);
         }
     }
 }

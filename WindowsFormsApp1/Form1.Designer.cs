@@ -39,7 +39,6 @@ namespace WindowsFormsApp1
             this.spatialDomainProcess_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.frequencyDomainProcess_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elseProcess_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox = new System.Windows.Forms.PictureBox();
@@ -71,11 +70,10 @@ namespace WindowsFormsApp1
             this.basicProcess_ToolStripMenuItem,
             this.spatialDomainProcess_ToolStripMenuItem,
             this.frequencyDomainProcess_ToolStripMenuItem,
-            this.elseProcess_toolStripMenuItem,
-            this.test_ToolStripMenuItem});
+            this.elseProcess_toolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1360, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1360, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -134,24 +132,18 @@ namespace WindowsFormsApp1
             this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 23);
             this.elseProcess_toolStripMenuItem.Text = "其他";
             // 
-            // test_ToolStripMenuItem
-            // 
-            this.test_ToolStripMenuItem.Name = "test_ToolStripMenuItem";
-            this.test_ToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
-            this.test_ToolStripMenuItem.Text = "測試";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1360, 742);
+            this.splitContainer1.Size = new System.Drawing.Size(1360, 741);
             this.splitContainer1.SplitterDistance = 544;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -271,7 +263,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem spatialDomainProcess_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel PeekStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem test_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elseProcess_toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem basicProcess_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem frequencyDomainProcess_ToolStripMenuItem;

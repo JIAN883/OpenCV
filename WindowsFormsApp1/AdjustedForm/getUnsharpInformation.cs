@@ -44,8 +44,8 @@ namespace WindowsFormsApp1.AdjustedForm
         private void ButtonClick(object sender, EventArgs e)
         {
             Form temp = new Form();
-            temp.Width = dstImage.Width;
-            temp.Height = dstImage.Height;
+            temp.WindowState = FormWindowState.Maximized;
+            temp.BackgroundImageLayout = ImageLayout.Zoom;
             temp.BackgroundImage = dstImage;
             temp.Show();
         }
