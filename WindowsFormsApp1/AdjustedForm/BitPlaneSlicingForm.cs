@@ -20,6 +20,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         Form1 topForm;
         Mat source;
+        string confirm = "應用", cancel = "還原";
 
         public BitPlaneSlicingForm()
         {
@@ -38,6 +39,26 @@ namespace WindowsFormsApp1.AdjustedForm
                 checkedListBox1.SetItemChecked(i, true);
 
             splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(source);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text.Equals(confirm))
+            {
+                topForm.pictureBox.Image = splitContainer1.Panel1.BackgroundImage.Clone() as Image;
+
+                button1.Text = cancel;
+                button1.BackColor = Color.Black;
+                button1.ForeColor = Color.White;
+            }
+            else
+            {
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+
+                button1.Text = confirm;
+                button1.BackColor = SystemColors.ButtonFace;
+                button1.ForeColor = SystemColors.ControlText;
+            }
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)

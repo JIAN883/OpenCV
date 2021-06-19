@@ -20,13 +20,19 @@ namespace WindowsFormsApp1
 		public Form1()
 		{
 			InitializeComponent();
-
 			//綁定menustrip的tag
-			basicProcess_ToolStripMenuItem.Tag = AdjustedFormManager.basicProcess;
-			spatialDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.spatialDomainProcess;
-			frequencyDomainProcess_ToolStripMenuItem.Tag = AdjustedFormManager.frequencyDomainPorcess;
-			elseProcess_toolStripMenuItem.Tag = AdjustedFormManager.elseProcess;
+			ToolStripMenuItem_basic.Tag = AdjustedFormManager.basic;
 
+			ToolStripMenuItem_spatialDomain_Intensity.Tag = AdjustedFormManager.spatialDomain_Intensity;
+			ToolStripMenuItem_SpatialDomain_SharpeningFilter.Tag = AdjustedFormManager.spatialDomain_SharpeningFilter;
+			ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Tag = AdjustedFormManager.spatialDomain_NoiseImageRecovery;
+
+			ToolStripMenuItem_FrequencyDomain_Intensity.Tag = AdjustedFormManager.frequencyDomain_Intensity;
+			ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Tag = AdjustedFormManager.frequencyDomain_NoiseImageRecovery;
+
+			toolStripMenuItem_ColorImageProcess.Tag = AdjustedFormManager.colorImageProcess;
+
+			toolStripMenuItem_ElseProcess.Tag = AdjustedFormManager.elseProcess;
 			//debug模式專用
 			sourceImage = Properties.Resources._227995_106;
 			pictureBox.Image = sourceImage.Clone() as Bitmap;
@@ -97,15 +103,17 @@ namespace WindowsFormsApp1
 			newForm.Show();
 		}
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)//按下工具欄會重新綁定listbox的物件
-        {
-			if (e.ClickedItem.Tag != null && pictureBox.Image == null) //判斷使用者是否按了修圖功能按鈕
-            {
+		private void ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ToolStripMenuItem temp = sender as ToolStripMenuItem;
+
+			if (pictureBox.Image == null) //判斷使用者是否按了修圖功能按鈕
+			{
 				MessageBox.Show("請打開一張圖片");
 				return;
 			}
 
-			listBox1.DataSource = e.ClickedItem.Tag as AdjustedFormManager[];
+			listBox1.DataSource = temp.Tag as AdjustedFormManager[];
 			listBox1.DisplayMember = "Name";
 			listBox1.SelectedIndex = -1;
 		}
