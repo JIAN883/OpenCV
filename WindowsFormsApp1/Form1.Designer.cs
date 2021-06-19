@@ -33,6 +33,8 @@ namespace WindowsFormsApp1
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.結束ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.basicProcess_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,54 +84,70 @@ namespace WindowsFormsApp1
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem2,
             this.toolStripMenuItem1,
             this.結束ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.fileToolStripMenuItem.Text = "檔案";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "開啟";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenImage);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.toolStripMenuItem2.Text = "另存新檔";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.SaveFile);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
             // 
             // 結束ToolStripMenuItem
             // 
             this.結束ToolStripMenuItem.Name = "結束ToolStripMenuItem";
             this.結束ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.結束ToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.結束ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.結束ToolStripMenuItem.Text = "結束";
             this.結束ToolStripMenuItem.Click += new System.EventHandler(this.CloseApp);
             // 
             // basicProcess_ToolStripMenuItem
             // 
             this.basicProcess_ToolStripMenuItem.Name = "basicProcess_ToolStripMenuItem";
-            this.basicProcess_ToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
+            this.basicProcess_ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.basicProcess_ToolStripMenuItem.Text = "基本處理";
             // 
             // spatialDomainProcess_ToolStripMenuItem
             // 
             this.spatialDomainProcess_ToolStripMenuItem.Name = "spatialDomainProcess_ToolStripMenuItem";
-            this.spatialDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 23);
+            this.spatialDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
             this.spatialDomainProcess_ToolStripMenuItem.Text = "空間域濾波器";
             // 
             // frequencyDomainProcess_ToolStripMenuItem
             // 
             this.frequencyDomainProcess_ToolStripMenuItem.Name = "frequencyDomainProcess_ToolStripMenuItem";
-            this.frequencyDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 23);
+            this.frequencyDomainProcess_ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
             this.frequencyDomainProcess_ToolStripMenuItem.Text = "頻率域濾波器";
             // 
             // elseProcess_toolStripMenuItem
             // 
             this.elseProcess_toolStripMenuItem.Name = "elseProcess_toolStripMenuItem";
-            this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 23);
+            this.elseProcess_toolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.elseProcess_toolStripMenuItem.Text = "其他";
             // 
             // splitContainer1
@@ -205,7 +223,7 @@ namespace WindowsFormsApp1
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1031, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1276, 19);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // PeekStripStatusLabel
@@ -266,6 +284,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem elseProcess_toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem basicProcess_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem frequencyDomainProcess_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

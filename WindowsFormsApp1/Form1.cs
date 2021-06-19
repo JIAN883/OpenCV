@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.AdjustedForm;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
 
 namespace WindowsFormsApp1
 {
@@ -43,6 +45,19 @@ namespace WindowsFormsApp1
 			pictureBox.Image = image.Clone() as Bitmap;
 		}
 
+		private void SaveFile(object sender, EventArgs e)
+		{
+			SaveFileDialog sfDialog = new SaveFileDialog();
+			sfDialog.Filter = "JPG影像(*.jpg)|*.jpg|PNG影像(*.png)|*.png|BMP影象(*.bmp)|*.bmp|所有檔案(*.*)|*.*";
+			sfDialog.FileName = "picture";
+
+			if (sfDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			Mat src = BitmapConverter.ToMat(pictureBox.Image as Bitmap);
+			src.ImWrite(sfDialog.FileName);
+		}
+
 		private void CloseApp(object sender, EventArgs e)
         {
 			Environment.Exit(0);
@@ -66,7 +81,7 @@ namespace WindowsFormsApp1
 			OpenAdjustedForm((listBox.SelectedItem as AdjustedFormManager).FormType);
 		}
 
-        private void OpenAdjustedForm(Type t)//利用type產生物件
+		private void OpenAdjustedForm(Type t)//利用type產生物件
 		{
 			Form newForm = (Form)Activator.CreateInstance(t, this);
 
