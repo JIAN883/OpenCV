@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props')" />
+  <Import Project="..\packages\OpenCvSharp4.runtime.win.4.5.2.20210404\build\net\OpenCvSharp4.runtime.win.props" Condition="Exists('..\packages\OpenCvSharp4.runtime.win.4.5.2.20210404\build\net\OpenCvSharp4.runtime.win.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B3DA51A-4E39-4C97-B938-4D2D57734B40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp4.4.5.2.20210404\lib\net461\OpenCvSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp4.4.5.2.20210404\lib\net461\OpenCvSharp.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.WpfExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp4.WpfExtensions.4.5.2.20210404\lib\net461\OpenCvSharp.WpfExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Forms.4.5.0.617\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.Designer.cs">
+      <DependentUpon>AdaptiveMedianFilter_BGRForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\AdjustedFormManager.cs" />
+    <Compile Include="AdjustedForm\BitPlaneSlicingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\BitPlaneSlicingForm.Designer.cs">
+      <DependentUpon>BitPlaneSlicingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\BlurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\BlurForm.Designer.cs">
+      <DependentUpon>BlurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ButterworthPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ButterworthPassFilterForm.Designer.cs">
+      <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\CannyEdgeDetectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\CannyEdgeDetectionForm.Designer.cs">
+      <DependentUpon>CannyEdgeDetectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.Designer.cs">
+      <DependentUpon>ChangeIlluminantFromCustomizeXZForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeIlluminantFromModelForm.Designer.cs">
+      <DependentUpon>ChangeIlluminantFromModelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeImageSizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeImageSizeForm.Designer.cs">
+      <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeSaturationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ChangeSaturationForm.Designer.cs">
+      <DependentUpon>ChangeSaturationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ColorSlicingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ColorSlicingForm.Designer.cs">
+      <DependentUpon>ColorSlicingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ColorTransformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ColorTransformationForm.Designer.cs">
+      <DependentUpon>ColorTransformationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\CommonFiltersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\CommonFiltersForm.Designer.cs">
+      <DependentUpon>CommonFiltersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\CounterHarmonicMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\CounterHarmonicMeanFilterForm.Designer.cs">
+      <DependentUpon>CounterHarmonicMeanFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\EqualizeHistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\EqualizeHistForm.Designer.cs">
+      <DependentUpon>EqualizeHistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GaussianPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GaussianPassFilterForm.Designer.cs">
+      <DependentUpon>GaussianPassFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GeneratePepperSaltForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GeneratePepperSaltForm.Designer.cs">
+      <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GeometricMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GeometricMeanFilterForm.Designer.cs">
+      <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GetColorPlaneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetColorPlaneForm.Designer.cs">
+      <DependentUpon>GetColorPlaneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetFrequencyDomainInformationForm.Designer.cs">
+      <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GetSingleOrMultiColorImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetSingleOrMultiColorImageForm.Designer.cs">
+      <DependentUpon>GetSingleOrMultiColorImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\GetUnsharpInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\GetUnsharpInformation.Designer.cs">
+      <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HarmonicMeanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HarmonicMeanFilterForm.Designer.cs">
+      <DependentUpon>HarmonicMeanFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HighboostFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HighboostFilterForm.Designer.cs">
+      <DependentUpon>HighboostFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HistogramProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HistogramProcessingForm.Designer.cs">
+      <DependentUpon>HistogramProcessingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\HorizontalIntensityFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\HorizontalIntensityFilterForm.Designer.cs">
+      <DependentUpon>HorizontalIntensityFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\IdealOrGaussianPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\IdealOrGaussianPassFilterForm.Designer.cs">
+      <DependentUpon>IdealOrGaussianPassFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\IdeaPassFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\IdeaPassFilterForm.Designer.cs">
+      <DependentUpon>IdeaPassFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\LaplicianFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\LaplicianFilterForm.Designer.cs">
+      <DependentUpon>LaplicianFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\LogBrightProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\LogBrightProcessingForm.Designer.cs">
+      <DependentUpon>LogBrightProcessingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MaxFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MaxFilter.Designer.cs">
+      <DependentUpon>MaxFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MedianFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MedianFilterForm.Designer.cs">
+      <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MinFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MinFilter.Designer.cs">
+      <DependentUpon>MinFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\MorphologicalOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\MorphologicalOperationForm.Designer.cs">
+      <DependentUpon>MorphologicalOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\NegativeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\NegativeForm.Designer.cs">
+      <DependentUpon>NegativeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\PowerBrightProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\PowerBrightProcessing.Designer.cs">
+      <DependentUpon>PowerBrightProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ReflectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ReflectForm.Designer.cs">
+      <DependentUpon>ReflectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\RotateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\RotateForm.Designer.cs">
+      <DependentUpon>RotateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ShearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ShearForm.Designer.cs">
+      <DependentUpon>ShearForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\ThresholdProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\ThresholdProcessingForm.Designer.cs">
+      <DependentUpon>ThresholdProcessingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedForm\VerticalIntensityFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustedForm\VerticalIntensityFilterForm.Designer.cs">
+      <DependentUpon>VerticalIntensityFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdjustedForm\AdaptiveMedianFilter_BGRForm.resx">
+      <DependentUpon>AdaptiveMedianFilter_BGRForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\BitPlaneSlicingForm.resx">
+      <DependentUpon>BitPlaneSlicingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\BlurForm.resx">
+      <DependentUpon>BlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ButterworthPassFilterForm.resx">
+      <DependentUpon>ButterworthPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\CannyEdgeDetectionForm.resx">
+      <DependentUpon>CannyEdgeDetectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeIlluminantFromCustomizeXZForm.resx">
+      <DependentUpon>ChangeIlluminantFromCustomizeXZForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeIlluminantFromModelForm.resx">
+      <DependentUpon>ChangeIlluminantFromModelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeImageSizeForm.resx">
+      <DependentUpon>ChangeImageSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ChangeSaturationForm.resx">
+      <DependentUpon>ChangeSaturationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ColorSlicingForm.resx">
+      <DependentUpon>ColorSlicingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ColorTransformationForm.resx">
+      <DependentUpon>ColorTransformationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\CommonFiltersForm.resx">
+      <DependentUpon>CommonFiltersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\CounterHarmonicMeanFilterForm.resx">
+      <DependentUpon>CounterHarmonicMeanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\EqualizeHistForm.resx">
+      <DependentUpon>EqualizeHistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GaussianPassFilterForm.resx">
+      <DependentUpon>GaussianPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GeneratePepperSaltForm.resx">
+      <DependentUpon>GeneratePepperSaltForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GeometricMeanFilterForm.resx">
+      <DependentUpon>GeometricMeanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetColorPlaneForm.resx">
+      <DependentUpon>GetColorPlaneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetFrequencyDomainInformationForm.resx">
+      <DependentUpon>GetFrequencyDomainInformationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetSingleOrMultiColorImageForm.resx">
+      <DependentUpon>GetSingleOrMultiColorImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\GetUnsharpInformation.resx">
+      <DependentUpon>GetUnsharpInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HarmonicMeanFilterForm.resx">
+      <DependentUpon>HarmonicMeanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HighboostFilterForm.resx">
+      <DependentUpon>HighboostFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HistogramProcessingForm.resx">
+      <DependentUpon>HistogramProcessingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\HorizontalIntensityFilterForm.resx">
+      <DependentUpon>HorizontalIntensityFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\IdealOrGaussianPassFilterForm.resx">
+      <DependentUpon>IdealOrGaussianPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\IdeaPassFilterForm.resx">
+      <DependentUpon>IdeaPassFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\LaplicianFilterForm.resx">
+      <DependentUpon>LaplicianFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\LogBrightProcessingForm.resx">
+      <DependentUpon>LogBrightProcessingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MaxFilter.resx">
+      <DependentUpon>MaxFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MedianFilterForm.resx">
+      <DependentUpon>MedianFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MinFilter.resx">
+      <DependentUpon>MinFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\MorphologicalOperationForm.resx">
+      <DependentUpon>MorphologicalOperationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\NegativeForm.resx">
+      <DependentUpon>NegativeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\PowerBrightProcessing.resx">
+      <DependentUpon>PowerBrightProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ReflectForm.resx">
+      <DependentUpon>ReflectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\RotateForm.resx">
+      <DependentUpon>RotateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ShearForm.resx">
+      <DependentUpon>ShearForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\ThresholdProcessingForm.resx">
+      <DependentUpon>ThresholdProcessingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustedForm\VerticalIntensityFilterForm.resx">
+      <DependentUpon>VerticalIntensityFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\227995-106.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sample.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sculpture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\relief.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.5.2.20210404\build\net\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.5.2.20210404\build\net\OpenCvSharp4.runtime.win.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.4.5.0.617\build\Xamarin.Forms.targets')" />
+</Project>

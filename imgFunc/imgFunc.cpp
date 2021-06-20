@@ -948,6 +948,7 @@ Mat changeIlluminant(Mat &src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
 	src.convertTo(dst, CV_32FC3, 1.f / 255);
 	cvtColor(dst, xyz, COLOR_BGR2XYZ);
 	xyz = xyz.mul(ratioMat);
+	xyz.convertTo(xyz, CV_8UC3, 255.f);
 	cvtColor(xyz, dst, COLOR_XYZ2BGR);
 	return dst;
 }
@@ -990,7 +991,6 @@ IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width
 	}
 
 	Mat dst= changeIlluminant(src, oriILL, dstIll);
-	dst.convertTo(dst, CV_8UC3,  255);
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
 }
@@ -1137,13 +1137,16 @@ IMGFUNC_API void colorTransformation(unsigned char* imageBuffer, int width, int 
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
 	Mat dst;
+	src.convertTo(src, CV_32FC3, 1.f / 255);
 	split(src, bgr);
+
 	for (int i = 0; i < 3; i++)
 	{
-		bgr[i].convertTo(bgr[i], CV_32FC3, 1.f / 255);
 		bgr[i] = bgr[i] * k;
 	}
 	merge(bgr, 3, dst);
+	dst.convertTo(dst, CV_8UC3, 255.f);
+
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
 }
@@ -1153,14 +1156,15 @@ IMGFUNC_API void colorTransformation(unsigned char* imageBuffer, int width, int 
 	//upperH、upperS、upperV：取色彩範圍的上界(高於此的HSV不會被抓取)
 IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height, int lowerH, int lowerS, int lowerV, int upperH, int upperS, int upperV, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
-	Mat hsv;
+	Mat hsv,temp;
 	Mat dst,catchArea;
 	Scalar lowerBound(lowerH, lowerS, lowerV);
 	Scalar upperBound(upperH, upperS, upperV);
 	cvtColor(src, hsv, COLOR_BGR2HSV);
 	inRange(hsv, lowerBound, upperBound, catchArea);
-	cvtColor(hsv, dst, COLOR_HSV2BGR);
-	bitwise_and(dst, dst, dst, catchArea);
+	cvtColor(hsv, temp, COLOR_HSV2BGR);
+	dst = Mat::zeros(src.size(), CV_8UC3);
+	bitwise_and(temp, temp, dst, catchArea);
 
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
