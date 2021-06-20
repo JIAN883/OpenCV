@@ -47,9 +47,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         FilterTool[] toolArray =
         {
-            new FilterTool(Properties.Resources.sculpture, "雕刻", 0),
-            new FilterTool(Properties.Resources.relief, "浮雕", 1),
-            new FilterTool(Properties.Resources.relief, "其他", 2),
+            new FilterTool(Properties.Resources.sample, "正常", 0),
+            new FilterTool(Properties.Resources.relief, "雕刻", 1),
+            new FilterTool(Properties.Resources.relief, "浮雕", 2),
         };
 
         public CommonFiltersForm()
@@ -92,6 +92,12 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             int mode = (int)((sender as Button).Tag);
             Mat src = source.Clone();
+            if(mode == 0)
+            {
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(src);
+                return;
+            }
+
             CommonFilters(src.Data, src.Width, src.Height, mode, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
