@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.AdjustedForm
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         //其他功能_常用濾鏡選擇(cannyEdgeDetection)
-        //mode：濾鏡模式(0：雕刻，1：浮雕)
+        //mode：濾鏡模式(0：雕刻，1：雕刻，2：浮雕)
         static extern void CommonFilters(IntPtr src, int width, int height, int mode, out IntPtr dstBuffer);
 
         class FilterTool
@@ -48,7 +48,7 @@ namespace WindowsFormsApp1.AdjustedForm
         FilterTool[] toolArray =
         {
             new FilterTool(Properties.Resources.sample, "正常", 0),
-            new FilterTool(Properties.Resources.relief, "雕刻", 1),
+            new FilterTool(Properties.Resources.sculpture, "雕刻", 1),
             new FilterTool(Properties.Resources.relief, "浮雕", 2),
         };
 
