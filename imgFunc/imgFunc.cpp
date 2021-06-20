@@ -663,6 +663,7 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 		Mat dst;
 		Mat BGR_planes[3];
 		Mat DFT_planes[3];
+		src.convertTo(src, CV_32FC3, 1.f / 255);
 		split(src, BGR_planes);
 		DFT_planes[0] = myDFT(BGR_planes[0]);
 		DFT_planes[1] = myDFT(BGR_planes[1]);
@@ -700,6 +701,7 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 		Mat BGR_planes[3];
 		Mat dst;
 
+		src.convertTo(src, CV_32FC3, 1.f / 255);
 		split(src, BGR_planes);
 		DFT_planes[0] = myDFT(BGR_planes[0]);
 		DFT_planes[1] = myDFT(BGR_planes[1]);
