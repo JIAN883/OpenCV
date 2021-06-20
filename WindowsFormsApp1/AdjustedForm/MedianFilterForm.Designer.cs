@@ -59,11 +59,9 @@ namespace WindowsFormsApp1.AdjustedForm
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.trackBar1.Location = new System.Drawing.Point(3, 3);
             this.trackBar1.Maximum = 50;
-            this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(607, 56);
             this.trackBar1.TabIndex = 1;
-            this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_ValueChanged);
             this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
             // 

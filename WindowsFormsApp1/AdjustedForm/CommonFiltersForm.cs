@@ -47,9 +47,9 @@ namespace WindowsFormsApp1.AdjustedForm
 
         FilterTool[] toolArray =
         {
-            new FilterTool(Properties.Resources._227995_106, "雕刻", 0),
-            new FilterTool(Properties.Resources._227995_106, "浮雕", 1),
-            new FilterTool(Properties.Resources._227995_106, "其他", 2),
+            new FilterTool(Properties.Resources.sculpture, "雕刻", 0),
+            new FilterTool(Properties.Resources.relief, "浮雕", 1),
+            new FilterTool(Properties.Resources.relief, "其他", 2),
         };
 
         public CommonFiltersForm()

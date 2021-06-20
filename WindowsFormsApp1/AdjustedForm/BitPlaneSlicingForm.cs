@@ -38,6 +38,7 @@ namespace WindowsFormsApp1.AdjustedForm
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 checkedListBox1.SetItemChecked(i, true);
 
+            button1.Text = confirm;
             splitContainer1.Panel1.BackgroundImage = BitmapConverter.ToBitmap(source);
         }
 

@@ -31,7 +31,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             this.topForm = topForm;
             source = BitmapConverter.ToMat(topForm.pictureBox.Image as Bitmap);
-            label2.Text = trackBar1.Minimum.ToString();
+            label2.Text = (trackBar1.Minimum * 2 + 1).ToString();
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)

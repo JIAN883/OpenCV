@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.AdjustedForm
         Form1 topForm;
         Mat source;
         int mode = 0;
-        string confirm = "查看原圖", cancel = "還原";
+        string confirm = "應用", cancel = "還原";
 
         public GetColorPlaneForm()
         {
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1.AdjustedForm
             radioButton_M.Tag = 4;
             radioButton_Y.Tag = 5;
             radioButton_B.Checked = true;
-            button1.Text = confirm;
+            button2.Text = confirm;
             ImageProssce();
         }
 
@@ -64,6 +64,25 @@ namespace WindowsFormsApp1.AdjustedForm
             imageForm.BackgroundImageLayout = ImageLayout.Zoom;
 
             imageForm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            if (button.Text.Equals(confirm))
+            {
+                button.Text = cancel;
+                button.BackColor = Color.Black;
+                button.ForeColor = Color.White;
+                topForm.pictureBox.Image = pictureBox1.Image.Clone() as Image;
+            }
+            else
+            {
+                button.Text = confirm;
+                button.BackColor = SystemColors.ButtonFace;
+                button.ForeColor = SystemColors.ControlText;
+                topForm.pictureBox.Image = BitmapConverter.ToBitmap(source);
+            }
         }
 
         void ImageProssce()
