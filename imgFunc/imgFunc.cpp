@@ -679,7 +679,8 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 		merge(BGR_planes, 3, dst);
 		//bgr[i].convertTo(bgr[i], CV_32FC3, 1.f / 255);
 		src.convertTo(src, CV_32FC3, 1.f / 255);
-		if (isAddOri)dst = dst + src;
+		if (isAddOri)dst = dst + src/255;
+		dst.convertTo(dst, CV_8UC3, 255.f);
 		//return to c#
 		global_temp_mat[0] = dst.clone();
 		dstBuffer = global_temp_mat[0].data;
@@ -714,7 +715,8 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 		merge(BGR_planes, 3, dst);
 		//0615­×¥¿
 		src.convertTo(src, CV_32FC3, 1.f / 255);
-		if (isAddOri)dst = dst + src;
+		if (isAddOri)dst = dst + src / 255;
+		dst.convertTo(dst, CV_8UC3, 255.f);
 		//return to c#
 		global_temp_mat[0] = dst.clone();
 		dstBuffer = global_temp_mat[0].data;
