@@ -1,4 +1,4 @@
-// imgFunc.cpp : ©w¸q DLL À³¥Îµ{¦¡ªº¶×¥X¨ç¦¡¡C
+ï»¿// imgFunc.cpp : å®šç¾© DLL æ‡‰ç”¨ç¨‹å¼çš„åŒ¯å‡ºå‡½å¼ã€‚
 //
 #include "pch.h"
 #include "imgFunc.h"
@@ -19,7 +19,7 @@ using namespace cv;
 #define M 4
 #define Y 5
 */
-Mat global_temp_mat[global_size];//¥Î¨Ó·í¨ç¦¡©I¥s¤§¶¡ªº´C¤¶¡A¨C¦¸¥Î§¹°O±orelease
+Mat global_temp_mat[global_size];//ç”¨ä¾†ç•¶å‡½å¼å‘¼å«ä¹‹é–“çš„åª’ä»‹ï¼Œæ¯æ¬¡ç”¨å®Œè¨˜å¾—release
 
 void copyContent(Mat src, Mat dst) {
 	int channelNum = src.channels();
@@ -45,7 +45,7 @@ IMGFUNC_API void Blur(unsigned char* imageBuffer, int width, int height, float v
 	}
 }
 /*110 06 12*/
-//CH3_­J´ÔÆQÂø°T PepperPercent,SaltPercent¡A³Ì¤j­È¬Ò¬° 50 (%)¡A³Ì¤p­È¡G0
+//CH3_èƒ¡æ¤’é¹½é›œè¨Š PepperPercent,SaltPercentï¼Œæœ€å¤§å€¼çš†ç‚º 50 (%)ï¼Œæœ€å°å€¼ï¼š0
 IMGFUNC_API void GeneratePepperSalt(unsigned char* imageBuffer, int width, int height, float PepperPercent,float SaltPercent)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -60,7 +60,7 @@ IMGFUNC_API void GeneratePepperSalt(unsigned char* imageBuffer, int width, int h
 	}
 }
 
-//CH3_¤¤¦ì¼ÆÂoªi¾¹ KernelSize Âoªi¾¹kernel = KernelSize * KernelSize
+//CH3_ä¸­ä½æ•¸æ¿¾æ³¢å™¨ KernelSize æ¿¾æ³¢å™¨kernel = KernelSize * KernelSize
 IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height, int KernelSize)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -69,7 +69,7 @@ IMGFUNC_API void MedianFilter(unsigned char* imageBuffer, int width, int height,
 	}
 }
 
-//CH3_³Ì¤j­ÈÂoªi¾¹ mode¡G0->maxFilter,!=0->minFilter   KernelSize Âoªi¾¹kernel = KernelSize * KernelSize (¥i±µ¨ü°¸¼Æ*°¸¼Æ) 
+//CH3_æœ€å¤§å€¼æ¿¾æ³¢å™¨ modeï¼š0->maxFilter,!=0->minFilter   KernelSize æ¿¾æ³¢å™¨kernel = KernelSize * KernelSize (å¯æ¥å—å¶æ•¸*å¶æ•¸) 
 IMGFUNC_API void MaxOrMinFilter(unsigned char* imageBuffer, int width, int height,int mode, int KernelSize,void* &dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -81,7 +81,7 @@ IMGFUNC_API void MaxOrMinFilter(unsigned char* imageBuffer, int width, int heigh
 		for (int ch = 0; ch < channelNum; ch++) {
 			for (int row = 0; row < src.rows; row++) {
 				for (int column = 0; column < src.cols; column++) {
-					//¶]kernel §PÂ_Channel¬O¦h¤Ö ¤]§PÂ_maxValue©ÎminValue
+					//è·‘kernel åˆ¤æ–·Channelæ˜¯å¤šå°‘ ä¹Ÿåˆ¤æ–·maxValueæˆ–minValue
 					for (int tempR = row- KernelSize/2; tempR < (row+(KernelSize+1)/2); tempR++) {
 						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
 							if (tempR < 0 || tempC < 0 || tempR >= src.rows|| tempC >= src.cols) continue;
@@ -130,9 +130,9 @@ IMGFUNC_API void MaxOrMinFilter(unsigned char* imageBuffer, int width, int heigh
 	}
 }
 
-//CH3_¾U¤ÆÂoªi¾¹(Sharp/Laplician filter)
-	//isAddOriImage¡Gtrue->¦³¦A¥[­ì¹Ï,false->¨S¦³¥[­ì¹Ï(¯ÂÃä½t¸ê°T)
-	//¨S¦³¶}©P³ò4®æ¡A¥Ø«e²Î¤@©P³ò8®æ
+//CH3_éŠ³åŒ–æ¿¾æ³¢å™¨(Sharp/Laplician filter)
+	//isAddOriImageï¼štrue->æœ‰å†åŠ åŸåœ–,false->æ²’æœ‰åŠ åŸåœ–(ç´”é‚Šç·£è³‡è¨Š)
+	//æ²’æœ‰é–‹å‘¨åœ4æ ¼ï¼Œç›®å‰çµ±ä¸€å‘¨åœ8æ ¼
 IMGFUNC_API void LaplicianFilter(unsigned char* imageBuffer, int width, int height, bool isAddOriImage)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -145,7 +145,7 @@ IMGFUNC_API void LaplicianFilter(unsigned char* imageBuffer, int width, int heig
 	}
 }
 
-//CH3_¨ú±o¶w¤Æ¹Ï§Î¸ê°T(UnsharpInformation)
+//CH3_å–å¾—éˆåŒ–åœ–å½¢è³‡è¨Š(UnsharpInformation)
 	//
 IMGFUNC_API void getUnsharpInformation(unsigned char* imageBuffer, int width, int height, void*& dstBuffer)
 {
@@ -155,15 +155,15 @@ IMGFUNC_API void getUnsharpInformation(unsigned char* imageBuffer, int width, in
 		//Prepare and apply the Laplacian filter
 		Mat mask = (Mat_<double>(3, 3) << 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9);
 		filter2D(src, blu, src.depth(), mask);
-		unsharp_mask = src - blu; //¨ú¥X¯S¼x(unsharp mask)
+		unsharp_mask = src - blu; //å–å‡ºç‰¹å¾µ(unsharp mask)
 		global_temp_mat[0] = unsharp_mask.clone();
 		dstBuffer = global_temp_mat[0].data;
 		//copyContent(unsharp_mask, src);
 	}
 }
 
-//CH3_°ª¼W´TÂoªi¾¹(Highboost filter)
-	//k¡G¶w¤Æ­¿¼Æ float(>=0)
+//CH3_é«˜å¢å¹…æ¿¾æ³¢å™¨(Highboost filter)
+	//kï¼šéˆåŒ–å€æ•¸ float(>=0)
 IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int height,float k, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -172,7 +172,7 @@ IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int heig
 		//Prepare and apply the Laplacian filter
 		Mat mask = (Mat_<double>(3, 3) << 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9, 1. / 9);
 		filter2D(src, blu, src.depth(), mask);
-		unsharp_mask = src - blu; //¨ú¥X¯S¼x(unsharp mask)
+		unsharp_mask = src - blu; //å–å‡ºç‰¹å¾µ(unsharp mask)
 		sharp_mat = src + k * unsharp_mask;
 		global_temp_mat[0] = sharp_mat.clone();
 		dstBuffer = global_temp_mat[0].data;
@@ -180,10 +180,10 @@ IMGFUNC_API void HighboostFilter(unsigned char* imageBuffer, int width, int heig
 	}
 }
 
-//CH3_¨ú±o¤ô¥­©Î««ª½±j«×¼v¹³(display horizontal intensity images)
-	//¥Ø«emask¯x°}¤j¤p©T©w
-	//isHorizontal¡Gtrue->¤ô¥­,false->««ª½
-	//isAddOriImage¡Gtrue->¦³¦A¥[­ì¹Ï,false->¨S¦³¥[­ì¹Ï(¯Â¤ô¥­©Î««ª½±j«×¸ê°T)
+//CH3_å–å¾—æ°´å¹³æˆ–å‚ç›´å¼·åº¦å½±åƒ(display horizontal intensity images)
+	//ç›®å‰maskçŸ©é™£å¤§å°å›ºå®š
+	//isHorizontalï¼štrue->æ°´å¹³,false->å‚ç›´
+	//isAddOriImageï¼štrue->æœ‰å†åŠ åŸåœ–,false->æ²’æœ‰åŠ åŸåœ–(ç´”æ°´å¹³æˆ–å‚ç›´å¼·åº¦è³‡è¨Š)
 IMGFUNC_API void horizontalIntensityFilter(unsigned char* imageBuffer, int width, int height,bool isHorizontal,bool isAddOriImage, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -203,9 +203,9 @@ IMGFUNC_API void horizontalIntensityFilter(unsigned char* imageBuffer, int width
 	}
 }
 
-//CH3_»Ö­È³B²z(thresholding for Image)
-	//thresh¡G»Ö­È±ø¥ó (0~254,¥i¹w³]127)
-	//maxval¡GÄ²µo»Ö­È«á³]©wªº­È (0~254 ¥i¹w³]255)
+//CH3_é–¥å€¼è™•ç†(thresholding for Image)
+	//threshï¼šé–¥å€¼æ¢ä»¶ (0~254,å¯é è¨­127)
+	//maxvalï¼šè§¸ç™¼é–¥å€¼å¾Œè¨­å®šçš„å€¼ (0~254 å¯é è¨­255)
 IMGFUNC_API void thresholdProcessing(unsigned char* imageBuffer, int width, int height, double thresh, double maxval)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -214,7 +214,7 @@ IMGFUNC_API void thresholdProcessing(unsigned char* imageBuffer, int width, int 
 	}
 }
 
-//CH3_­t¤ù(negative)
+//CH3_è² ç‰‡(negative)
 IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -227,8 +227,8 @@ IMGFUNC_API void negative(unsigned char* imageBuffer, int width, int height)
 	}
 }
 
-//CH3_«G«×½Õ¾ã1(Log)
-	//c ¡G«G«×­¿²v(>1,¥i¹w³]2,float)
+//CH3_äº®åº¦èª¿æ•´1(Log)
+	//c ï¼šäº®åº¦å€ç‡(>1,å¯é è¨­2,float)
 IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int height,float c, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -252,9 +252,9 @@ IMGFUNC_API void brightProcessing_log(unsigned char* imageBuffer, int width, int
 	}
 }
 
-//CH3_«G«×½Õ¾ã2(Power conversion)
-	//c ¡G«G«×­¿²v(>=1,¥i¹w³]1,float)
-	//gamma¡G«ü¼Æ°Ñ¼Æ(=1->¤£ÅÜ, >1->ÅÜ·t, <1->ÅÜ«G,¥i¹w³]0.5)
+//CH3_äº®åº¦èª¿æ•´2(Power conversion)
+	//c ï¼šäº®åº¦å€ç‡(>=1,å¯é è¨­1,float)
+	//gammaï¼šæŒ‡æ•¸åƒæ•¸(=1->ä¸è®Š, >1->è®Šæš—, <1->è®Šäº®,å¯é è¨­0.5)
 IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, int height, float c,float gamma, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -280,8 +280,8 @@ IMGFUNC_API void brightProcessing_power(unsigned char* imageBuffer, int width, i
 	}
 }
 
-//CH3_¦ì¤¸¥­­±¤Á¤ù(bit plane Slicing)
-	//bit¡Gbit¦h¤Öªº¤Á¤ù(int,­È°ì0~7)
+//CH3_ä½å…ƒå¹³é¢åˆ‡ç‰‡(bit plane Slicing)
+	//bitï¼šbitå¤šå°‘çš„åˆ‡ç‰‡(int,å€¼åŸŸ0~7)
 IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int height, int bit)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -301,7 +301,7 @@ IMGFUNC_API void bitPlaneSlicing(unsigned char* imageBuffer, int width, int heig
 	}
 }
 
-//CH3_ª½¤è¹Ï(Histogram Processing)
+//CH3_ç›´æ–¹åœ–(Histogram Processing)
 IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -312,28 +312,28 @@ IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int h
 		Mat hist_b, hist_g, hist_r;
 		Mat bgr_planes[3];
 		split(src, bgr_planes);
-		calcHist(&bgr_planes[0], 1, 0, noArray(), hist_b, 1, &histSize, &histRange); //¨Ó·½·Ó¤ù¡A·Ó¤ù¼Æ¶q¡ACHANNEL¡A¾B¸n(1±Ä¥Î 0¤£±Ä¥Î)¡AOUTPUT¡Aºû«×¡Aª½¤è¹Ï¤j¤p¡Aª½¤è¹Ï­È½d³ò
-		calcHist(&bgr_planes[1], 1, 0, noArray(), hist_g, 1, &histSize, &histRange); //¨Ó·½·Ó¤ù¡A·Ó¤ù¼Æ¶q¡ACHANNEL¡A¾B¸n(1±Ä¥Î 0¤£±Ä¥Î)¡AOUTPUT¡Aºû«×¡Aª½¤è¹Ï¤j¤p¡Aª½¤è¹Ï­È½d³ò
-		calcHist(&bgr_planes[2], 1, 0, noArray(), hist_r, 1, &histSize, &histRange); //¨Ó·½·Ó¤ù¡A·Ó¤ù¼Æ¶q¡ACHANNEL¡A¾B¸n(1±Ä¥Î 0¤£±Ä¥Î)¡AOUTPUT¡Aºû«×¡Aª½¤è¹Ï¤j¤p¡Aª½¤è¹Ï­È½d³ò
-		normalize(hist_b, hist_b, 0, src.rows, NORM_MINMAX);//¥¿³W¤Æ(¥H³Ì°ªªºª½¤è·í³Ì°ªÂI) //NORM_MINMAX¡G¿ï¾Üªº¥¿³W¤Æ¤èªk 389¡G³Ì°ª 0¡G³Ì§C
+		calcHist(&bgr_planes[0], 1, 0, noArray(), hist_b, 1, &histSize, &histRange); //ä¾†æºç…§ç‰‡ï¼Œç…§ç‰‡æ•¸é‡ï¼ŒCHANNELï¼Œé®ç½©(1æ¡ç”¨ 0ä¸æ¡ç”¨)ï¼ŒOUTPUTï¼Œç¶­åº¦ï¼Œç›´æ–¹åœ–å¤§å°ï¼Œç›´æ–¹åœ–å€¼ç¯„åœ
+		calcHist(&bgr_planes[1], 1, 0, noArray(), hist_g, 1, &histSize, &histRange); //ä¾†æºç…§ç‰‡ï¼Œç…§ç‰‡æ•¸é‡ï¼ŒCHANNELï¼Œé®ç½©(1æ¡ç”¨ 0ä¸æ¡ç”¨)ï¼ŒOUTPUTï¼Œç¶­åº¦ï¼Œç›´æ–¹åœ–å¤§å°ï¼Œç›´æ–¹åœ–å€¼ç¯„åœ
+		calcHist(&bgr_planes[2], 1, 0, noArray(), hist_r, 1, &histSize, &histRange); //ä¾†æºç…§ç‰‡ï¼Œç…§ç‰‡æ•¸é‡ï¼ŒCHANNELï¼Œé®ç½©(1æ¡ç”¨ 0ä¸æ¡ç”¨)ï¼ŒOUTPUTï¼Œç¶­åº¦ï¼Œç›´æ–¹åœ–å¤§å°ï¼Œç›´æ–¹åœ–å€¼ç¯„åœ
+		normalize(hist_b, hist_b, 0, src.rows, NORM_MINMAX);//æ­£è¦åŒ–(ä»¥æœ€é«˜çš„ç›´æ–¹ç•¶æœ€é«˜é») //NORM_MINMAXï¼šé¸æ“‡çš„æ­£è¦åŒ–æ–¹æ³• 389ï¼šæœ€é«˜ 0ï¼šæœ€ä½
 		normalize(hist_g, hist_g, 0, src.rows, NORM_MINMAX);
 		normalize(hist_r, hist_r, 0, src.rows, NORM_MINMAX);
 		// Draw the histogram
 		int hist_w = 512, hist_h = 400, bin_w = (double)hist_w / histSize + 0.5;
 		//hist_b
-		global_temp_mat[0]=Mat(hist_h, hist_w, CV_8U, Scalar(255)); //¹Ï°ª ¹Ï¼e ³æ¦ì  Scalar(255)¡G·|¬O¥ş¥Õ¦â(¥ş³¡255)
+		global_temp_mat[0]=Mat(hist_h, hist_w, CV_8U, Scalar(255)); //åœ–é«˜ åœ–å¯¬ å–®ä½  Scalar(255)ï¼šæœƒæ˜¯å…¨ç™½è‰²(å…¨éƒ¨255)
 		for (int i = 0; i < histSize; i++) {
-			line(global_temp_mat[0], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_b.at<float>(i)), Scalar(0)); //µe½u *¹Ï¬O¥ª¤W¬°­ìÂI¡G¥Ñ©³©¹¤Wµe
+			line(global_temp_mat[0], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_b.at<float>(i)), Scalar(0)); //ç•«ç·š *åœ–æ˜¯å·¦ä¸Šç‚ºåŸé»ï¼šç”±åº•å¾€ä¸Šç•«
 		}
 		//hist_g
-		global_temp_mat[1] = Mat(hist_h, hist_w, CV_8U, Scalar(255)); //¹Ï°ª ¹Ï¼e ³æ¦ì  Scalar(255)¡G·|¬O¥ş¥Õ¦â(¥ş³¡255)
+		global_temp_mat[1] = Mat(hist_h, hist_w, CV_8U, Scalar(255)); //åœ–é«˜ åœ–å¯¬ å–®ä½  Scalar(255)ï¼šæœƒæ˜¯å…¨ç™½è‰²(å…¨éƒ¨255)
 		for (int i = 0; i < histSize; i++) {
-			line(global_temp_mat[1], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_g.at<float>(i)), Scalar(0)); //µe½u *¹Ï¬O¥ª¤W¬°­ìÂI¡G¥Ñ©³©¹¤Wµe
+			line(global_temp_mat[1], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_g.at<float>(i)), Scalar(0)); //ç•«ç·š *åœ–æ˜¯å·¦ä¸Šç‚ºåŸé»ï¼šç”±åº•å¾€ä¸Šç•«
 		}
 		//hist_r
-		global_temp_mat[2] = Mat(hist_h, hist_w, CV_8U, Scalar(255)); //¹Ï°ª ¹Ï¼e ³æ¦ì  Scalar(255)¡G·|¬O¥ş¥Õ¦â(¥ş³¡255)
+		global_temp_mat[2] = Mat(hist_h, hist_w, CV_8U, Scalar(255)); //åœ–é«˜ åœ–å¯¬ å–®ä½  Scalar(255)ï¼šæœƒæ˜¯å…¨ç™½è‰²(å…¨éƒ¨255)
 		for (int i = 0; i < histSize; i++) {
-			line(global_temp_mat[2], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_r.at<float>(i)), Scalar(0)); //µe½u *¹Ï¬O¥ª¤W¬°­ìÂI¡G¥Ñ©³©¹¤Wµe
+			line(global_temp_mat[2], Point(bin_w * i, hist_h), Point(bin_w * i, hist_h - hist_r.at<float>(i)), Scalar(0)); //ç•«ç·š *åœ–æ˜¯å·¦ä¸Šç‚ºåŸé»ï¼šç”±åº•å¾€ä¸Šç•«
 		}
 		//return to c#
 		dstBufferB = global_temp_mat[0].data;
@@ -343,7 +343,7 @@ IMGFUNC_API void HistogramProcessing(unsigned char* imageBuffer,int width, int h
 	}
 }
 
-//CH3_µ¥¤Æª½¤è¹Ï³B²z(equalizeHist)
+//CH3_ç­‰åŒ–ç›´æ–¹åœ–è™•ç†(equalizeHist)
 	//mode (int,1->RGB,2->HSV)
 IMGFUNC_API void equalizeHist(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer)
 {
@@ -372,21 +372,21 @@ IMGFUNC_API void equalizeHist(unsigned char* imageBuffer, int width, int height,
 	}
 }
 
-//CH2_§ïÅÜªø¼e¤ñ¨Ò(change the aspect ratio)
-	//xtimes ¡Gx¶b©ñ¤j­¿¼Æ(double,>0.1)
-	//ytimes ¡Gx¶b©ñ¤j­¿¼Æ(double,>0.1)
-	//isfullsize ¡G°O¾ĞÅé¤j¤p¬O§_ÀHµÛ©ñ¤jÁY¤p¦Ó§ïÅÜ (true¡GÀHµÛ·s¹Ï§ïÅÜ¤j¤p¡Afalse¡G¤£§ïÅÜ¤j¤p¡A¥iª½±µ³]¦¨true)
+//CH2_æ”¹è®Šé•·å¯¬æ¯”ä¾‹(change the aspect ratio)
+	//xtimes ï¼šxè»¸æ”¾å¤§å€æ•¸(double,>0.1)
+	//ytimes ï¼šxè»¸æ”¾å¤§å€æ•¸(double,>0.1)
+	//isfullsize ï¼šè¨˜æ†¶é«”å¤§å°æ˜¯å¦éš¨è‘—æ”¾å¤§ç¸®å°è€Œæ”¹è®Š (trueï¼šéš¨è‘—æ–°åœ–æ”¹è®Šå¤§å°ï¼Œfalseï¼šä¸æ”¹è®Šå¤§å°ï¼Œå¯ç›´æ¥è¨­æˆtrue)
 IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int height, double xtimes, double ytimes, bool isfullsize, int& dst_width, int& dst_height, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 		/*
 		Mat dst;
-		Mat M = (Mat_<double>(2, 3) << xtimes, 0, 0, 0, ytimes, 0); // prepare matrix 2->colunm¼Æ 3->row¼Æ¡A¥ª¤W¨ì¥ª¤U¤¤¤W¨ì¤¤¤U
+		Mat M = (Mat_<double>(2, 3) << xtimes, 0, 0, 0, ytimes, 0); // prepare matrix 2->colunmæ•¸ 3->rowæ•¸ï¼Œå·¦ä¸Šåˆ°å·¦ä¸‹ä¸­ä¸Šåˆ°ä¸­ä¸‹
 		if (isfullsize) {
 			dst = Mat::zeros(src.rows * xtimes, src.cols * ytimes, CV_8UC3);
 			Size mysize = dst.size();
-			warpAffine(src, dst, M, mysize); //size¥i¥Hª½±µ°µ°£ªk (ex¡Gªø¼e³£1/3¡GorgImg.size()/3)
+			warpAffine(src, dst, M, mysize); //sizeå¯ä»¥ç›´æ¥åšé™¤æ³• (exï¼šé•·å¯¬éƒ½1/3ï¼šorgImg.size()/3)
 		}
 		else {
 			warpAffine(src, dst, M, src.size()); // call opencv's affine transform
@@ -405,15 +405,15 @@ IMGFUNC_API void changeImageSize(unsigned char* imageBuffer, int width, int heig
 	}
 }
 
-//CH2_±ÛÂà(Rotate)
-	//angle ¡G¶¶®É°w±ÛÂàangle«×(double)
+//CH2_æ—‹è½‰(Rotate)
+	//angle ï¼šé †æ™‚é‡æ—‹è½‰angleåº¦(double)
 IMGFUNC_API void Rotate(unsigned char* imageBuffer, int width, int height, double angle, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 		Mat dst;
 		double rad = PI * angle / 180.0; // degree to radian
-		Mat M = (Mat_<double>(2, 3) << cos(rad), -sin(rad), 0, sin(rad), cos(rad), 0); // prepare matrix 2->colunm¼Æ 3->row¼Æ¡A¥ª¤W¨ì¥ª¤U¤¤¤W¨ì¤¤¤U
+		Mat M = (Mat_<double>(2, 3) << cos(rad), -sin(rad), 0, sin(rad), cos(rad), 0); // prepare matrix 2->colunmæ•¸ 3->rowæ•¸ï¼Œå·¦ä¸Šåˆ°å·¦ä¸‹ä¸­ä¸Šåˆ°ä¸­ä¸‹
 		warpAffine(src, dst, M, src.size()); // call opencv's affine transform
 		//return to c#
 		global_temp_mat[0] = dst.clone();
@@ -421,9 +421,9 @@ IMGFUNC_API void Rotate(unsigned char* imageBuffer, int width, int height, doubl
 	}
 }
 
-//CH2_°Å§Î(Shear)
-	//xshear ¡G¤ô¥­°Å§Îµ{«× (double)
-	//yshear ¡G««ª½°Å§Îµ{«× (double)
+//CH2_å‰ªå½¢(Shear)
+	//xshear ï¼šæ°´å¹³å‰ªå½¢ç¨‹åº¦ (double)
+	//yshear ï¼šå‚ç›´å‰ªå½¢ç¨‹åº¦ (double)
 IMGFUNC_API void Shear(unsigned char* imageBuffer, int width, int height, double xshear, double yshear, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -438,9 +438,9 @@ IMGFUNC_API void Shear(unsigned char* imageBuffer, int width, int height, double
 	}
 }
 
-//CH2_Ãè®g(Reflect)
-	//isReflectAboutXaxis¡Gtrue->¤W¤UÃè®g false->¤£¤W¤UÃè®g
-	//isReflectAboutYaxis¡Gtrue->¥ª¥kÃè®g false->¤£¥ª¥kÃè®g
+//CH2_é¡å°„(Reflect)
+	//isReflectAboutXaxisï¼štrue->ä¸Šä¸‹é¡å°„ false->ä¸ä¸Šä¸‹é¡å°„
+	//isReflectAboutYaxisï¼štrue->å·¦å³é¡å°„ false->ä¸å·¦å³é¡å°„
 IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool isReflectAboutXaxis, bool isReflectAboutYaxis, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -448,13 +448,13 @@ IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool
 		Mat dst,M;
 		if (isReflectAboutXaxis)
 			if (isReflectAboutYaxis)
-				M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, -1, src.rows); //¤W¤U¥ª¥kÃè®g
+				M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, -1, src.rows); //ä¸Šä¸‹å·¦å³é¡å°„
 			else
-				M = (Mat_<double>(2, 3) << 1, 0, 0, 0, -1, src.rows); //¤W¤UÃè®g
+				M = (Mat_<double>(2, 3) << 1, 0, 0, 0, -1, src.rows); //ä¸Šä¸‹é¡å°„
 		else if(isReflectAboutYaxis)
-			M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, 1, 0); //¥ª¥kÃè®g
+			M = (Mat_<double>(2, 3) << -1, 0, src.cols, 0, 1, 0); //å·¦å³é¡å°„
 		else 
-			M = (Mat_<double>(2, 3) << 1, 0, 0, 0, 1, 0); //ºû«ù¤£ÅÜ
+			M = (Mat_<double>(2, 3) << 1, 0, 0, 0, 1, 0); //ç¶­æŒä¸è®Š
 		warpAffine(src, dst, M, src.size());
 
 		//return to c#
@@ -463,7 +463,7 @@ IMGFUNC_API void Reflect(unsigned char* imageBuffer, int width, int height, bool
 	}
 }
 
-//CH4_ÀW²v°ì¹Ï§Î½Õ¾ã(¨Ï¶V¤¤¶¡¶V§CÀW) ----¥\¯à¨ç¦¡----
+//CH4_é »ç‡åŸŸåœ–å½¢èª¿æ•´(ä½¿è¶Šä¸­é–“è¶Šä½é ») ----åŠŸèƒ½å‡½å¼----
 void swapFreq(Mat& F)
 {
 	int cx = F.cols / 2;
@@ -482,7 +482,7 @@ void swapFreq(Mat& F)
 	tmp.copyTo(q2);
 }
 
-//CH4_DFT transform ----¥\¯à¨ç¦¡----
+//CH4_DFT transform ----åŠŸèƒ½å‡½å¼----
 Mat myDFT(Mat& f)
 {
 	Mat F; //frequency data
@@ -500,7 +500,7 @@ Mat myDFT(Mat& f)
 	return F;
 }
 
-//CH4_DFT_BGR transform ----¥\¯à¨ç¦¡----¨S¥Î¨ì³á!! ¦³°İÃD
+//CH4_DFT_BGR transform ----åŠŸèƒ½å‡½å¼----æ²’ç”¨åˆ°å–”!! æœ‰å•é¡Œ
 Mat* myDFT_BGR(Mat& f)
 {
 	Mat BGR_planes[3];
@@ -512,7 +512,7 @@ Mat* myDFT_BGR(Mat& f)
 	return DFT_planes;
 }
 
-//IDFT transform ----¥\¯à¨ç¦¡----
+//IDFT transform ----åŠŸèƒ½å‡½å¼----
 Mat myIDFT(Mat& F)
 {
 	Mat planes[2];
@@ -522,7 +522,7 @@ Mat myIDFT(Mat& F)
 	return planes[0].clone();
 }
 
-//IDFT_BGR transform ----¥\¯à¨ç¦¡----¨S¥Î¨ì³á!! ¦³°İÃD
+//IDFT_BGR transform ----åŠŸèƒ½å‡½å¼----æ²’ç”¨åˆ°å–”!! æœ‰å•é¡Œ
 Mat myIDFT_BGR(Mat& F)
 {
 	Mat dst_planes[3];
@@ -530,12 +530,12 @@ Mat myIDFT_BGR(Mat& F)
 	return dst;
 }
 
-//CH4_¨ú±oÀW²v¸ê°T¹Ï ----¥\¯à¨ç¦¡----
-	//­ì¹Ï·íinput¡A¦^¶Ç¥iª½±µ¨q¹ÏªºMat
+//CH4_å–å¾—é »ç‡è³‡è¨Šåœ– ----åŠŸèƒ½å‡½å¼----
+	//åŸåœ–ç•¶inputï¼Œå›å‚³å¯ç›´æ¥ç§€åœ–çš„Mat
 Mat getFrequencyDomainInformation_internalFunc(Mat& src) {
 	if (!src.empty()) {
 		src.convertTo(src, CV_32F, 1.f / 255);
-		Mat F = myDFT(src); //F¡GÀW²v°ìªº¹Ï
+		Mat F = myDFT(src); //Fï¼šé »ç‡åŸŸçš„åœ–
 		//Compute manitude of frequencies
 		Mat planes[2], Fmag;
 		split(F, planes); // planes[0] = Re(DFT(I), planes[1] = Im(DFT(I))
@@ -549,7 +549,7 @@ Mat getFrequencyDomainInformation_internalFunc(Mat& src) {
 	}
 }
 
-//CH4_¨ú±oÀW²v¸ê°T¹Ï(getFrequencyDomainInformation)
+//CH4_å–å¾—é »ç‡è³‡è¨Šåœ–(getFrequencyDomainInformation)
 IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int width, int height, void*& dstBufferB, void*& dstBufferG, void*& dstBufferR)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -572,7 +572,7 @@ IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int w
 	}
 }
 
-//CH4_²z·Q§C³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_ç†æƒ³ä½é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void IdealLowPassFilter(Mat& F, int d0)
 {
 	Mat H(F.rows, F.cols, CV_32FC2, Scalar(0, 0));
@@ -580,7 +580,7 @@ void IdealLowPassFilter(Mat& F, int d0)
 	F = F.mul(H);
 }
 
-//CH4_²z·Q°ª³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_ç†æƒ³é«˜é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void IdealHighPassFilter(Mat& F, int d0)
 {
 	Mat H(F.rows, F.cols, CV_32FC2, Scalar(1, 1));
@@ -588,7 +588,7 @@ void IdealHighPassFilter(Mat& F, int d0)
 	F = F.mul(H);
 }
 
-//CH4_°ª´µ§C³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_é«˜æ–¯ä½é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void GaussianLowPassFilter(Mat& F, int d0)
 {
 	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
@@ -604,7 +604,7 @@ void GaussianLowPassFilter(Mat& F, int d0)
 	F = F.mul(H);
 }
 
-//CH4_°ª´µ°ª³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_é«˜æ–¯é«˜é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void GaussianHighPassFilter(Mat& F, int d0)
 {
 	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
@@ -620,7 +620,7 @@ void GaussianHighPassFilter(Mat& F, int d0)
 	F = F.mul(H);
 }
 
-//CH4_Butterworth§C³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_Butterworthä½é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void ButterworthLowPassFilter(Mat& F, int d0, float n)
 {
 	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
@@ -636,7 +636,7 @@ void ButterworthLowPassFilter(Mat& F, int d0, float n)
 	F = F.mul(H);
 }
 
-//CH4_Butterworth°ª³qÂoªi¾¹ ----¥\¯à¨ç¦¡----
+//CH4_Butterworthé«˜é€šæ¿¾æ³¢å™¨ ----åŠŸèƒ½å‡½å¼----
 void ButterworthHighPassFilter(Mat& F, int d0, float n)
 {
 	Mat_<Vec2f> H = Mat(F.rows, F.cols, CV_32FC2);
@@ -652,11 +652,11 @@ void ButterworthHighPassFilter(Mat& F, int d0, float n)
 	F = F.mul(H);
 }
 
-//CH4_(²z·Q/°ª´µ)(°ª³q/§C³q)Âoªi¾¹(idealOrGaussianPassFilter)
-	//isIdeal¡Gtrue->²z·QÂoªi¾¹,false->°ª´µÂoªi¾¹
-	//isHighPass¡Gtrue->°ª³q,false->§C³q
-	//d0¡G¼vÅT¤j¤p°Ñ¼Æ (int ³Ì¤p1)
-	//isAddOri¡Gtrue->³Ì«á¦A¥[¤W­ì¹Ï¡Afalse->¯ÂºéÅã¥ÜÂoªi«áªº¹Ï¤ù
+//CH4_(ç†æƒ³/é«˜æ–¯)(é«˜é€š/ä½é€š)æ¿¾æ³¢å™¨(idealOrGaussianPassFilter)
+	//isIdealï¼štrue->ç†æƒ³æ¿¾æ³¢å™¨,false->é«˜æ–¯æ¿¾æ³¢å™¨
+	//isHighPassï¼štrue->é«˜é€š,false->ä½é€š
+	//d0ï¼šå½±éŸ¿å¤§å°åƒæ•¸ (int æœ€å°1)
+	//isAddOriï¼štrue->æœ€å¾Œå†åŠ ä¸ŠåŸåœ–ï¼Œfalse->ç´”ç²¹é¡¯ç¤ºæ¿¾æ³¢å¾Œçš„åœ–ç‰‡
 IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width, int height, bool isIdeal, bool isHighPass, int d0,bool isAddOri, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -689,11 +689,11 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 	}
 }
 
-//CH4_Butterworth(°ª³q/§C³q)Âoªi¾¹(butterworthPassFilter)
-	//isHighPass¡Gtrue->°ª³q,false->§C³q
-	//d0¡G¼vÅT¤j¤p°Ñ¼Æ (int,³Ì¤p1)
-	//n¡G¼vÅT¤j¤p°Ñ¼Æ (float,1->¤£ÅÜ,°Ê¤@¨Ç´N®t«Ü¦h)
-	//isAddOri¡Gtrue->³Ì«á¦A¥[¤W­ì¹Ï¡Afalse->¯ÂºéÅã¥ÜÂoªi«áªº¹Ï¤ù
+//CH4_Butterworth(é«˜é€š/ä½é€š)æ¿¾æ³¢å™¨(butterworthPassFilter)
+	//isHighPassï¼štrue->é«˜é€š,false->ä½é€š
+	//d0ï¼šå½±éŸ¿å¤§å°åƒæ•¸ (int,æœ€å°1)
+	//nï¼šå½±éŸ¿å¤§å°åƒæ•¸ (float,1->ä¸è®Š,å‹•ä¸€äº›å°±å·®å¾ˆå¤š)
+	//isAddOriï¼štrue->æœ€å¾Œå†åŠ ä¸ŠåŸåœ–ï¼Œfalse->ç´”ç²¹é¡¯ç¤ºæ¿¾æ³¢å¾Œçš„åœ–ç‰‡
 IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, int height, bool isHighPass, int d0,float n, bool isAddOri, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -716,7 +716,7 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 		BGR_planes[1] = myIDFT(DFT_planes[1]);
 		BGR_planes[2] = myIDFT(DFT_planes[2]);
 		merge(BGR_planes, 3, dst);
-		//0615­×¥¿
+		//0615ä¿®æ­£
 		src.convertTo(src, CV_32FC3, 1.f / 255);
 	//	if (isAddOri)dst = dst + src ;
 		dst.convertTo(dst, CV_8UC3, 255);
@@ -725,29 +725,29 @@ IMGFUNC_API void butterworthPassFilter(unsigned char* imageBuffer, int width, in
 		dstBuffer = global_temp_mat[0].data;
 	}
 }
-//CH5_----¾AÀ³©Ê¤¤¶¡­ÈÂoªi¾¹ªº¥\¯à¨ç¦¡----
+//CH5_----é©æ‡‰æ€§ä¸­é–“å€¼æ¿¾æ³¢å™¨çš„åŠŸèƒ½å‡½å¼----
 void maxFilter(Mat& src, Mat& dst, int size) {
-	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size)); //¥ı°µfilter
-	dilate(src, dst, element); //¿±µÈªº§@¥Î
+	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size)); //å…ˆåšfilter
+	dilate(src, dst, element); //è†¨è„¹çš„ä½œç”¨
 }
-//CH5_----¾AÀ³©Ê¤¤¶¡­ÈÂoªi¾¹ªº¥\¯à¨ç¦¡----
+//CH5_----é©æ‡‰æ€§ä¸­é–“å€¼æ¿¾æ³¢å™¨çš„åŠŸèƒ½å‡½å¼----
 void minFilter(Mat& src, Mat& dst, int size)
 {
 	Mat element = getStructuringElement(MORPH_RECT, Size(2 * size + 1, 2 * size + 1), Point(size, size));
-	erode(src, dst, element); //«I»k
+	erode(src, dst, element); //ä¾µè•
 }
-//CH5_adaptiveMedianFilte ³æ­±_¾AÀ³©Ê¤¤¶¡­ÈÂoªi¾¹(adaptiveMedianFilter) ----¥\¯à¨ç¦¡----
+//CH5_adaptiveMedianFilte å–®é¢_é©æ‡‰æ€§ä¸­é–“å€¼æ¿¾æ³¢å™¨(adaptiveMedianFilter) ----åŠŸèƒ½å‡½å¼----
 Mat adaptiveMedianFilter(Mat& Zxy, int s_max)
 {
 	//allocate memory for storing min, median, and max filters
-	int numSize = (s_max - 3) / 2 + 1; //3¬O¦Û¤v©w ±q3¶}©l 3*3 5*5 7*7
+	int numSize = (s_max - 3) / 2 + 1; //3æ˜¯è‡ªå·±å®š å¾3é–‹å§‹ 3*3 5*5 7*7
 	Mat* Zmin = new Mat[numSize];
 	Mat* Zmed = new Mat[numSize];
 	Mat* Zmax = new Mat[numSize];
 	//get results of min, median, and max filters
 	int boxSize = 3;
 	int pos;
-	for (pos = 0; pos < numSize; pos++, boxSize += 2) { //¶]3*3 5*5 7*7­Ó¦UºØµ²ªG
+	for (pos = 0; pos < numSize; pos++, boxSize += 2) { //è·‘3*3 5*5 7*7å€‹å„ç¨®çµæœ
 		minFilter(Zxy, Zmin[pos], boxSize);
 		medianBlur(Zxy, Zmed[pos], boxSize);
 		maxFilter(Zxy, Zmax[pos], boxSize);
@@ -755,9 +755,9 @@ Mat adaptiveMedianFilter(Mat& Zxy, int s_max)
 	//Adaptive median filter
 	Mat rlt = Mat(Zxy.size(), CV_8UC1);
 	for (int r = 0; r < Zxy.rows; r++) { // for every row
-		for (int c = 0; c < Zxy.cols; c++) { // for every column //¨ê¨C­ÓÂI
+		for (int c = 0; c < Zxy.cols; c++) { // for every column //åˆ·æ¯å€‹é»
 		// Level A
-			boxSize = 3; //¤@¶}©l¡G3*3
+			boxSize = 3; //ä¸€é–‹å§‹ï¼š3*3
 			while (boxSize <= s_max) {
 				pos = (boxSize - 3) / 2;
 				int A1 = Zmed[pos].at<uchar>(r, c) - Zmin[pos].at<uchar>(r, c);
@@ -765,8 +765,8 @@ Mat adaptiveMedianFilter(Mat& Zxy, int s_max)
 				if ((A1 > 0) && (A2 < 0)) break;
 				else boxSize += 2;
 			}
-			if (boxSize > s_max) {  //ªí¥Ü§ä¤£¨ì
-				rlt.at<uchar>(r, c) = Zxy.at<uchar>(r, c);  //rlt¡G­n¦^¶Çªºµ²ªG
+			if (boxSize > s_max) {  //è¡¨ç¤ºæ‰¾ä¸åˆ°
+				rlt.at<uchar>(r, c) = Zxy.at<uchar>(r, c);  //rltï¼šè¦å›å‚³çš„çµæœ
 			}
 			else {
 				// Level B
@@ -788,8 +788,8 @@ Mat adaptiveMedianFilter(Mat& Zxy, int s_max)
 	return rlt;
 }
 
-//CH5_adaptiveMedianFilter_BGR¾AÀ³©Ê¤¤¶¡­ÈÂoªi¾¹(adaptiveMedianFilter)
-	//s_max¡GFilter kernel¤j¤p (­n©_¼Æ,int)
+//CH5_adaptiveMedianFilter_BGRé©æ‡‰æ€§ä¸­é–“å€¼æ¿¾æ³¢å™¨(adaptiveMedianFilter)
+	//s_maxï¼šFilter kernelå¤§å° (è¦å¥‡æ•¸,int)
 IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width, int height,int s_max, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -806,7 +806,7 @@ IMGFUNC_API void adaptiveMedianFilter_BGR(unsigned char* imageBuffer, int width,
 	}
 }
 
-//CH5_´X¦ó¥­§¡Âoªi¾¹ KernelSize Âoªi¾¹kernel = KernelSize * KernelSize (¥i±µ¨ü°¸¼Æ*°¸¼Æ ¤£¥i0*0) 
+//CH5_å¹¾ä½•å¹³å‡æ¿¾æ³¢å™¨ KernelSize æ¿¾æ³¢å™¨kernel = KernelSize * KernelSize (å¯æ¥å—å¶æ•¸*å¶æ•¸ ä¸å¯0*0) 
 IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -818,7 +818,7 @@ IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int 
 		for (int ch = 0; ch < channelNum; ch++) {
 			for (int row = 0; row < src.rows; row++) {
 				for (int column = 0; column < src.cols; column++) {
-					//¶]kernel §PÂ_Channel¬O¦h¤Ö ¤]§PÂ_maxValue©ÎminValue
+					//è·‘kernel åˆ¤æ–·Channelæ˜¯å¤šå°‘ ä¹Ÿåˆ¤æ–·maxValueæˆ–minValue
 					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
 						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
 							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
@@ -850,7 +850,7 @@ IMGFUNC_API void geometricMeanFilter(unsigned char* imageBuffer, int width, int 
 	}
 }
 
-//CH5_½Õ©M¥­§¡Âoªi¾¹ KernelSize Âoªi¾¹kernel = KernelSize * KernelSize (¥i±µ¨ü°¸¼Æ*°¸¼Æ ¤£¥i0*0) 
+//CH5_èª¿å’Œå¹³å‡æ¿¾æ³¢å™¨ KernelSize æ¿¾æ³¢å™¨kernel = KernelSize * KernelSize (å¯æ¥å—å¶æ•¸*å¶æ•¸ ä¸å¯0*0) 
 IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
@@ -862,7 +862,7 @@ IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int h
 		for (int ch = 0; ch < channelNum; ch++) {
 			for (int row = 0; row < src.rows; row++) {
 				for (int column = 0; column < src.cols; column++) {
-					//¶]kernel §PÂ_Channel¬O¦h¤Ö ¤]§PÂ_maxValue©ÎminValue
+					//è·‘kernel åˆ¤æ–·Channelæ˜¯å¤šå°‘ ä¹Ÿåˆ¤æ–·maxValueæˆ–minValue
 					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
 						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
 							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
@@ -896,20 +896,20 @@ IMGFUNC_API void harmonicMeanFilter(unsigned char* imageBuffer, int width, int h
 	}
 }
 
-//CH5_¤Ï½Õ©M¥­§¡Âoªi¾¹ KernelSize Âoªi¾¹kernel = KernelSize * KernelSize (¥i±µ¨ü°¸¼Æ*°¸¼Æ ¤£¥i0*0) 
-	//Q¡G¼vÅTµ{«×(Q>1¡G¸Ñ¨M¶ÂÂøÂI¡AQ<-1¡G¸Ñ¨M¥ÕÂøÂI,¥ifloat)
+//CH5_åèª¿å’Œå¹³å‡æ¿¾æ³¢å™¨ KernelSize æ¿¾æ³¢å™¨kernel = KernelSize * KernelSize (å¯æ¥å—å¶æ•¸*å¶æ•¸ ä¸å¯0*0) 
+	//Qï¼šå½±éŸ¿ç¨‹åº¦(Q>1ï¼šè§£æ±ºé»‘é›œé»ï¼ŒQ<-1ï¼šè§£æ±ºç™½é›œé»,å¯float)
 IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width, int height, int KernelSize,float Q, void*& dstBuffer)
 {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
-		double tempTotal_Denominator = 0; //¤À¥ÀÁ`©M
-		double tempTotal_Molecular = 0; //¤À¤lÁ`©M
+		double tempTotal_Denominator = 0; //åˆ†æ¯ç¸½å’Œ
+		double tempTotal_Molecular = 0; //åˆ†å­ç¸½å’Œ
 		int channelNum = src.channels();
 		Mat dst = src.clone();
 		for (int ch = 0; ch < channelNum; ch++) {
 			for (int row = 0; row < src.rows; row++) {
 				for (int column = 0; column < src.cols; column++) {
-					//¶]kernel §PÂ_Channel¬O¦h¤Ö ¤]§PÂ_maxValue©ÎminValue
+					//è·‘kernel åˆ¤æ–·Channelæ˜¯å¤šå°‘ ä¹Ÿåˆ¤æ–·maxValueæˆ–minValue
 					for (int tempR = row - KernelSize / 2; tempR < (row + (KernelSize + 1) / 2); tempR++) {
 						for (int tempC = column - KernelSize / 2; tempC < (column + (KernelSize + 1) / 2); tempC++) {
 							if (tempR < 0 || tempC < 0 || tempR >= src.rows || tempC >= src.cols) continue;
@@ -941,7 +941,7 @@ IMGFUNC_API void counterHarmonicMeanFilter(unsigned char* imageBuffer, int width
 	}
 }
 
-//CH6_§ïÅÜ¥ú·½ (changeIlluminant)  ----¥\¯à¨ç¦¡----
+//CH6_æ”¹è®Šå…‰æº (changeIlluminant)  ----åŠŸèƒ½å‡½å¼----
 Mat changeIlluminant(Mat &src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
 	Mat xyz, dst;
 	//Generate transform matrix
@@ -958,7 +958,7 @@ Mat changeIlluminant(Mat &src, Scalar_<float> srcIll, Scalar_<float> dstIll) {
 	return dst;
 }
 
-//CH6_­pºâ¥ú·½ ----¥\¯à¨ç¦¡----
+//CH6_è¨ˆç®—å…‰æº ----åŠŸèƒ½å‡½å¼----
 Scalar_<float> calLightSource(Mat src) {
 	Scalar_<float> ill(0.0f, 0.0f, 0.0f);
 	Mat xyz;
@@ -971,8 +971,8 @@ Scalar_<float> calLightSource(Mat src) {
 	return ill;
 }
 
-//CH6_§ïÅÜ¥ú·½(±q©T©w´X­Ó¥ú·½¬D) changeIlluminantFromModel
-	//mode¡G¼Ò¦¡ (0->ILL_A¡A1->ILL_D50¡A2->ILL_D55¡A3->ILL_D65¡A¨ä¥L->ILL_D75)
+//CH6_æ”¹è®Šå…‰æº(å¾å›ºå®šå¹¾å€‹å…‰æºæŒ‘) changeIlluminantFromModel
+	//modeï¼šæ¨¡å¼ (0->ILL_Aï¼Œ1->ILL_D50ï¼Œ2->ILL_D55ï¼Œ3->ILL_D65ï¼Œå…¶ä»–->ILL_D75)
 IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width, int height,int mode, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Scalar_<float> oriILL = calLightSource(src);
@@ -1000,9 +1000,9 @@ IMGFUNC_API void changeIlluminantFromModel(unsigned char* imageBuffer, int width
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_§ïÅÜ¥ú·½(¦Û¤v¿ïX,Z­È) changeIlluminantFromCustomizeXZ
-	//x¡Gx¨ë¿E­È
-	//z¡Gz¨ë¿E­È
+//CH6_æ”¹è®Šå…‰æº(è‡ªå·±é¸X,Zå€¼) changeIlluminantFromCustomizeXZ
+	//xï¼šxåˆºæ¿€å€¼
+	//zï¼šzåˆºæ¿€å€¼
 IMGFUNC_API void changeIlluminantFromCustomizeXZ(unsigned char* imageBuffer, int width, int height, int x, int z, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Scalar_<float> oriILL = calLightSource(src);
@@ -1012,8 +1012,8 @@ IMGFUNC_API void changeIlluminantFromCustomizeXZ(unsigned char* imageBuffer, int
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_½Õ¾ã¹¡©M«×
-	//rate¡G¹¡©M«×­¿¼Æ (double)
+//CH6_èª¿æ•´é£½å’Œåº¦
+	//rateï¼šé£½å’Œåº¦å€æ•¸ (double)
 IMGFUNC_API void changeSaturation(unsigned char* imageBuffer, int width, int height, double rate, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat dst;
@@ -1029,7 +1029,7 @@ IMGFUNC_API void changeSaturation(unsigned char* imageBuffer, int width, int hei
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_¨ú±oCMY¦â±m¥­­± ----¥\¯à¨ç¦¡---- ¨S¥Î¨ì³á!! ¦³°İÃD
+//CH6_å–å¾—CMYè‰²å½©å¹³é¢ ----åŠŸèƒ½å‡½å¼---- æ²’ç”¨åˆ°å–”!! æœ‰å•é¡Œ
 Mat* getCMYPlane(Mat src) {
 	Mat bgr[3], cmy[3];
 	split(src, bgr);
@@ -1039,8 +1039,8 @@ Mat* getCMYPlane(Mat src) {
 	return cmy;
 }
 
-//CH6_¨ú±o¦â±m¥­­±(B,G,R,C,M,Y¿ï¤@)(¹ÏÅã¥Ü·|¬O¦Ç¦â¡Aªí¥Ü¸Ó¦â±mªº¶q)
-	//color¡G¿ï¾Ü¬Y¦â±mªº¤Á¤ù(B:0,G:1,R:2,C:3,M:4,Y:5©M¨ä¥L int)
+//CH6_å–å¾—è‰²å½©å¹³é¢(B,G,R,C,M,Yé¸ä¸€)(åœ–é¡¯ç¤ºæœƒæ˜¯ç°è‰²ï¼Œè¡¨ç¤ºè©²è‰²å½©çš„é‡)
+	//colorï¼šé¸æ“‡æŸè‰²å½©çš„åˆ‡ç‰‡(B:0,G:1,R:2,C:3,M:4,Y:5å’Œå…¶ä»– int)
 IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
@@ -1078,8 +1078,8 @@ IMGFUNC_API void getColorPlane(unsigned char* imageBuffer, int width, int height
 	global_temp_mat[0] = dst.clone();
 	dstBuffer = global_temp_mat[0].data;
 }
-//CH6_¨ú±o³æ¤@©Î¦h­«¦â±mªº¹Ï¤ù(B,G,R¶¡½Æ¿ï¡AC,M,Y¶¡³æ¿ï)(¥i¤À¨âºØ¡GBGR¤@ºØ½Æ¿ï¡ACMY¤@ºØ³æ¿ï) (CMYªº¸Ü¥u¯à¤@¦¸¿ï¤@­Ó³á)
-	//color¡G2¶i¨îªº¿ï¾ÜÅã¥Ü¬O§_§t¦³¸Ó¦âªº¥­­± 4­Óbit¡A·N¸q¦p¤U¡G0bit->¬O§_R/Y¡A1bit->¬O§_G/M¡A2bit->¬O§_B/C¡A3bit->¬O§_BGR¨t²Î(1->BGR,0->CMY) 
+//CH6_å–å¾—å–®ä¸€æˆ–å¤šé‡è‰²å½©çš„åœ–ç‰‡(B,G,Ré–“è¤‡é¸ï¼ŒC,M,Yé–“å–®é¸)(å¯åˆ†å…©ç¨®ï¼šBGRä¸€ç¨®è¤‡é¸ï¼ŒCMYä¸€ç¨®å–®é¸) (CMYçš„è©±åªèƒ½ä¸€æ¬¡é¸ä¸€å€‹å–”)
+	//colorï¼š2é€²åˆ¶çš„é¸æ“‡é¡¯ç¤ºæ˜¯å¦å«æœ‰è©²è‰²çš„å¹³é¢ 4å€‹bitï¼Œæ„ç¾©å¦‚ä¸‹ï¼š0bit->æ˜¯å¦R/Yï¼Œ1bit->æ˜¯å¦G/Mï¼Œ2bit->æ˜¯å¦B/Cï¼Œ3bit->æ˜¯å¦BGRç³»çµ±(1->BGR,0->CMY) 
 IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int width, int height, int color, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
@@ -1136,8 +1136,8 @@ IMGFUNC_API void getSingleOrMultiColorImage(unsigned char* imageBuffer, int widt
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_¦â±mÂà´«(colorTransformation)
-	//k¡GnewBGR=BGR*k (k­¿©ó­ì¥»¦â±m)
+//CH6_è‰²å½©è½‰æ›(colorTransformation)
+	//kï¼šnewBGR=BGR*k (kå€æ–¼åŸæœ¬è‰²å½©)
 IMGFUNC_API void colorTransformation(unsigned char* imageBuffer, int width, int height, float k, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat bgr[3];
@@ -1156,9 +1156,9 @@ IMGFUNC_API void colorTransformation(unsigned char* imageBuffer, int width, int 
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_¨ú±o±m¦â¤Á¤ù(colorSlicing)
-	//lowerH¡BlowerS¡BlowerV¡G¨ú¦â±m½d³òªº¤U¬É(§C©ó¦¹ªºHSV¤£·|³Q§ì¨ú)
-	//upperH¡BupperS¡BupperV¡G¨ú¦â±m½d³òªº¤W¬É(°ª©ó¦¹ªºHSV¤£·|³Q§ì¨ú)
+//CH6_å–å¾—å½©è‰²åˆ‡ç‰‡(colorSlicing)
+	//lowerHã€lowerSã€lowerVï¼šå–è‰²å½©ç¯„åœçš„ä¸‹ç•Œ(ä½æ–¼æ­¤çš„HSVä¸æœƒè¢«æŠ“å–)
+	//upperHã€upperSã€upperVï¼šå–è‰²å½©ç¯„åœçš„ä¸Šç•Œ(é«˜æ–¼æ­¤çš„HSVä¸æœƒè¢«æŠ“å–)
 IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height, int lowerH, int lowerS, int lowerV, int upperH, int upperS, int upperV, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	Mat hsv,temp;
@@ -1175,9 +1175,9 @@ IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height,
 	dstBuffer = global_temp_mat[0].data;
 }
 
-//CH6_cannyªºÃä½t°»´ú(cannyEdgeDetection)
-	//lowerThreshold¡G§C©ó¦¹­È´N¤£³Q¿ï¤¤
-	//upperThreshold¡G°ª©ó¦¹­È´N¤£³Q¿ï¤¤
+//CH6_cannyçš„é‚Šç·£åµæ¸¬(cannyEdgeDetection)
+	//lowerThresholdï¼šä½æ–¼æ­¤å€¼å°±ä¸è¢«é¸ä¸­
+	//upperThresholdï¼šé«˜æ–¼æ­¤å€¼å°±ä¸è¢«é¸ä¸­
 IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int height, int lowerThreshold, int upperThreshold, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) { // Read image success
@@ -1191,9 +1191,9 @@ IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int h
 	
 }
 
-//CH6_morphologyExªº¼v¹³³B²z(morphologicalOperation)
-	//mode¡G¿ï¾ÜmorphologyExªº¼Ò¦¡(0¡GDilation, 1¡GErosion, 2¡Ggradient, 3¡GOpen, 4¡GClose, 5¡GTop Hat, 6»P¨ä¥L¡GBlack Hat)
-	//size¡Gkernel¬O´X­¼´X (¯u¹êkernel¤j¤p=2*size+1)
+//CH6_morphologyExçš„å½±åƒè™•ç†(morphologicalOperation)
+	//modeï¼šé¸æ“‡morphologyExçš„æ¨¡å¼(0ï¼šDilation, 1ï¼šErosion, 2ï¼šgradient, 3ï¼šOpen, 4ï¼šClose, 5ï¼šTop Hat, 6èˆ‡å…¶ä»–ï¼šBlack Hat)
+	//sizeï¼škernelæ˜¯å¹¾ä¹˜å¹¾ (çœŸå¯¦kernelå¤§å°=2*size+1)
 IMGFUNC_API void morphologicalOperation(unsigned char* imageBuffer, int width, int height, int mode,int size, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) { // Read image success
@@ -1230,7 +1230,7 @@ IMGFUNC_API void morphologicalOperation(unsigned char* imageBuffer, int width, i
 		dstBuffer = global_temp_mat[0].data;
 	}
 }
-//¨ä¥L¥\¯à_±`¥ÎÂoÃè_ÀJ¨è(CommonFilters-sculpture) ----¥\¯à¨ç¦¡----
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_é›•åˆ»(CommonFilters-sculpture) ----åŠŸèƒ½å‡½å¼----
 Mat sculpture(Mat src) {
 	Mat dst(src.size(), CV_8UC3);
 	for (int y = 1; y < src.rows - 1; y++)
@@ -1243,7 +1243,7 @@ Mat sculpture(Mat src) {
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				int tmp1 = p0[3 * (x - 1) + i] - p1[3 * (x + 1) + i] + 128;//ÀJ¨è
+				int tmp1 = p0[3 * (x - 1) + i] - p1[3 * (x + 1) + i] + 128;//é›•åˆ»
 				if (tmp1 < 0)
 					q1[3 * x + i] = 0;
 				else if (tmp1 > 255)
@@ -1255,7 +1255,7 @@ Mat sculpture(Mat src) {
 	}
 	return dst;
 }
-//¨ä¥L¥\¯à_±`¥ÎÂoÃè_¯BÀJ(CommonFilters-elief) ----¥\¯à¨ç¦¡----
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_æµ®é›•(CommonFilters-elief) ----åŠŸèƒ½å‡½å¼----
 Mat Relief(Mat src) {
 	Mat dst(src.size(), CV_8UC3);
 	for (int y = 1; y < src.rows - 1; y++)
@@ -1268,7 +1268,7 @@ Mat Relief(Mat src) {
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				int tmp0 = p1[3 * (x + 1) + i] - p0[3 * (x - 1) + i] + 128;//¯BÀJ
+				int tmp0 = p1[3 * (x + 1) + i] - p0[3 * (x - 1) + i] + 128;//æµ®é›•
 				if (tmp0 < 0)
 					q0[3 * x + i] = 0;
 				else if (tmp0 > 255)
@@ -1280,8 +1280,339 @@ Mat Relief(Mat src) {
 	}
 	return dst;
 }
-//¨ä¥L¥\¯à_±`¥ÎÂoÃè¿ï¾Ü(cannyEdgeDetection)
-	//mode¡GÂoÃè¼Ò¦¡(0¡GÀJ¨è¡A1¡G¯BÀJ)
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_ç¾½åŒ–(CommonFilters-Eclosion) ----åŠŸèƒ½å‡½å¼----
+Mat Eclosion(Mat src,float mSize) {
+	
+	int width = src.cols;
+	int heigh = src.rows;
+	int centerX = width >> 1;
+	int centerY = heigh >> 1;
+
+	int maxV = centerX * centerX + centerY * centerY;
+	int minV = (int)(maxV * (1 - mSize));
+	int diff = maxV - minV;
+	float ratio = width > heigh ? (float)heigh / (float)width : (float)width / (float)heigh;
+
+	Mat img;
+	src.copyTo(img);
+
+	Scalar avg = mean(src);
+	Mat dst(img.size(), CV_8UC3);
+	Mat mask1u[3];
+	float tmp, r;
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* imgP = img.ptr<uchar>(y);
+		uchar* dstP = dst.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			int b = imgP[3 * x];
+			int g = imgP[3 * x + 1];
+			int r = imgP[3 * x + 2];
+
+			float dx = centerX - x;
+			float dy = centerY - y;
+
+			if (width > heigh)
+				dx = (dx * ratio);
+			else
+				dy = (dy * ratio);
+
+			int dstSq = dx * dx + dy * dy;
+
+			float v = ((float)dstSq / diff) * 128;
+
+			r = (int)(r + v);
+			g = (int)(g + v);
+			b = (int)(b + v);
+			r = (r > 255 ? 255 : (r < 0 ? 0 : r));
+			g = (g > 255 ? 255 : (g < 0 ? 0 : g));
+			b = (b > 255 ? 255 : (b < 0 ? 0 : b));
+
+			dstP[3 * x] = (uchar)b;
+			dstP[3 * x + 1] = (uchar)g;
+			dstP[3 * x + 2] = (uchar)r;
+		}
+	}
+	return dst;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_æ‡·èˆŠ(CommonFilters-Nostalgia) ----åŠŸèƒ½å‡½å¼----
+Mat Nostalgia(Mat src) {
+	Mat dst(src.size(), CV_8UC3);
+	int width = src.cols;
+	int heigh = src.rows;
+	RNG rng;
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* P0 = src.ptr<uchar>(y);
+		uchar* P1 = dst.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			float B = P0[3 * x];
+			float G = P0[3 * x + 1];
+			float R = P0[3 * x + 2];
+			float newB = 0.272 * R + 0.534 * G + 0.131 * B;
+			float newG = 0.349 * R + 0.686 * G + 0.168 * B;
+			float newR = 0.393 * R + 0.769 * G + 0.189 * B;
+			if (newB < 0)newB = 0;
+			if (newB > 255)newB = 255;
+			if (newG < 0)newG = 0;
+			if (newG > 255)newG = 255;
+			if (newR < 0)newR = 0;
+			if (newR > 255)newR = 255;
+			P1[3 * x] = (uchar)newB;
+			P1[3 * x + 1] = (uchar)newG;
+			P1[3 * x + 2] = (uchar)newR;
+		}
+
+	}
+
+	return dst;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_é€£ç’°(CommonFilters-Serial) ----åŠŸèƒ½å‡½å¼----
+Mat Serial(Mat src) {
+	int width = src.cols;
+	int heigh = src.rows;
+	RNG rng;
+	Mat img(src.size(), CV_8UC3);
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* P0 = src.ptr<uchar>(y);
+		uchar* P1 = img.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			float B = P0[3 * x];
+			float G = P0[3 * x + 1];
+			float R = P0[3 * x + 2];
+			float newB = abs(B - G + B + R) * G / 256;
+			float newG = abs(B - G + B + R) * R / 256;
+			float newR = abs(G - B + G + R) * R / 256;
+			if (newB < 0)newB = 0;
+			if (newB > 255)newB = 255;
+			if (newG < 0)newG = 0;
+			if (newG > 255)newG = 255;
+			if (newR < 0)newR = 0;
+			if (newR > 255)newR = 255;
+			P1[3 * x] = (uchar)newB;
+			P1[3 * x + 1] = (uchar)newG;
+			P1[3 * x + 2] = (uchar)newR;
+		}
+
+	}
+	Mat gray;
+	cvtColor(img, gray, COLOR_BGR2GRAY);
+	normalize(gray, gray, 255, 0, NORM_MINMAX);
+
+	return gray;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_é”é‘„(CommonFilters-Serial) ----åŠŸèƒ½å‡½å¼----
+Mat Casting(Mat src) {
+	Mat img;
+	src.copyTo(img);
+	int width = src.cols;
+	int heigh = src.rows;
+	Mat dst(img.size(), CV_8UC3);
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* imgP = img.ptr<uchar>(y);
+		uchar* dstP = dst.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			float b0 = imgP[3 * x];
+			float g0 = imgP[3 * x + 1];
+			float r0 = imgP[3 * x + 2];
+
+			float b = b0 * 255 / (g0 + r0 + 1);
+			float g = g0 * 255 / (b0 + r0 + 1);
+			float r = r0 * 255 / (g0 + b0 + 1);
+
+			r = (r > 255 ? 255 : (r < 0 ? 0 : r));
+			g = (g > 255 ? 255 : (g < 0 ? 0 : g));
+			b = (b > 255 ? 255 : (b < 0 ? 0 : b));
+
+			dstP[3 * x] = (uchar)b;
+			dstP[3 * x + 1] = (uchar)g;
+			dstP[3 * x + 2] = (uchar)r;
+		}
+	}
+	return dst;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_å†°å‡(CommonFilters-Freezing) ----åŠŸèƒ½å‡½å¼----
+Mat Freezing(Mat src) {
+	Mat img;
+	src.copyTo(img);
+	int width = src.cols;
+	int heigh = src.rows;
+	Mat dst(img.size(), CV_8UC3);
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* imgP = img.ptr<uchar>(y);
+		uchar* dstP = dst.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			float b0 = imgP[3 * x];
+			float g0 = imgP[3 * x + 1];
+			float r0 = imgP[3 * x + 2];
+
+			float b = (b0 - g0 - r0) * 3 / 2;
+			float g = (g0 - b0 - r0) * 3 / 2;
+			float r = (r0 - g0 - b0) * 3 / 2;
+
+			r = (r > 255 ? 255 : (r < 0 ? -r : r));
+			g = (g > 255 ? 255 : (g < 0 ? -g : g));
+			b = (b > 255 ? 255 : (b < 0 ? -b : b));
+			// 			r = (r>255 ? 255 : (r<0? 0 : r));
+			// 			g = (g>255 ? 255 : (g<0? 0 : g));
+			// 			b = (b>255 ? 255 : (b<0? 0 : b));
+			dstP[3 * x] = (uchar)b;
+			dstP[3 * x + 1] = (uchar)g;
+			dstP[3 * x + 2] = (uchar)r;
+		}
+	}
+
+	return dst;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_æ“´æ•£(CommonFilters-Diffusion) ----åŠŸèƒ½å‡½å¼----
+Mat Diffusion(Mat src) {
+	Mat dst(src.size(), CV_8UC3);
+	int width = src.cols;
+	int heigh = src.rows;
+	RNG rng;
+	for (int y = 1; y < heigh - 1; y++)
+	{
+		uchar* P0 = src.ptr<uchar>(y);
+		uchar* P1 = dst.ptr<uchar>(y);
+		for (int x = 1; x < width - 1; x++)
+		{
+			int tmp = rng.uniform(0, 9);
+			P1[3 * x] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3));
+			P1[3 * x + 1] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3) + 1);
+			P1[3 * x + 2] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3) + 2);
+		}
+	}
+	return dst;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_ç´ æ(CommonFilters-Sketch) ----åŠŸèƒ½å‡½å¼----
+Mat Sketch(Mat src) {
+	int width = src.cols;
+	int heigh = src.rows;
+	Mat gray0, gray1;
+	//å»è‰²
+	cvtColor(src, gray0, COLOR_BGR2GRAY);
+	//åè‰²
+	addWeighted(gray0, -1, NULL, 0, 255, gray1);
+	//é«˜æ–¯æ¨¡ç³Š,é«˜æ–¯æ ¸çš„Sizeä¸æœ€åçš„æ•ˆæœæœ‰å…³
+	GaussianBlur(gray1, gray1, Size(11, 11), 0);
+
+	//èåˆï¼šé¢œè‰²å‡æ·¡
+	Mat img(gray1.size(), CV_8UC1);
+	for (int y = 0; y < heigh; y++)
+	{
+
+		uchar* P0 = gray0.ptr<uchar>(y);
+		uchar* P1 = gray1.ptr<uchar>(y);
+		uchar* P = img.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			int tmp0 = P0[x];
+			int tmp1 = P1[x];
+			P[x] = (uchar)min((tmp0 + (tmp0 * tmp1) / (256 - tmp1)), 255);
+		}
+
+	}
+	return img;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_æ—‹æ¸¦(CommonFilters-Swirl) ----åŠŸèƒ½å‡½å¼----
+template<typename T> T sqr(T x) { return x * x; }
+double Para = 20;
+Mat Swirl(Mat src) {
+	int heigh = src.rows;
+	int width = src.cols;
+	Point center(width / 2, heigh / 2);
+	Mat img;
+	src.copyTo(img);
+	Mat src1u[3];
+	split(src, src1u);
+
+	for (int y = 0; y < heigh; y++)
+	{
+		uchar* imgP = img.ptr<uchar>(y);
+		uchar* srcP = src.ptr<uchar>(y);
+		for (int x = 0; x < width; x++)
+		{
+			int R = norm(Point(x, y) - center);
+			double angle = atan2((double)(y - center.y), (double)(x - center.x));
+			double delta = PI * Para / sqrtf(R + 1);
+			int newX = R * cos(angle + delta) + center.x;
+			int newY = R * sin(angle + delta) + center.y;
+
+			if (newX < 0) newX = 0;
+			if (newX > width - 1) newX = width - 1;
+			if (newY < 0) newY = 0;
+			if (newY > heigh - 1) newY = heigh - 1;
+
+			imgP[3 * x] = src1u[0].at<uchar>(newY, newX);
+			imgP[3 * x + 1] = src1u[1].at<uchar>(newY, newX);
+			imgP[3 * x + 2] = src1u[2].at<uchar>(newY, newX);
+		}
+	}
+	return img;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡_é¢¨(CommonFilters-Wind) ----åŠŸèƒ½å‡½å¼----
+
+Mat Wind(Mat src,int WindDensity,int WindLength) {
+	Mat src1u[3];
+	split(src, src1u);
+
+	int width = src.cols;
+	int heigh = src.rows;
+	Mat img;
+	src.copyTo(img);
+
+	Point center(width / 2, heigh / 2);
+
+	RNG rng;
+
+	for (int y = 0; y < heigh; y++)
+	{
+
+		uchar* imgP = img.ptr<uchar>(y);
+
+		//		for (int x=0; x<width; x++)
+		{
+
+			for (int i = 0; i < WindDensity; i++)		//	numï¼šé£çº¿å¯†åº¦
+			{
+				int newX = rng.uniform(i * width / WindDensity, (i + 1) * width / WindDensity);
+				int newY = y;
+
+				if (newX < 0)newX = 0;
+				if (newX > width - 1)newX = width - 1;
+
+				uchar tmp0 = src1u[0].at<uchar>(newY, newX);
+				uchar tmp1 = src1u[1].at<uchar>(newY, newX);
+				uchar tmp2 = src1u[2].at<uchar>(newY, newX);
+
+				for (int j = 0; j < WindLength; j++)	//num1ï¼šé£çº¿é•¿åº¦
+				{
+					int tmpX = newX - j;//å‡ï¼šé£å‘å·¦ï¼›åŠ ï¼šé£å‘å³
+
+					if (tmpX < 0)tmpX = 0;
+					if (tmpX > width - 1)tmpX = width - 1;
+
+					imgP[tmpX * 3] = tmp0;
+					imgP[tmpX * 3 + 1] = tmp1;
+					imgP[tmpX * 3 + 2] = tmp2;
+				}
+			}
+
+		}
+
+	}
+	return img;
+}
+//å…¶ä»–åŠŸèƒ½_å¸¸ç”¨æ¿¾é¡é¸æ“‡(cannyEdgeDetection)
+	//modeï¼šæ¿¾é¡æ¨¡å¼(1ï¼šé›•åˆ»ï¼Œ2ï¼šæµ®é›•ï¼Œ3ï¼šç¾½åŒ–ï¼Œ4ï¼šæ‡·èˆŠï¼Œ5ï¼šé€£ç’°ï¼Œ6ï¼šé”é‘„ï¼Œ7ï¼šå†°å‡ï¼Œ8ï¼šæ“´æ•£ï¼Œ9ï¼šç´ æï¼Œ10ï¼šæ¼©æ¸¦,11ï¼šé¢¨)
 IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) { // Read image success
@@ -1294,6 +1625,33 @@ IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height
 			break;
 		case 2:
 			dst = Relief(src);
+			break;
+		case 3:
+			dst = Eclosion(src,0.5);
+			break;
+		case 4:
+			dst = Nostalgia(src);
+			break;
+		case 5:
+			dst = Serial(src);
+			break;
+		case 6:
+			dst = Casting(src);
+			break;
+		case 7:
+			dst = Freezing(src);
+			break;
+		case 8:
+			dst = Diffusion(src);
+			break;
+		case 9:
+			dst = Sketch(src);
+			break;
+		case 10:
+			dst = Swirl(src);
+			break;
+		case 11:
+			dst = Wind(src,15,20);
 			break;
 		default:
 			dst = Relief(src);
