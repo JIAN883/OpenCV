@@ -555,6 +555,7 @@ IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int w
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) {
 
+		src.convertTo(src, CV_32FC3, 1.f / 255);
 		Mat BGR_planes[3];
 		Mat dst_planes[3];
 		split(src, BGR_planes);
@@ -1288,10 +1289,10 @@ IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height
 		Mat mask;
 		switch (mode)
 		{
-		case 0:
+		case 1:
 			dst = sculpture(src);
 			break;
-		case 1:
+		case 2:
 			dst = Relief(src);
 			break;
 		default:
