@@ -67,7 +67,7 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void trackBar2_d0_Scroll(object sender, EventArgs e)
         {
-            float value = AdjustedFormManager.GetTrackValue(trackBar_d0.Maximum, trackBar_d0.Value, d0max, d0min);
+            int value = (int)AdjustedFormManager.GetTrackValue(trackBar_d0.Maximum, trackBar_d0.Value, d0max, d0min);
             label_d0.Text = value.ToString();
         }
 
