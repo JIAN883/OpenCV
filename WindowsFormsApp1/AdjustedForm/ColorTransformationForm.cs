@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.AdjustedForm
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         //CH6_色彩轉換(colorTransformation)
         //k：newBGR=BGR*k (k倍於原本色彩)
-        static extern void changeIlluminantFromModel(IntPtr src, int width, int height, float k, out IntPtr dstBuffer);
+        static extern void colorTransformation(IntPtr src, int width, int height, float k, out IntPtr dstBuffer);
 
         Form1 topForm;
         Mat source;
@@ -76,7 +76,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             float k = AdjustedFormManager.GetTrackValue(trackBar1.Maximum, trackBar1.Value, max, min);
             Mat src = source.Clone();
-            changeIlluminantFromModel(src.Data, src.Width, src.Height, k, out IntPtr dst);
+            colorTransformation(src.Data, src.Width, src.Height, k, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
             return BitmapConverter.ToBitmap(dstMat);
         }
