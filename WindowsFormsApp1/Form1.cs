@@ -33,6 +33,7 @@ namespace WindowsFormsApp1
 			toolStripMenuItem_ColorImageProcess.Tag = AdjustedFormManager.colorImageProcess;
 
 			toolStripMenuItem_ElseProcess.Tag = AdjustedFormManager.elseProcess;
+
 			//debug模式專用
 			sourceImage = Properties.Resources.landscape;
 			pictureBox.Image = sourceImage.Clone() as Bitmap;
@@ -46,13 +47,26 @@ namespace WindowsFormsApp1
 			if (ofDialog.ShowDialog() != DialogResult.OK)
 				return;
 
-			Bitmap image = new Bitmap(ofDialog.FileName);
-			sourceImage = image;
-			pictureBox.Image = image.Clone() as Bitmap;
+			try
+			{
+				Bitmap image = new Bitmap(ofDialog.FileName);
+				sourceImage = image;
+				pictureBox.Image = image.Clone() as Bitmap;
+            }
+            catch 
+			{
+				MessageBox.Show("無法開啟檔案");
+			}
 		}
 
 		private void SaveFile(object sender, EventArgs e)
 		{
+			if(pictureBox.Image == null)
+            {
+				MessageBox.Show("請打開一張圖片");
+				return;
+            }
+
 			SaveFileDialog sfDialog = new SaveFileDialog();
 			sfDialog.Filter = "JPG影像(*.jpg)|*.jpg|PNG影像(*.png)|*.png|BMP影象(*.bmp)|*.bmp|所有檔案(*.*)|*.*";
 			sfDialog.FileName = "picture";
