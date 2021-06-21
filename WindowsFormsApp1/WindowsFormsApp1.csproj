@@ -517,6 +517,24 @@
   <ItemGroup>
     <None Include="Resources\relief.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wind.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eclosion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nostalgia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Casting.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Freezing.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Swirl.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
