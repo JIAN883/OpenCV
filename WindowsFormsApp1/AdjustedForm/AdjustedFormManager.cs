@@ -53,7 +53,6 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
             new AdjustedFormManager("高斯濾波器", typeof(GaussianPassFilterForm)),
             new AdjustedFormManager("理想濾波器", typeof(IdeaPassFilterForm)),
-            new AdjustedFormManager("調整飽和度", typeof(ChangeSaturationForm)),
         };
         //影像復原
         static public AdjustedFormManager[] frequencyDomain_NoiseImageRecovery =
@@ -67,6 +66,7 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             new AdjustedFormManager("取得色彩平面", typeof(GetColorPlaneForm)),
             new AdjustedFormManager("取得單一或多重色彩的圖片", typeof(GetSingleOrMultiColorImageForm)),
+            new AdjustedFormManager("調整飽和度", typeof(ChangeSaturationForm)),
             new AdjustedFormManager("色彩轉換", typeof(ColorTransformationForm)),
             new AdjustedFormManager("色彩切片", typeof(ColorSlicingForm)),
         };
