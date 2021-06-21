@@ -1478,6 +1478,7 @@ Mat Diffusion(Mat src) {
 	int width = src.cols;
 	int heigh = src.rows;
 	RNG rng;
+	/*
 	for (int y = 1; y < heigh - 1; y++)
 	{
 		uchar* P0 = src.ptr<uchar>(y);
@@ -1488,6 +1489,20 @@ Mat Diffusion(Mat src) {
 			P1[3 * x] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3));
 			P1[3 * x + 1] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3) + 1);
 			P1[3 * x + 2] = src.at<uchar>(y - 1 + tmp / 3, 3 * (x - 1 + tmp % 3) + 2);
+		}
+	}
+	*/
+	//5*5
+	for (int y = 2; y < heigh - 2; y++)
+	{
+		uchar* P0 = src.ptr<uchar>(y);
+		uchar* P1 = dst.ptr<uchar>(y);
+		for (int x = 2; x < width - 2; x++)
+		{
+			int tmp = rng.uniform(0, 25);
+			P1[3 * x] = src.at<uchar>(y - 2 + tmp / 5, 3 * (x - 2 + tmp % 5));
+			P1[3 * x + 1] = src.at<uchar>(y - 2 + tmp / 5, 3 * (x - 2 + tmp % 5) + 1);
+			P1[3 * x + 2] = src.at<uchar>(y - 2 + tmp / 5, 3 * (x - 2 + tmp % 5) + 2);
 		}
 	}
 	return dst;
