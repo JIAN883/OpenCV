@@ -574,12 +574,17 @@ IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int w
 		dst_planes[1] = getFrequencyDomainInformation_internalFunc(BGR_planes[1]);
 		dst_planes[2] = getFrequencyDomainInformation_internalFunc(BGR_planes[2]);
 		//return to c#
+		dst_planes[0].convertTo(dst_planes[0], CV_8UC1, 255.f);
+		dst_planes[1].convertTo(dst_planes[1], CV_8UC1, 255.f);
+		dst_planes[2].convertTo(dst_planes[2], CV_8UC1, 255.f);
+
 		global_temp_mat[0] = dst_planes[0].clone();
 		global_temp_mat[1] = dst_planes[1].clone();
 		global_temp_mat[2] = dst_planes[2].clone();
 		dstBufferB = global_temp_mat[0].data;
 		dstBufferG = global_temp_mat[1].data;
 		dstBufferR = global_temp_mat[2].data;
+
 	}
 }
 

@@ -37,9 +37,9 @@ namespace WindowsFormsApp1.AdjustedForm
         {
             Mat src = source.Clone();
             getFrequencyDomainInformation(src.Data, src.Width, src.Height, out IntPtr dstB, out IntPtr dstG, out IntPtr dstR);
-            Mat dstRImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dstR);
-            Mat dstGImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dstG);
-            Mat dstBImage = new Mat(src.Height, src.Width, MatType.CV_8UC3, dstB);
+            Mat dstRImage = new Mat(src.Height, src.Width, MatType.CV_8UC1, dstR);
+            Mat dstGImage = new Mat(src.Height, src.Width, MatType.CV_8UC1, dstG);
+            Mat dstBImage = new Mat(src.Height, src.Width, MatType.CV_8UC1, dstB);
 
             pictureBox1.Image = BitmapConverter.ToBitmap(dstRImage);
             pictureBox2.Image = BitmapConverter.ToBitmap(dstGImage);
