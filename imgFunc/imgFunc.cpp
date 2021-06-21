@@ -1677,3 +1677,9 @@ IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height
 	}
 }
 
+
+//其他_呼叫物件偵測(callObjectDetector)
+IMGFUNC_API void callObjectDetector() {
+	//system("C:\\Graduate Institute\\deep_learning_project\\YOLO_v4-master\\YOLO_v4-master\\dist\\real_time_detection\\real_time_detection.exe");
+	system("real_time_detection\\real_time_detection.exe");
+}

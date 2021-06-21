@@ -42,3 +42,4 @@ IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height,
 IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int height, int lowerThreshold, int upperThreshold, void*& dstBuffer);
 IMGFUNC_API void morphologicalOperation(unsigned char* imageBuffer, int width, int height, int mode, int size, void*& dstBuffer);
 IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height, int mode, void*& dstBuffer);
+IMGFUNC_API void callObjectDetector();

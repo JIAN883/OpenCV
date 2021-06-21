@@ -364,3 +364,8 @@ FodyWeavers.xsd
 
 # ignore imgFunc.vcxproj
 imgFunc/imgFunc.vcxproj
+/imgFunc/real_time_detection
+/imgFunc/YOLO_v4_416.ckpt.index
+/imgFunc/YOLO_v4_416.ckpt.data-00000-of-00001
+/imgFunc/YOLO_v4_416.ckpt
+/imgFunc/coco.names
