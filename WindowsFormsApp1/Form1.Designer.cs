@@ -43,8 +43,6 @@ namespace WindowsFormsApp1
             this.ToolStripMenuItem_SpatialDomain_SharpeningFilter = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_FrequencyDomain = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_FrequencyDomain_Intensity = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ColorImageProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ElseProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.aI物件辨識ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -174,26 +172,10 @@ namespace WindowsFormsApp1
             // 
             // ToolStripMenuItem_FrequencyDomain
             // 
-            this.ToolStripMenuItem_FrequencyDomain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem_FrequencyDomain_Intensity,
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery});
             this.ToolStripMenuItem_FrequencyDomain.Name = "ToolStripMenuItem_FrequencyDomain";
             this.ToolStripMenuItem_FrequencyDomain.Size = new System.Drawing.Size(113, 24);
             this.ToolStripMenuItem_FrequencyDomain.Text = "頻率域濾波器";
-            // 
-            // ToolStripMenuItem_FrequencyDomain_Intensity
-            // 
-            this.ToolStripMenuItem_FrequencyDomain_Intensity.Name = "ToolStripMenuItem_FrequencyDomain_Intensity";
-            this.ToolStripMenuItem_FrequencyDomain_Intensity.Size = new System.Drawing.Size(182, 26);
-            this.ToolStripMenuItem_FrequencyDomain_Intensity.Text = "基本影像強化";
-            this.ToolStripMenuItem_FrequencyDomain_Intensity.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-            // 
-            // ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery
-            // 
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Name = "ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery";
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Size = new System.Drawing.Size(182, 26);
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Text = "影像還原";
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+            this.ToolStripMenuItem_FrequencyDomain.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem_ColorImageProcess
             // 
@@ -355,8 +337,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_spatialDomain_Intensity;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SpatialDomain_SharpeningFilter;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SpatialDomain_NoiseImageRecovery;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_FrequencyDomain_Intensity;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ColorImageProcess;
         private System.Windows.Forms.ToolStripMenuItem aI物件辨識ToolStripMenuItem;
     }

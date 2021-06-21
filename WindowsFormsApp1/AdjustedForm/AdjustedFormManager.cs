@@ -53,10 +53,6 @@ namespace WindowsFormsApp1.AdjustedForm
             new AdjustedFormManager("頻率域資訊", typeof(GetFrequencyDomainInformationForm)),
             new AdjustedFormManager("高斯濾波器", typeof(GaussianPassFilterForm)),
             new AdjustedFormManager("理想濾波器", typeof(IdeaPassFilterForm)),
-        };
-        //影像復原
-        static public AdjustedFormManager[] frequencyDomain_NoiseImageRecovery =
-        {
             new AdjustedFormManager("Butterworth濾波器", typeof(ButterworthPassFilterForm)),
             new AdjustedFormManager("幾何平均濾波器", typeof(GeometricMeanFilterForm)),
         };

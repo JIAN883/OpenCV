@@ -31,8 +31,9 @@ namespace WindowsFormsApp1
 			ToolStripMenuItem_SpatialDomain_SharpeningFilter.Tag = AdjustedFormManager.spatialDomain_SharpeningFilter;
 			ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Tag = AdjustedFormManager.spatialDomain_NoiseImageRecovery;
 
-			ToolStripMenuItem_FrequencyDomain_Intensity.Tag = AdjustedFormManager.frequencyDomain_Intensity;
-			ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Tag = AdjustedFormManager.frequencyDomain_NoiseImageRecovery;
+			//ToolStripMenuItem_FrequencyDomain_Intensity.Tag = AdjustedFormManager.frequencyDomain_Intensity;
+			//ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Tag = AdjustedFormManager.frequencyDomain_NoiseImageRecovery;
+			ToolStripMenuItem_FrequencyDomain.Tag = AdjustedFormManager.frequencyDomain_Intensity;
 
 			toolStripMenuItem_ColorImageProcess.Tag = AdjustedFormManager.colorImageProcess;
 
