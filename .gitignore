@@ -369,3 +369,4 @@ imgFunc/imgFunc.vcxproj
 /imgFunc/YOLO_v4_416.ckpt.data-00000-of-00001
 /imgFunc/YOLO_v4_416.ckpt
 /imgFunc/coco.names
+/WindowsFormsApp1/real_time_detection/h5py

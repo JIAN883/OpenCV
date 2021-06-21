@@ -3,6 +3,17 @@
 #include "pch.h"
 #include "imgFunc.h"
 #include <opencv2/opencv.hpp>
+
+#include <iostream>
+#include <string>
+#include <filesystem>
+#include <direct.h>
+//#include <unistd.h>
+
+using std::cout; using std::cin;
+using std::endl; using std::string;
+//using std::filesystem::current_path;
+
 using namespace cv;
 #define PI 3.14159
 #define global_size 5
@@ -563,12 +574,17 @@ IMGFUNC_API void getFrequencyDomainInformation(unsigned char* imageBuffer, int w
 		dst_planes[1] = getFrequencyDomainInformation_internalFunc(BGR_planes[1]);
 		dst_planes[2] = getFrequencyDomainInformation_internalFunc(BGR_planes[2]);
 		//return to c#
+		dst_planes[0].convertTo(dst_planes[0], CV_8UC1, 255.f);
+		dst_planes[1].convertTo(dst_planes[1], CV_8UC1, 255.f);
+		dst_planes[2].convertTo(dst_planes[2], CV_8UC1, 255.f);
+
 		global_temp_mat[0] = dst_planes[0].clone();
 		global_temp_mat[1] = dst_planes[1].clone();
 		global_temp_mat[2] = dst_planes[2].clone();
 		dstBufferB = global_temp_mat[0].data;
 		dstBufferG = global_temp_mat[1].data;
 		dstBufferR = global_temp_mat[2].data;
+
 	}
 }
 
@@ -681,7 +697,7 @@ IMGFUNC_API void idealOrGaussianPassFilter(unsigned char* imageBuffer, int width
 		merge(BGR_planes, 3, dst);
 		//bgr[i].convertTo(bgr[i], CV_32FC3, 1.f / 255);
 		src.convertTo(src, CV_32FC3, 1.f / 255);
-	//	if (isAddOri)dst = dst + src;
+		if (isAddOri)dst = dst + src;
 		dst.convertTo(dst, CV_8UC3, 255.f);
 		//return to c#
 		global_temp_mat[0] = dst.clone();
@@ -1677,9 +1693,18 @@ IMGFUNC_API void CommonFilters(unsigned char* imageBuffer, int width, int height
 	}
 }
 
-
 //其他_呼叫物件偵測(callObjectDetector)
 IMGFUNC_API void callObjectDetector() {
 	//system("C:\\Graduate Institute\\deep_learning_project\\YOLO_v4-master\\YOLO_v4-master\\dist\\real_time_detection\\real_time_detection.exe");
-	system("real_time_detection\\real_time_detection.exe");
+	//system("real_time_detection\\real_time_detection.exe");
+	//system("C:\\Users\\d8008\\source\\repos\\OpencvFinalExam\\imgFunc\\real_time_detection\\real_time_detection.exe");
+	//char* cwd = get_current_dir_name();
+	/*
+	FILE* file;
+	fopen_s(&file, "11.txt", "w");
+	*/
+//	system("5.txt");
+	WinExec("real_time_detection.exe", SW_NORMAL);
+	//system("real_time_detection.exe");
+	//system("C:\\Users\\d8008\\source\\repos\\OpencvFinalExam\\imgFunc\\5.txt");
 }
