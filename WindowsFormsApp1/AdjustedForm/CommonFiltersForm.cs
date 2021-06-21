@@ -52,11 +52,11 @@ namespace WindowsFormsApp1.AdjustedForm
             new FilterTool(Properties.Resources.relief, "浮雕", 2),
             new FilterTool(Properties.Resources.Eclosion, "羽化", 3),
             new FilterTool(Properties.Resources.Nostalgia, "懷舊", 4),
-            new FilterTool(Properties.Resources.sample, "連環", 5),
+            new FilterTool(Properties.Resources.Serial, "連環", 5),
             new FilterTool(Properties.Resources.Casting, "鎔鑄", 6),
             new FilterTool(Properties.Resources.Freezing, "冰凍", 7),
-            new FilterTool(Properties.Resources.sample, "擴散", 8),
-            new FilterTool(Properties.Resources.sample, "素描", 9),
+            new FilterTool(Properties.Resources.Diffusion, "擴散", 8),
+            new FilterTool(Properties.Resources.Sketch, "素描", 9),
             new FilterTool(Properties.Resources.Swirl, "漩渦", 10),
             new FilterTool(Properties.Resources.Wind, "風", 11),
         };
@@ -108,7 +108,12 @@ namespace WindowsFormsApp1.AdjustedForm
             }
 
             CommonFilters(src.Data, src.Width, src.Height, mode, out IntPtr dst);
-            Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+            Mat dstMat;
+            if(mode == 5 || mode == 9)
+                dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC1, dst);
+            else
+                dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
+
             topForm.pictureBox.Image = BitmapConverter.ToBitmap(dstMat);
         }
     }

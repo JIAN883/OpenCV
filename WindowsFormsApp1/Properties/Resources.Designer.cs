@@ -73,6 +73,16 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap Diffusion {
+            get {
+                object obj = ResourceManager.GetObject("Diffusion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Eclosion {
             get {
                 object obj = ResourceManager.GetObject("Eclosion", resourceCulture);
@@ -136,6 +146,26 @@ namespace WindowsFormsApp1.Properties {
         internal static System.Drawing.Bitmap sculpture {
             get {
                 object obj = ResourceManager.GetObject("sculpture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Serial {
+            get {
+                object obj = ResourceManager.GetObject("Serial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Sketch {
+            get {
+                object obj = ResourceManager.GetObject("Sketch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

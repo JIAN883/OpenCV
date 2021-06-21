@@ -535,6 +535,15 @@
   <ItemGroup>
     <None Include="Resources\Swirl.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sketch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Serial.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diffusion.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
