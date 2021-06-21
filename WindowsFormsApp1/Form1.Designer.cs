@@ -47,6 +47,7 @@ namespace WindowsFormsApp1
             this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ColorImageProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_ElseProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI物件辨識ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox = new System.Windows.Forms.PictureBox();
@@ -54,7 +55,6 @@ namespace WindowsFormsApp1
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.aI物件辨識ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -209,6 +209,13 @@ namespace WindowsFormsApp1
             this.toolStripMenuItem_ElseProcess.Text = "其他工具";
             this.toolStripMenuItem_ElseProcess.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
+            // aI物件辨識ToolStripMenuItem
+            // 
+            this.aI物件辨識ToolStripMenuItem.Name = "aI物件辨識ToolStripMenuItem";
+            this.aI物件辨識ToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.aI物件辨識ToolStripMenuItem.Text = "AI物件辨識";
+            this.aI物件辨識ToolStripMenuItem.Click += new System.EventHandler(this.AIToolStripMenuItem_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -295,13 +302,6 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.Click += new System.EventHandler(this.PeekStripStatusLabel_Click);
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
-            // 
-            // aI物件辨識ToolStripMenuItem
-            // 
-            this.aI物件辨識ToolStripMenuItem.Name = "aI物件辨識ToolStripMenuItem";
-            this.aI物件辨識ToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
-            this.aI物件辨識ToolStripMenuItem.Text = "AI物件辨識";
-            this.aI物件辨識ToolStripMenuItem.Click += new System.EventHandler(this.AIToolStripMenuItem_Click);
             // 
             // Form1
             // 
