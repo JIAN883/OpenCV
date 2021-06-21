@@ -10,11 +10,15 @@ using System.Windows.Forms;
 using WindowsFormsApp1.AdjustedForm;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using System.Runtime.InteropServices;
 
 namespace WindowsFormsApp1
 {
 	public partial class Form1 : Form
 	{
+		[DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		static extern void callObjectDetector();
+
 		Bitmap sourceImage, peekImage;
 
 		public Form1()
@@ -153,6 +157,11 @@ namespace WindowsFormsApp1
 				Control temp = splitContainer1.Panel2.Controls[0];
 				OpenAdjustedForm(temp.GetType());
 			}
+        }
+
+        private void AIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			callObjectDetector();
         }
 
         private void PeekStripStatusLabel_MouseLeave(object sender, EventArgs e)

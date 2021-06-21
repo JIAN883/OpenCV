@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.PeekStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.aI物件辨識ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -79,10 +80,11 @@ namespace WindowsFormsApp1
             this.ToolStripMenuItem_spatialDomain,
             this.ToolStripMenuItem_FrequencyDomain,
             this.toolStripMenuItem_ColorImageProcess,
-            this.toolStripMenuItem_ElseProcess});
+            this.toolStripMenuItem_ElseProcess,
+            this.aI物件辨識ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1334, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1334, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -152,21 +154,21 @@ namespace WindowsFormsApp1
             // ToolStripMenuItem_spatialDomain_Intensity
             // 
             this.ToolStripMenuItem_spatialDomain_Intensity.Name = "ToolStripMenuItem_spatialDomain_Intensity";
-            this.ToolStripMenuItem_spatialDomain_Intensity.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_spatialDomain_Intensity.Size = new System.Drawing.Size(197, 26);
             this.ToolStripMenuItem_spatialDomain_Intensity.Text = "基本影像強化";
             this.ToolStripMenuItem_spatialDomain_Intensity.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_SpatialDomain_SharpeningFilter
             // 
             this.ToolStripMenuItem_SpatialDomain_SharpeningFilter.Name = "ToolStripMenuItem_SpatialDomain_SharpeningFilter";
-            this.ToolStripMenuItem_SpatialDomain_SharpeningFilter.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_SpatialDomain_SharpeningFilter.Size = new System.Drawing.Size(197, 26);
             this.ToolStripMenuItem_SpatialDomain_SharpeningFilter.Text = "銳化空間濾波器";
             this.ToolStripMenuItem_SpatialDomain_SharpeningFilter.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_SpatialDomain_NoiseImageRecovery
             // 
             this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Name = "ToolStripMenuItem_SpatialDomain_NoiseImageRecovery";
-            this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Size = new System.Drawing.Size(197, 26);
             this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Text = "影像還原";
             this.ToolStripMenuItem_SpatialDomain_NoiseImageRecovery.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -182,14 +184,14 @@ namespace WindowsFormsApp1
             // ToolStripMenuItem_FrequencyDomain_Intensity
             // 
             this.ToolStripMenuItem_FrequencyDomain_Intensity.Name = "ToolStripMenuItem_FrequencyDomain_Intensity";
-            this.ToolStripMenuItem_FrequencyDomain_Intensity.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_FrequencyDomain_Intensity.Size = new System.Drawing.Size(182, 26);
             this.ToolStripMenuItem_FrequencyDomain_Intensity.Text = "基本影像強化";
             this.ToolStripMenuItem_FrequencyDomain_Intensity.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery
             // 
             this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Name = "ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery";
-            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Size = new System.Drawing.Size(182, 26);
             this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Text = "影像還原";
             this.ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -211,15 +213,15 @@ namespace WindowsFormsApp1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1334, 663);
-            this.splitContainer1.SplitterDistance = 441;
+            this.splitContainer1.Size = new System.Drawing.Size(1334, 662);
+            this.splitContainer1.SplitterDistance = 440;
             this.splitContainer1.TabIndex = 1;
             // 
             // splitContainer2
@@ -235,7 +237,7 @@ namespace WindowsFormsApp1
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(1332, 439);
+            this.splitContainer2.Size = new System.Drawing.Size(1332, 438);
             this.splitContainer2.SplitterDistance = 772;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -246,7 +248,7 @@ namespace WindowsFormsApp1
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(772, 439);
+            this.pictureBox.Size = new System.Drawing.Size(772, 438);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -260,7 +262,7 @@ namespace WindowsFormsApp1
             this.listBox1.ItemHeight = 29;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(556, 439);
+            this.listBox1.Size = new System.Drawing.Size(556, 438);
             this.listBox1.TabIndex = 0;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -280,7 +282,7 @@ namespace WindowsFormsApp1
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1261, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1250, 19);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // PeekStripStatusLabel
@@ -293,6 +295,13 @@ namespace WindowsFormsApp1
             this.PeekStripStatusLabel.Click += new System.EventHandler(this.PeekStripStatusLabel_Click);
             this.PeekStripStatusLabel.MouseLeave += new System.EventHandler(this.PeekStripStatusLabel_MouseLeave);
             this.PeekStripStatusLabel.MouseHover += new System.EventHandler(this.PeekStripStatusLabel_MouseHover);
+            // 
+            // aI物件辨識ToolStripMenuItem
+            // 
+            this.aI物件辨識ToolStripMenuItem.Name = "aI物件辨識ToolStripMenuItem";
+            this.aI物件辨識ToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.aI物件辨識ToolStripMenuItem.Text = "AI物件辨識";
+            this.aI物件辨識ToolStripMenuItem.Click += new System.EventHandler(this.AIToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -349,6 +358,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_FrequencyDomain_Intensity;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_FrequencyDomain_NoiseImageRecovery;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_ColorImageProcess;
+        private System.Windows.Forms.ToolStripMenuItem aI物件辨識ToolStripMenuItem;
     }
 }
 
