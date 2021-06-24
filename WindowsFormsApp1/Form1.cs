@@ -40,8 +40,8 @@ namespace WindowsFormsApp1
 			toolStripMenuItem_ElseProcess.Tag = AdjustedFormManager.elseProcess;
 
 			//debug模式專用
-			sourceImage = Properties.Resources.sample;
-			pictureBox.Image = sourceImage.Clone() as Bitmap;
+			//sourceImage = Properties.Resources.sample;
+			//pictureBox.Image = sourceImage.Clone() as Bitmap;
 		}
 
 		private void OpenImage(object sender, EventArgs e)//以路徑開啟圖像
