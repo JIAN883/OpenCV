@@ -40,8 +40,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.button1 = new System.Windows.Forms.Button();
             this.label_upper = new System.Windows.Forms.Label();
             this.label_lower = new System.Windows.Forms.Label();
-            this.trackBar_upper = new System.Windows.Forms.TrackBar();
-            this.trackBar_lower = new System.Windows.Forms.TrackBar();
+            this.trackBar_threshold2 = new System.Windows.Forms.TrackBar();
+            this.trackBar_threshold1 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,8 +49,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_upper)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_lower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_threshold2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_threshold1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -120,8 +120,8 @@ namespace WindowsFormsApp1.AdjustedForm
             this.tableLayoutPanel1.Controls.Add(this.button1, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label_upper, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label_lower, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.trackBar_upper, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.trackBar_lower, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.trackBar_threshold2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.trackBar_threshold1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -152,7 +152,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 143);
             this.label5.TabIndex = 17;
-            this.label5.Text = "upperThreshold\r\n高於此值就不被選中";
+            this.label5.Text = "threshold2\r\n呼叫Canny的第二個閥值\r\n建議比率：threshold1:threshold2 = 3:1 或 2:1";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
@@ -163,7 +163,7 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(154, 143);
             this.label6.TabIndex = 18;
-            this.label6.Text = "lowerThreshold\r\n低於此值就不被選中";
+            this.label6.Text = "threshold1\r\n呼叫Canny的第一個閥值";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button1
@@ -199,27 +199,27 @@ namespace WindowsFormsApp1.AdjustedForm
             this.label_lower.Text = "label1";
             this.label_lower.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // trackBar_upper
+            // trackBar_threshold2
             // 
-            this.trackBar_upper.Dock = System.Windows.Forms.DockStyle.Top;
-            this.trackBar_upper.Location = new System.Drawing.Point(3, 146);
-            this.trackBar_upper.Maximum = 1000;
-            this.trackBar_upper.Name = "trackBar_upper";
-            this.trackBar_upper.Size = new System.Drawing.Size(153, 56);
-            this.trackBar_upper.TabIndex = 23;
-            this.trackBar_upper.Scroll += new System.EventHandler(this.trackBar_upper_Scroll);
-            this.trackBar_upper.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_upper_MouseUp);
+            this.trackBar_threshold2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.trackBar_threshold2.Location = new System.Drawing.Point(3, 146);
+            this.trackBar_threshold2.Maximum = 1000;
+            this.trackBar_threshold2.Name = "trackBar_threshold2";
+            this.trackBar_threshold2.Size = new System.Drawing.Size(153, 56);
+            this.trackBar_threshold2.TabIndex = 23;
+            this.trackBar_threshold2.Scroll += new System.EventHandler(this.trackBar_upper_Scroll);
+            this.trackBar_threshold2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_upper_MouseUp);
             // 
-            // trackBar_lower
+            // trackBar_threshold1
             // 
-            this.trackBar_lower.Dock = System.Windows.Forms.DockStyle.Top;
-            this.trackBar_lower.Location = new System.Drawing.Point(3, 3);
-            this.trackBar_lower.Maximum = 1000;
-            this.trackBar_lower.Name = "trackBar_lower";
-            this.trackBar_lower.Size = new System.Drawing.Size(153, 56);
-            this.trackBar_lower.TabIndex = 24;
-            this.trackBar_lower.Scroll += new System.EventHandler(this.trackBar_lower_Scroll);
-            this.trackBar_lower.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_upper_MouseUp);
+            this.trackBar_threshold1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.trackBar_threshold1.Location = new System.Drawing.Point(3, 3);
+            this.trackBar_threshold1.Maximum = 1000;
+            this.trackBar_threshold1.Name = "trackBar_threshold1";
+            this.trackBar_threshold1.Size = new System.Drawing.Size(153, 56);
+            this.trackBar_threshold1.TabIndex = 24;
+            this.trackBar_threshold1.Scroll += new System.EventHandler(this.trackBar_lower_Scroll);
+            this.trackBar_threshold1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_upper_MouseUp);
             // 
             // CannyEdgeDetectionForm
             // 
@@ -239,8 +239,8 @@ namespace WindowsFormsApp1.AdjustedForm
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_upper)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_lower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_threshold2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_threshold1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -258,7 +258,7 @@ namespace WindowsFormsApp1.AdjustedForm
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label_upper;
         private System.Windows.Forms.Label label_lower;
-        private System.Windows.Forms.TrackBar trackBar_upper;
-        private System.Windows.Forms.TrackBar trackBar_lower;
+        private System.Windows.Forms.TrackBar trackBar_threshold2;
+        private System.Windows.Forms.TrackBar trackBar_threshold1;
     }
 }

@@ -17,15 +17,14 @@ namespace WindowsFormsApp1.AdjustedForm
     {
         [DllImport("imgFunc.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         //CH6_canny的邊緣偵測(cannyEdgeDetection)
-        //lowerThreshold：低於此值就不被選中
-        //upperThreshold：高於此值就不被選中
-        static extern void cannyEdgeDetection(IntPtr src, int width, int height, int lowerThreshold, int upperThreshold, out IntPtr dstBuffer);
+        //threshold1：呼叫Canny的第一個閥值
+        //threshold2：呼叫Canny的第二個閥值 建議比率：threshold1:threshold2 = 3:1 或 2:1
+        static extern void cannyEdgeDetection(IntPtr src, int width, int height, int threshold1, int threshold2, out IntPtr dstBuffer);
 
         Form1 topForm;
         Mat source;
-        float min = 0f, max = 255f, lowerDefault = 0f, upperDefault = 255f;
+        float min = 0f, max = 255f, threshold1Default = 0f, threshold2Default = 0f;
         string confirm = "應用", cancel = "還原";
-        string description = " < 選取範圍 < ";
 
         public CannyEdgeDetectionForm()
         {
@@ -40,45 +39,30 @@ namespace WindowsFormsApp1.AdjustedForm
 
         private void CannyEdgeDetectionForm_Load(object sender, EventArgs e)
         {
-            label_lower.Text = lowerDefault.ToString();
-            label_upper.Text = upperDefault.ToString();
-            trackBar_lower.Value = AdjustedFormManager.SetTrackBarValue(trackBar_lower.Maximum, max, min, lowerDefault);
-            trackBar_upper.Value = AdjustedFormManager.SetTrackBarValue(trackBar_upper.Maximum, max, min, upperDefault);
-            label4.Text = label_lower.Text + description + label_upper.Text;
+            label_lower.Text = threshold1Default.ToString();
+            label_upper.Text = threshold2Default.ToString();
+            trackBar_threshold1.Value = AdjustedFormManager.SetTrackBarValue(trackBar_threshold1.Maximum, max, min, threshold1Default);
+            trackBar_threshold2.Value = AdjustedFormManager.SetTrackBarValue(trackBar_threshold2.Maximum, max, min, threshold2Default);
 
             pictureBox1.Image = ImageProcess();
         }
 
         private void trackBar_upper_Scroll(object sender, EventArgs e)
         {
-            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
-            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
-
-            if (upperValue < lowerValue)
-            {
-                trackBar_lower.Value = trackBar_upper.Value;
-                lowerValue = upperValue;
-            }
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold2.Maximum, trackBar_threshold2.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold1.Maximum, trackBar_threshold1.Value, max, min);
 
             label_upper.Text = upperValue.ToString();
             label_lower.Text = lowerValue.ToString();
-            label4.Text = label_lower.Text + description + label_upper.Text;
         }
 
         private void trackBar_lower_Scroll(object sender, EventArgs e)
         {
-            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
-            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
-
-            if (lowerValue > upperValue)
-            {
-                trackBar_upper.Value = trackBar_lower.Value;
-                upperValue = lowerValue;
-            }
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold2.Maximum, trackBar_threshold2.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold1.Maximum, trackBar_threshold1.Value, max, min);
 
             label_lower.Text = lowerValue.ToString();
             label_upper.Text = upperValue.ToString();
-            label4.Text = label_lower.Text + description + label_upper.Text;
         }
 
         private void trackBar_upper_MouseUp(object sender, MouseEventArgs e)
@@ -117,8 +101,8 @@ namespace WindowsFormsApp1.AdjustedForm
         Bitmap ImageProcess()
         {
             Mat src = source.Clone();
-            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_upper.Maximum, trackBar_upper.Value, max, min);
-            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_lower.Maximum, trackBar_lower.Value, max, min);
+            int upperValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold2.Maximum, trackBar_threshold2.Value, max, min);
+            int lowerValue = (int)AdjustedFormManager.GetTrackValue(trackBar_threshold1.Maximum, trackBar_threshold1.Value, max, min);
 
             cannyEdgeDetection(src.Data, src.Width, src.Height, lowerValue, upperValue, out IntPtr dst);
             Mat dstMat = new Mat(src.Height, src.Width, MatType.CV_8UC3, dst);
