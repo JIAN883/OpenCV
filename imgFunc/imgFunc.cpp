@@ -1192,14 +1192,14 @@ IMGFUNC_API void colorSlicing(unsigned char* imageBuffer, int width, int height,
 }
 
 //CH6_canny的邊緣偵測(cannyEdgeDetection)
-	//lowerThreshold：低於此值就不被選中
-	//upperThreshold：高於此值就不被選中
-IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int height, int lowerThreshold, int upperThreshold, void*& dstBuffer) {
+	//threshold1：呼叫Canny的第一個閥值
+	//threshold2：呼叫Canny的第二個閥值 建議比率：threshold1:threshold2 = 3:1 或 2:1
+IMGFUNC_API void cannyEdgeDetection(unsigned char* imageBuffer, int width, int height, int threshold1, int threshold2, void*& dstBuffer) {
 	Mat src = Mat(height, width, CV_8UC3, imageBuffer);
 	if (!src.empty()) { // Read image success
 		Mat edge, dst;
 		//Retrieve edge mask using canny method
-		Canny(src, edge, lowerThreshold, upperThreshold);
+		Canny(src, edge, threshold1, threshold2);
 		src.copyTo(dst, edge);
 		global_temp_mat[0] = dst.clone();
 		dstBuffer = global_temp_mat[0].data;
